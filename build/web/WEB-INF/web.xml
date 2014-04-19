@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+<<<<<<< HEAD
     <servlet>
         <servlet-name>ingresousuario</servlet-name>
         <servlet-class>controlador.ingresousuario</servlet-class>
@@ -24,6 +25,8 @@
         <servlet-name>registro2</servlet-name>
         <url-pattern>/registro2</url-pattern>
     </servlet-mapping>
+=======
+>>>>>>> 33e3d60f9db250cdbae3edb9293a92e6d83b852b
     <session-config>
         <session-timeout>
             30

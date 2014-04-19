@@ -2,6 +2,7 @@
     Document   : menuAdmin
     Created on : 16-04-2014, 03:07:16 PM
     Author     : Felipe Gonzalez
+<<<<<<< HEAD
 
 OJO!!! Este codigo sirve para añadir informacion a una tabla con oracle conn = javadb.ConnectDb();
 
@@ -19,6 +20,8 @@ OJO!!! Este codigo sirve para añadir informacion a una tabla con oracle conn = 
         JOptionPane.showMessageDialog(null, e);
         }
     }
+=======
+>>>>>>> 33e3d60f9db250cdbae3edb9293a92e6d83b852b
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

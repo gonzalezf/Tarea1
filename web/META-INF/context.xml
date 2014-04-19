@@ -1,2 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <Context antiJARLocking="true" path="/Tarea1.0"/>
+=======
+<Context antiJARLocking="true" path="/Tarea1"/>
+>>>>>>> 33e3d60f9db250cdbae3edb9293a92e6d83b852b
