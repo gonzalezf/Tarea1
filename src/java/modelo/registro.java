@@ -200,6 +200,43 @@ public class registro{
 
     } // fin de IngresarVendedor
 
+
+
+    public void IngresarCliente(String rut,String nombre){
+    String sql = "Insert into cliente values(?,?)";
+
+    try{
+        Class.forName(classfor);
+
+        con=DriverManager.getConnection(url, usuario, clave);
+
+       /* pr=con.prepareStatement(sql);
+        pr.setString(1, rut);
+        pr.setString(2,contrasenna); HOLAAAAAAAAAA!!!!
+        pr.setString(3,nombre);
+        pr.setString(4,tipo);
+        pr.setInt(5,comision);
+
+        pr.executeUpdate();
+        */
+
+
+
+        consulta = con.createStatement();
+        int r = consulta.executeUpdate("INSERT INTO cliente (rut,nombre) VALUES ('"+rut+"','"+nombre+"')");
+
+        System.out.println(r);
+    }
+
+    catch(Exception e)
+    {
+
+
+      System.out.println(e.getMessage());
+    } //fin de catch
+
+    } // fin de IngresarCliente
+
     } //fin clase registro
 
     

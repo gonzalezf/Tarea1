@@ -24,6 +24,10 @@
         <servlet-name>ingresarvendedor</servlet-name>
         <servlet-class>controlador.ingresarvendedor</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ingresarcliente</servlet-name>
+        <servlet-class>controlador.ingresarcliente</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ingresousuario</servlet-name>
         <url-pattern>/ingresousuario</url-pattern>
@@ -47,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>ingresarvendedor</servlet-name>
         <url-pattern>/ingresarvendedor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ingresarcliente</servlet-name>
+        <url-pattern>/ingresarcliente</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
