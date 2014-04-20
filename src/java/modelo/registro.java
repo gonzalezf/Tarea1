@@ -5,7 +5,10 @@
 
 package modelo;
 
-
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.*;
 /**
  *
@@ -27,28 +30,39 @@ public class registro{
 
     private Connection con=null;
     private PreparedStatement pr=null;
+    private Statement consulta = null;
     private ResultSet rs=null;
 
     public void InsertarUsuario(String rut,String contrasenna,String nombre,String tipo,int comision){
-    String sql = "INSERT INTO USUARIO VALUES(?,?,?,?,?,?)";
+    String sql = "Insert into usuario values(?,?,?,?,?)";
     try{
         Class.forName(classfor);
+
         con=DriverManager.getConnection(url, usuario, clave);
 
-        pr=con.prepareStatement(sql);
+       /* pr=con.prepareStatement(sql);
         pr.setString(1, rut);
-        pr.setString(2,contrasenna);
+        pr.setString(2,contrasenna); HOLAAAAAAAAAA!!!!
         pr.setString(3,nombre);
         pr.setString(4,tipo);
         pr.setInt(5,comision);
 
         pr.executeUpdate();
-        System.out.println("ingresado!");
+        */
+
+
+
+        consulta = con.createStatement();
+        int r = consulta.executeUpdate("INSERT INTO usuario (rut, contrasenna,nombre,tipo,comision) VALUES ('"+rut+"','"+contrasenna+"','"+nombre+"','"+tipo+"',"+comision+")");
+
+        System.out.println(r);
     }
 
-    catch(Exception ev)
+    catch(Exception e)
     {
-      System.out.println(ev.getMessage());
+      
+
+      System.out.println(e.getMessage());
     } //fin de catch
 
     } // fin de InsertarUsuario

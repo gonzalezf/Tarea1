@@ -33,6 +33,7 @@ public class ingresousuario extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        
         try {
            
 
@@ -42,13 +43,16 @@ public class ingresousuario extends HttpServlet {
           String contrasenna =request.getParameter("contrasenna").toUpperCase();
           String nombre =request.getParameter("nombre").toUpperCase();
           String tipo =request.getParameter("tipo").toUpperCase();
-          String comision =request.getParameter("comision").toUpperCase();
-          regis.InsertarUsuario(rut, contrasenna, nombre, tipo,Integer.parseInt(comision));
-
-          response.sendRedirect("index.jsp"); //redirecciona cuando ya ingreso en la BD
-
+          int comision = Integer.parseInt(request.getParameter("comision"));
+          regis.InsertarUsuario(rut, contrasenna, nombre, tipo,1);
           
-        } finally { 
+          //response.sendRedirect("index.jsp"); //redirecciona cuando ya ingreso en la BD
+          out.println("hola");
+          
+        }catch(Exception e){
+            e.getStackTrace();
+            out.println(e.getMessage());
+        } finally {
             out.close();
         }
     } 
