@@ -28,6 +28,14 @@
         <servlet-name>ingresarcliente</servlet-name>
         <servlet-class>controlador.ingresarcliente</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>java</servlet-name>
+        <servlet-class>onlogout.java</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>onlogout</servlet-name>
+        <servlet-class>controlador.onlogout</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ingresousuario</servlet-name>
         <url-pattern>/ingresousuario</url-pattern>
@@ -55,6 +63,14 @@
     <servlet-mapping>
         <servlet-name>ingresarcliente</servlet-name>
         <url-pattern>/ingresarcliente</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>java</servlet-name>
+        <url-pattern>/java</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>onlogout</servlet-name>
+        <url-pattern>/onlogout</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
