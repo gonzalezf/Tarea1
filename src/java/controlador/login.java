@@ -65,7 +65,7 @@ public class login extends HttpServlet {
                   response.sendRedirect("menuadministrador.jsp"); //redirecciona cuando ya ingreso en la BD
 
                 }
-                if(result.get(2).equals("VENDEDOR")){
+                if(result.get(1).equals("VENDEDOR")){
                     session.setAttribute("UserLevel", "Vendedor");
                     response.sendRedirect("menuvendedor.jsp");
                 }

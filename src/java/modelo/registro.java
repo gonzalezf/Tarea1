@@ -165,29 +165,19 @@ public class registro{
     }
 
     public void IngresarVendedor(String rut,String contrasenna,String nombre,int comision){
-    String sql = "Insert into usuario values(?,?,?,?,?)";
+ //   String sql = "Insert into usuario values(?,?,?,?,?)";
     String tipo = "VENDEDOR";
     try{
         Class.forName(classfor);
 
-        //con=DriverManager.getConnection(url, usuario, clave);
+        con=DriverManager.getConnection(url, usuario, clave);
 
-       /* pr=con.prepareStatement(sql);
-        pr.setString(1, rut);
-        pr.setString(2,contrasenna); HOLAAAAAAAAAA!!!!
-        pr.setString(3,nombre);
-        pr.setString(4,tipo);
-        pr.setInt(5,comision);
 
-        pr.executeUpdate();
-        */
 
-        
+        consulta = con.createStatement();
+        int r = consulta.executeUpdate("INSERT INTO usuario (rut, contrasenna,nombre,tipo,comision) VALUES ('"+rut+"','"+contrasenna+"','"+nombre+"','"+tipo+"',"+comision+")");
 
-        //consulta = con.createStatement();
-        //int r = consulta.executeUpdate("INSERT INTO usuario (rut, contrasenna,nombre,tipo,comision) VALUES ('"+rut+"','"+contrasenna+"','"+nombre+"','"+tipo+"',"+comision+")");
-
-        //System.out.println(r);
+        System.out.println(r);
     }
     
     catch(Exception e)
@@ -207,19 +197,6 @@ public class registro{
         Class.forName(classfor);
 
         con=DriverManager.getConnection(url, usuario, clave);
-
-       /* pr=con.prepareStatement(sql);
-        pr.setString(1, rut);
-        pr.setString(2,contrasenna); HOLAAAAAAAAAA!!!!
-        pr.setString(3,nombre);
-        pr.setString(4,tipo);
-        pr.setInt(5,comision);
-
-        pr.executeUpdate();
-        */
-
-
-
         consulta = con.createStatement();
         int r = consulta.executeUpdate("INSERT INTO cliente (rut,nombre) VALUES ('"+rut+"','"+nombre+"')");
 
@@ -234,5 +211,27 @@ public class registro{
     } //fin de catch
 
     } // fin de IngresarCliente
+
+    public void AgregarProducto(int id_producto,String nombre,String descripcion,String categoria,int stock,int precio){
+
+
+    try{
+        Class.forName(classfor);
+
+        con=DriverManager.getConnection(url, usuario, clave);
+        consulta = con.createStatement();
+        int r = consulta.executeUpdate("INSERT INTO producto (id_producto,nombre,descripcion,categoria,stock,precio) VALUES ("+id_producto+",'"+nombre+"','"+descripcion+"','"+categoria+"',"+stock+","+precio+")");
+
+        System.out.println(r);
+    }
+
+    catch(Exception e)
+    {
+
+
+      System.out.println(e.getMessage());
+    } //fin de catch
+
+    } // fin de AgregarProducto
 
     } //fin clase registro

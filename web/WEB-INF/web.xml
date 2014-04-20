@@ -28,6 +28,10 @@
         <servlet-name>ingresarcliente</servlet-name>
         <servlet-class>controlador.ingresarcliente</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>agregarproducto</servlet-name>
+        <servlet-class>controlador.agregarproducto</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ingresousuario</servlet-name>
         <url-pattern>/ingresousuario</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>ingresarcliente</servlet-name>
         <url-pattern>/ingresarcliente</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>agregarproducto</servlet-name>
+        <url-pattern>/agregarproducto</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
