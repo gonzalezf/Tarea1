@@ -163,15 +163,16 @@ public class registro{
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-
-    } //fin clase registro
-
-    public void IngresarVendedor(String rut,String contrasenna,String nombre){
-    String sql = "Insert into usuario values(?,?,?,?,?)";
-    try{
+     //fin clase registro
+   
+    public void IngresarVendedor(String rut,String contrasenna,String nombre)
+    {
+        String sql = "Insert into usuario values(?,?,?,?,?)";
+    try
+    {
         Class.forName(classfor);
 
-        con=DriverManager.getConnection(url, usuario, clave);
+        //con=DriverManager.getConnection(url, usuario, clave);
 
        /* pr=con.prepareStatement(sql);
         pr.setString(1, rut);
@@ -185,12 +186,12 @@ public class registro{
 
 
 
-        consulta = con.createStatement();
-        int r = consulta.executeUpdate("INSERT INTO usuario (rut, contrasenna,nombre,tipo,comision) VALUES ('"+rut+"','"+contrasenna+"','"+nombre+"','"+tipo+"',"+comision+")");
+        //consulta = con.createStatement();
+        //int r = consulta.executeUpdate("INSERT INTO usuario (rut, contrasenna,nombre,tipo,comision) VALUES ('"+rut+"','"+contrasenna+"','"+nombre+"','"+tipo+"',"+comision+")");
 
-        System.out.println(r);
+        //System.out.println(r);
     }
-
+    
     catch(Exception e)
     {
 
@@ -199,3 +200,4 @@ public class registro{
     } //fin de catch
 
     } // fin de InsertarUsuario
+}

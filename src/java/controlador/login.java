@@ -42,7 +42,7 @@ public class login extends HttpServlet {
           String contrasenna =request.getParameter("contrasenna").toUpperCase();
           ArrayList<String> result = new ArrayList<String>();
 
-          result= mlogin.Login(rut,contrasenna);
+          result = mlogin.Login(rut,contrasenna);
           
           if (result.get(0).equals("1")){
               out.println("usuario no existe!");
@@ -57,6 +57,8 @@ public class login extends HttpServlet {
             /*    out.println("usuario logueado");
                 out.println("Usted es "+result.get(1)+"");
                 out.println("Bienvenido "+result.get(2)+"");*/
+                HttpSession session = request.getSession();
+                session.setAttribute("LoggedIn", "yes");
                 if(result.get(1).equals("ADMINISTRADOR")){
                   response.sendRedirect("menuadministrador.jsp"); //redirecciona cuando ya ingreso en la BD
 

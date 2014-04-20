@@ -7,24 +7,31 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
-
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Inicio sesion</title>
-    </head>
-    <body>
-        <h1>Inicio Sesion</h1>
-              <form action="login" method="post" > <!-- se ingresa rut y contrasenna para redirigir a determinada aplicaccion -->
-              <p> Ingrese rut </p>
-              <p><input type="text" value="" name="rut"></p>
-              <p> Ingrese contraseña </p>
-              <p><input type="text" value="" name="contrasenna"></p>
-              <p> <input type="submit" value="Login" name="login"></p>
-
-
-
-                </form>
-
-    </body>
-</html>
+<%
+    if(session.isNew())
+    {
+        session.setAttribute("LoggedIn", "no");
+        response.sendRedirect("login.jsp");
+    }
+    String logged_in = null;
+    try
+    {
+        logged_in = (String)session.getAttribute("LoggedIn");
+    }
+    catch(Exception e)
+    {
+        response.sendRedirect("login.jsp");
+    }
+    if(logged_in == null || logged_in.equals("no"))
+    {
+        response.sendRedirect("login.jsp");
+    }
+    else
+    {
+        if(session.getAttribute("UserLevel").equals("Vendedor"))
+            response.sendRedirect("menuvendedor.jsp");
+        else if(session.getAttribute("UserLevel").equals("Administrador"))
+            response.sendRedirect("menuadministrador.jsp");
+    }
+        
+%>

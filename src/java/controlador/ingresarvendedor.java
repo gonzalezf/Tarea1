@@ -37,7 +37,7 @@ public class ingresarvendedor extends HttpServlet {
             //contrasenna incorrecta, lanzar pop up!
          }
 
-          regis.IngresarVendedor(rut,contrasenna,nombre);
+          //regis.IngresarVendedor(rut,contrasenna,nombre);
           response.sendRedirect("menuadministrador.jsp");
 
             
