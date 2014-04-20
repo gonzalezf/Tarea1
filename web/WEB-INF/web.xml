@@ -20,6 +20,10 @@
         <servlet-name>mlogin</servlet-name>
         <servlet-class>modelo.mlogin</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ingresarvendedor</servlet-name>
+        <servlet-class>controlador.ingresarvendedor</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ingresousuario</servlet-name>
         <url-pattern>/ingresousuario</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>mlogin</servlet-name>
         <url-pattern>/mlogin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ingresarvendedor</servlet-name>
+        <url-pattern>/ingresarvendedor</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
