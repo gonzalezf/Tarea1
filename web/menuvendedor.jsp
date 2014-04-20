@@ -15,7 +15,7 @@
     </head>
     <body>
         <h1>Menu vendedor</h1>
-        <a href="url">Ingresar Cliente</a>
+        <a href="ingresarcliente.jsp">Ingresar Cliente</a>
         <a href="url">Ingresar Venta</a>
         <a href="url">Ver ventas a cliente</a>
         <a href="url">Mis ventas</a>

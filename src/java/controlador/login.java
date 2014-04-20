@@ -57,7 +57,7 @@ public class login extends HttpServlet {
             /*    out.println("usuario logueado");
                 out.println("Usted es "+result.get(1)+"");
                 out.println("Bienvenido "+result.get(2)+"");*/
-                HttpSession session = request.getSession();
+                //HttpSession session = request.getSession();
                 session.setAttribute("LoggedIn", "yes");
                 if(result.get(1).equals("ADMINISTRADOR")){
                   response.sendRedirect("menuadministrador.jsp"); //redirecciona cuando ya ingreso en la BD
