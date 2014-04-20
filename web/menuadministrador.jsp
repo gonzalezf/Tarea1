@@ -44,7 +44,7 @@
 
         <a href="ingresarvendedor.jsp">Ingresar Vendedor</a>
         <a href="url">Ingresar Cliente</a>
-        <a href="url">Administrar Productos</a>
+        <a href="administrarproductos.jsp">Administrar Productos</a>
         <a href="url">Ingresar Compra</a>
         <a href="url">Ingresar Venta</a>
         <a href="url">Ver Ventas a Cliente</a>

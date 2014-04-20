@@ -7,21 +7,17 @@ package controlador;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-
-import modelo.registro;
 
 /**
  *
  * @author Felipe Gonzalez
  */
-public class login extends HttpServlet {
+import modelo.registro;
+public class agregarproducto extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -37,62 +33,27 @@ public class login extends HttpServlet {
         try {
 
 
-          registro mlogin=new registro();
+          registro regis=new registro();
+          int id_producto = Integer.parseInt(request.getParameter("id_producto"));
+          String nombre =request.getParameter("nombre").toUpperCase();
+          String descripcion =request.getParameter("descripcion").toUpperCase();
+          String categoria =request.getParameter("categoria").toUpperCase();
+          int precio = Integer.parseInt(request.getParameter("precio"));
+          int stock = Integer.parseInt(request.getParameter("stock"));
 
-          String rut =request.getParameter("rut").toUpperCase();
-          String contrasenna =request.getParameter("contrasenna").toUpperCase();
-          ArrayList<String> result = new ArrayList<String>();
+          regis.AgregarProducto(id_producto,nombre,descripcion,categoria,stock,precio);
+          //out.println(nombre);
+          response.sendRedirect("menuadministrador.jsp");
 
-          result = mlogin.Login(rut,contrasenna);
-          
-          if (result.get(0).equals("1")){
-              out.println("usuario no existe!");
-              HttpSession session = request.getSession();
-              session.setAttribute("InvalidLoginInfo", "yes");
-              response.sendRedirect("login.jsp");
-              return;
-          }
-          if (result.get(0).equals("2"))
-          {
-              out.println("contraseña invalida");
-               HttpSession session = request.getSession();
-              session.setAttribute("InvalidLoginInfo", "yes");
-              response.sendRedirect("login.jsp");
-              return;
-          }
-          if (result.get(0).equals("3")){
-               out.println("algo paso ups!");
-            }
-          if (result.get(0).equals("0")){
-            /*    out.println("usuario logueado");
-                out.println("Usted es "+result.get(1)+"");
-                out.println("Bienvenido "+result.get(2)+"");*/
-                HttpSession session = request.getSession();
-                session.setAttribute("LoggedIn", "yes");
-                if(result.get(1).equals("ADMINISTRADOR")){
-                  session.setAttribute("UserLevel", "Administrador");
-                  response.sendRedirect("menuadministrador.jsp"); //redirecciona cuando ya ingreso en la BD
 
-                }
-                if(result.get(1).equals("VENDEDOR")){
-                    session.setAttribute("UserLevel", "Vendedor");
-                    response.sendRedirect("menuvendedor.jsp");
-                }
 
-          }
-          else{
-               out.println("nose que onda");
-          }
-     
 
-        }catch(Exception e){
-            e.getStackTrace();
-            out.println(e.getMessage());
-        }
-        finally {
+
+
+        } finally { 
             out.close();
         }
-    } //fin de request!
+    } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 
@@ -130,4 +91,4 @@ public class login extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-} //fin clase login
+}

@@ -1,0 +1,122 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Apr 20, 2014, 3:52:18 PM
+    Author     : felipe
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font: inherit;
+	font-size: 100%;
+	vertical-align: baseline;
+}
+
+html {
+	line-height: 1;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+caption, th, td {
+	text-align: left;
+	font-weight: normal;
+	vertical-align: middle;
+}
+
+q, blockquote {
+	quotes: none;
+}
+q:before, q:after, blockquote:before, blockquote:after {
+	 content: "";
+	 content: none;
+}
+
+a img {
+	 border: none;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+   display: block;
+}
+
+/**
+ * De aqui para abajo escriban su codigo
+ */
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+body 
+{
+    font-family: 'Open Sans', sans-serif;
+    color: #000000;
+    background-color: #ffffff;
+}
+.wrapper{
+    width: 600px;
+    height: 900px;
+    margin-left: auto ;
+    margin-right: auto ;
+    padding-top: 100px;
+}
+.loginbox
+{
+    width: 300px ;
+    height: 215px;
+    margin-left: auto ;
+    margin-right: auto ;
+    margin-top: auto;
+    margin-bottom: auto;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: #E6E6E6;
+}
+
+.loginbox h1
+{
+    text-align:center;
+    font-size: 22pt;
+    padding-top: 3px;
+    padding-bottom: 30px;
+}
+
+.loginbox p{
+    text-align: center;
+    padding-top: 3px;
+    padding-bottom: 3px; 
+}
+.loginboxerror{
+    color:red;
+    text-align: center;
+    width: 300px ;
+    margin-left: auto ;
+    margin-right: auto ;
+    margin-top: 15px;
+    margin-bottom: auto;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: #E6E6E6;
+}
+

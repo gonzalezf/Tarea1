@@ -41,7 +41,7 @@ public class ingresarvendedor extends HttpServlet {
          }
          else{
           regis.IngresarVendedor(rut,contrasenna,nombre,comision);
-          response.sendRedirect("ingresarvendedor.jsp");
+          response.sendRedirect("menuvendedor.jsp");
           
           }
         } finally { 
