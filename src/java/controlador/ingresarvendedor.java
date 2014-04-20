@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 import modelo.registro;
 /**
  *
@@ -29,18 +30,20 @@ public class ingresarvendedor extends HttpServlet {
           String contrasenna =request.getParameter("contrasenna").toUpperCase();
           String nombre =request.getParameter("nombre").toUpperCase();
           String repetircontrasenna = request.getParameter("repetircontrasenna").toUpperCase();
+          int comision = Integer.parseInt(request.getParameter("comision"));
 
 
          /*validacion de contrasena valida */
          if(contrasenna.compareTo(repetircontrasenna)!=0){
 
-            //contrasenna incorrecta, lanzar pop up!
+        // JOptionPane.showMessageDialog(frame, "Eggs are not supposed to be green.");
+            out.println("Las contraseñas no coinciden. Hay que hacer un pop up!");
          }
-
-          regis.IngresarVendedor(rut,contrasenna,nombre);
-          response.sendRedirect("menuadministrador.jsp");
-
-            
+         else{
+          regis.IngresarVendedor(rut,contrasenna,nombre,comision);
+          response.sendRedirect("ingresarvendedor.jsp");
+          
+          }
         } finally { 
             out.close();
         }

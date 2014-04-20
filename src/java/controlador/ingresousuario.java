@@ -44,7 +44,7 @@ public class ingresousuario extends HttpServlet {
           String nombre =request.getParameter("nombre").toUpperCase();
           String tipo =request.getParameter("tipo").toUpperCase();
           int comision = Integer.parseInt(request.getParameter("comision"));
-          regis.InsertarUsuario(rut, contrasenna, nombre, tipo,1);
+          regis.InsertarUsuario(rut, contrasenna, nombre, tipo,1); //ojo aqui , revisar! porque puse 1? .-.
           
           //response.sendRedirect("index.jsp"); //redirecciona cuando ya ingreso en la BD
           out.println("hola");

@@ -68,7 +68,7 @@ public class registro{
     } //fin de catch
 
     } // fin de InsertarUsuario
-    //deja de wear. 0 : funciono; 1 = usuario no encontrado, 2 = contraseña incorrecta
+    // 0 : funciono; 1 = usuario no encontrado, 2 = contraseña incorrecta
     public ArrayList<String> Login(String rut,String contrasenna){
     try{
         Class.forName(classfor);
@@ -164,10 +164,10 @@ public class registro{
         this.tipo = tipo;
     }
 
-    } //fin clase registro
 
-    public void IngresarVendedor(String rut,String contrasenna,String nombre){
+    public void IngresarVendedor(String rut,String contrasenna,String nombre,int comision){
     String sql = "Insert into usuario values(?,?,?,?,?)";
+    String tipo = "VENDEDOR";
     try{
         Class.forName(classfor);
 
@@ -183,7 +183,7 @@ public class registro{
         pr.executeUpdate();
         */
 
-
+        
 
         consulta = con.createStatement();
         int r = consulta.executeUpdate("INSERT INTO usuario (rut, contrasenna,nombre,tipo,comision) VALUES ('"+rut+"','"+contrasenna+"','"+nombre+"','"+tipo+"',"+comision+")");
@@ -198,4 +198,8 @@ public class registro{
       System.out.println(e.getMessage());
     } //fin de catch
 
-    } // fin de InsertarUsuario
+    } // fin de IngresarVendedor
+
+    } //fin clase registro
+
+    
