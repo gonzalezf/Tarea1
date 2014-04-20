@@ -68,7 +68,7 @@ public class registro{
     } //fin de catch
 
     } // fin de InsertarUsuario
-    //deja de wear. 0 : funciono; 1 = usuario no encontrado, 2 = contraseña incorrecta
+    // 0 : funciono; 1 = usuario no encontrado, 2 = contraseña incorrecta
     public ArrayList<String> Login(String rut,String contrasenna){
     try{
         Class.forName(classfor);
@@ -163,13 +163,11 @@ public class registro{
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-     //fin clase registro
-   
-    public void IngresarVendedor(String rut,String contrasenna,String nombre)
-    {
-        String sql = "Insert into usuario values(?,?,?,?,?)";
-    try
-    {
+
+    public void IngresarVendedor(String rut,String contrasenna,String nombre,int comision){
+    String sql = "Insert into usuario values(?,?,?,?,?)";
+    String tipo = "VENDEDOR";
+    try{
         Class.forName(classfor);
 
         //con=DriverManager.getConnection(url, usuario, clave);
@@ -184,7 +182,7 @@ public class registro{
         pr.executeUpdate();
         */
 
-
+        
 
         //consulta = con.createStatement();
         //int r = consulta.executeUpdate("INSERT INTO usuario (rut, contrasenna,nombre,tipo,comision) VALUES ('"+rut+"','"+contrasenna+"','"+nombre+"','"+tipo+"',"+comision+")");
@@ -198,6 +196,6 @@ public class registro{
 
       System.out.println(e.getMessage());
     } //fin de catch
+    } // fin de IngresarVendedor
 
-    } // fin de InsertarUsuario
-}
+    } //fin clase registro

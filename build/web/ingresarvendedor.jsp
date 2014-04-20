@@ -23,9 +23,13 @@
                 <p>Ingrese contraseña</p>
                 <p><input type="text" value="" name="contrasenna"></p>
                 <p>Repetir contraseña</p>
-                <p><input type="text" value="" name="repetircontraseña"</p>
+                <p><input type="text" value="" name="repetircontrasenna"</p>
                 <p>Ingrese Nombre</p>
                 <p><input type="text" value="" name="nombre"></p>
+                <p>Ingrese comision </p>
+                <p><input type="text" value="" name="comision"></p>
+
+                
 
                 <p> <input type="submit" value="Ingresar Vendedor" name="ingresarvendedor"></p>
                  </form>
