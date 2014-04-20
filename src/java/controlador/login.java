@@ -47,9 +47,18 @@ public class login extends HttpServlet {
           
           if (result.get(0).equals("1")){
               out.println("usuario no existe!");
+              HttpSession session = request.getSession();
+              session.setAttribute("InvalidLoginInfo", "yes");
+              response.sendRedirect("login.jsp");
+              return;
           }
-          if (result.get(0).equals("2")){
+          if (result.get(0).equals("2"))
+          {
               out.println("contraseña invalida");
+               HttpSession session = request.getSession();
+              session.setAttribute("InvalidLoginInfo", "yes");
+              response.sendRedirect("login.jsp");
+              return;
           }
           if (result.get(0).equals("3")){
                out.println("algo paso ups!");

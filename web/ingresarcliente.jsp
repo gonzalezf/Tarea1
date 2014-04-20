@@ -36,21 +36,25 @@
         <title>Ingresar Cliente</title>
     </head>
     <body>
-        <h1>Ingresar Cliente!</h1>
+        <div class="wrapper">
+            <div id = "loginbox">
+            <h1>Ingresar Cliente!</h1>
 
-        <form action="ingresarcliente" method="post" >
+            <form action="ingresarcliente" method="post" >
 
-            
-                <h2>Ingresar Cliente a la base de Datos</h2>
-                <p>Ingrese rut:</p>
-                <p><input type="text" value="" name="rut"></p>
-            
-                <p>Ingrese Nombre</p>
-                <p><input type="text" value="" name="nombre"></p>
-              
-                <p> <input type="submit" value="Ingresar Cliente" name="ingresarcliente"></p>
 
-            
-        </form>
+                    <h2>Ingresar Cliente a la base de Datos</h2>
+                    <p>Ingrese rut:</p>
+                    <p><input type="text" value="" name="rut"></p>
+
+                    <p>Ingrese Nombre</p>
+                    <p><input type="text" value="" name="nombre"></p>
+
+                    <p> <input type="submit" value="Ingresar Cliente" name="ingresarcliente"></p>
+
+
+            </form>
+            </div>
+        </div>
     </body>
 </html>
