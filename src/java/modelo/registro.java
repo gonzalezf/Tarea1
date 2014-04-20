@@ -10,6 +10,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.*;
+import java.util.ArrayList;
+import javax.servlet.*;
 /**
  *
  * @author Felipe Gonzalez
@@ -66,6 +68,61 @@ public class registro{
     } //fin de catch
 
     } // fin de InsertarUsuario
+    //deja de wear. 0 : funciono; 1 = usuario no encontrado, 2 = contraseña incorrecta
+    public ArrayList<String> Login(String rut,String contrasenna){
+    try{
+        Class.forName(classfor);
+
+        con=DriverManager.getConnection(url, usuario, clave);
+        String sql = "select contrasenna, tipo, nombre from usuario where rut = ?";
+
+        pr = con.prepareStatement(sql);
+        pr.setString(1, rut);
+
+
+        rs = pr.executeQuery();
+        //aqui debe ir el if!
+        ArrayList<String> str=new ArrayList<String>();
+        if (rs.next())
+        {
+            if(rs.getString(1).equals(contrasenna))
+            {
+
+                str.add("0");
+
+                str.add(rs.getString(2)); //tipo
+                str.add(rs.getString(3)); //nombre
+                 return str;
+            }
+            else
+            {
+                str.add("2"); //contrasenna incorrecta
+                str.add("incorrecto");
+                str.add("incorrecto");
+                return str;
+            }
+        }
+        else
+        {
+            str.add("1");
+            str.add("noexiste");
+            str.add("noexiste");
+            return str; //usuario no registrado
+        }
+    }
+    catch(Exception e)
+    {
+        ArrayList<String> str=new ArrayList<String>();
+
+        System.out.println(e.getMessage());
+
+        str.add("3");
+        return str;
+        
+    } //fin de catch
+    } // fin de login
+
+
 
     public int getComision() {
         return comision;

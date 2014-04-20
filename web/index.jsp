@@ -1,6 +1,6 @@
 <%-- 
     Document   : index
-    Created on : 17-04-2014, 02:57:42 PM
+    Created on : 19-04-2014, 08:44:37 PM
     Author     : Felipe Gonzalez
 --%>
 
@@ -11,29 +11,20 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Inicio sesion</title>
     </head>
     <body>
+        <h1>Inicio Sesion</h1>
+              <form action="login" method="post" > <!-- se ingresa rut y contrasenna para redirigir a determinada aplicaccion -->
+              <p> Ingrese rut </p>
+              <p><input type="text" value="" name="rut"></p>
+              <p> Ingrese contraseña </p>
+              <p><input type="text" value="" name="contrasenna"></p>
+              <p> <input type="submit" value="Login" name="login"></p>
 
 
-        <form action="ingresousuario" method="post" >
 
-            <div class="IngresoUsuario">
-                <h2>Ingresar Usuario a la base de Datos</h2>
-                <p>Ingrese rut:</p>
-                <p><input type="text" value="" name="rut"></p>
-                <p>Ingrese contraseña</p>
-                <p><input type="text" value="" name="contrasenna"></p>
-                <p>Ingrese Nombre</p>
-                <p><input type="text" value="" name="nombre"></p>
-                <p>Ingrese tipo</p>
-                <p><input type="text" value="" name="tipo"></p>
-                <p>Ingrese comision </p>
-                <p><input type="text" value="" name="comision"></p>
-                <p> <input type="submit" value="ingresousuario" name="ingresousuario"></p>
+                </form>
 
-            </div>
-
-        </form>
     </body>
 </html>
