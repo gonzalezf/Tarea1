@@ -12,6 +12,7 @@
     {
         session.setAttribute("LoggedIn", "no");
         response.sendRedirect("login.jsp");
+        return;
     }
     String logged_in = null;
     try
@@ -21,10 +22,12 @@
     catch(Exception e)
     {
         response.sendRedirect("login.jsp");
+        return;
     }
     if(logged_in == null || logged_in.equals("no"))
     {
         response.sendRedirect("login.jsp");
+        return;
     }
     else
     {

@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -57,14 +58,16 @@ public class login extends HttpServlet {
             /*    out.println("usuario logueado");
                 out.println("Usted es "+result.get(1)+"");
                 out.println("Bienvenido "+result.get(2)+"");*/
-                //HttpSession session = request.getSession();
+                HttpSession session = request.getSession();
                 session.setAttribute("LoggedIn", "yes");
                 if(result.get(1).equals("ADMINISTRADOR")){
+                  session.setAttribute("UserLevel", "Administrador");
                   response.sendRedirect("menuadministrador.jsp"); //redirecciona cuando ya ingreso en la BD
 
                 }
                 if(result.get(2).equals("VENDEDOR")){
-                response.sendRedirect("menuvendedor.jsp");
+                    session.setAttribute("UserLevel", "Vendedor");
+                    response.sendRedirect("menuvendedor.jsp");
                 }
 
           }
