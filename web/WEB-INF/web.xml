@@ -32,6 +32,10 @@
         <servlet-name>agregarproducto</servlet-name>
         <servlet-class>controlador.agregarproducto</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>vistaadministrarproductos</servlet-name>
+        <servlet-class>controlador.vistaadministrarproductos</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ingresousuario</servlet-name>
         <url-pattern>/ingresousuario</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>agregarproducto</servlet-name>
         <url-pattern>/agregarproducto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>vistaadministrarproductos</servlet-name>
+        <url-pattern>/vistaadministrarproductos</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

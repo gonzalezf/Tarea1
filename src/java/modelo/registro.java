@@ -234,4 +234,43 @@ public class registro{
 
     } // fin de AgregarProducto
 
+
+/*
+   public void VistaAdministrarProductos(){
+   // String sql = "Insert into usuario values(?,?,?,?,?)";
+    try{
+        Class.forName(classfor);
+
+        con=DriverManager.getConnection(url, usuario, clave);
+
+
+      
+        String sql= "select id_producto, nombre, stock from producto";
+        pr = con.prepareStatement(sql);
+
+
+        ResultSet rs = pr.executeQuery();
+        //aqui debe ir el if!
+        ArrayList<String> str=new ArrayList<String>();
+
+        while(rs.next()){
+                out.println("<TR>");
+                out.println("<TD>"+rs.getString(1)+"</TD>");
+                out.println("<TD>"+rs.getString(2)+"</TD>");
+                out.println("<TD>"+rs.getString(3)+"</TD>");
+
+                out.println("</TR>");
+
+
+
+        }
+        rs.close();
+        pr.close();
+        con.close();
+
+        } //fin del try
+        catch (SQLException e) {
+          }
+        } // fin de agregar productos
+*/
     } //fin clase registro
