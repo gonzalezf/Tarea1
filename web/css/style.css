@@ -98,14 +98,56 @@ body
 {
     text-align:center;
     font-size: 22pt;
-    padding-top: 3px;
+    padding-top: 20px;
     padding-bottom: 30px;
+}
+
+.loginbox #input_wrapper
+{
+    margin-top: 5px;
+    margin-botton: 5px;
 }
 
 .loginbox p{
     text-align: center;
     padding-top: 3px;
-    padding-bottom: 3px; 
+    padding-bottom: 3px;
+    float:left;
+    margin-left: 20px;
+}
+
+.loginbox .form_input
+{
+    float:right;
+    width: 140px;
+    height: 25px;
+    border-radius: 5px;
+    border:100px;
+    border: 1px solid black;
+    margin-right:20px;   
+    
+}
+
+.loginbox .button{
+    font-size: 18px;
+    margin-left:auto;
+    margin-right:auto;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 16px;
+    padding-right: 16px;
+    background-color: #cbffc9;
+    border-radius: 4px;
+    border: 1px solid black;
+}
+
+.loginbox .buttonholder{
+    margin-top:20px;
+    text-align: center;
+}
+.clearfix
+{
+    clear: both;
 }
 .loginboxerror{
     color:red;
@@ -113,10 +155,83 @@ body
     width: 300px ;
     margin-left: auto ;
     margin-right: auto ;
-    margin-top: 15px;
+    margin-top: 12px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    
     margin-bottom: auto;
     border: 1px solid black;
     border-radius: 5px;
     background-color: #E6E6E6;
+}
+
+.menu{
+    height: 1000px;
+    width: 300px;
+    background-color: red;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.pagecontent{
+    background-color:blue;
+}
+
+#sidebar{
+    float:left;
+}
+
+.crbox
+{
+    height:150px;
+    width:300px;
+    border-radius:3px;
+    background-color: #E6E6E6;
+    float:left;
+    border: 1px solid black;
+    margin-bottom: 1px;
+}
+
+.crbox h1{
+    font-size:22px;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.crbox #pl{
+    float:left;
+    font-size:16px;
+    margin-left: 8px;
+    text-align: center;
+}
+.crbox #pr{
+    float:right;
+    font-size:16px;
+    margin-right:8px;
+}
+
+.crbox #logout{
+    float: left;
+    font-size: 12pt;
+    margin: 0px 0px 0px 0px;
+    padding-left: 23px;
+    padding-right: 23px;
+    padding-bottom: 4px;
+    padding-top: 4px;
+    margin-right: 20px;
+    margin-top:40px;
+    color: #000000;
+    border-radius:3px;
+    float:right;
+    background-color: #f1f1f1;
+    border: 1px solid black;
+    -webkit-transition: background-color .5s;
+    text-decoration:none;
+}
+
+.crbor #logout:hover
+{
+    background-color:#d5d5d5;
+    -webkit-transition: background-color .5s;
 }
 

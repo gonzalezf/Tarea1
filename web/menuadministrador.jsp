@@ -7,6 +7,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
+<link rel="stylesheet" href="css/style.css" type="text/css">
+<%@include file="sidebar.jsp" %>
 <%
     String logged_in = null;
     try{
@@ -39,17 +41,9 @@
         <title>Menu Administrador</title>
     </head>
     <body>
-        <h1>Menu Administrador</h1>
-
-
-        <a href="ingresarvendedor.jsp">Ingresar Vendedor</a>
-        <a href="url">Ingresar Cliente</a>
-        <a href="administrarproductos.jsp">Administrar Productos</a>
-        <a href="url">Ingresar Compra</a>
-        <a href="url">Ingresar Venta</a>
-        <a href="url">Ver Ventas a Cliente</a>
-        <br><br>
-        <a href="logout.jsp">Logout </a>
+        <div id="page_content">
+        le content
+        </div>
 
 
     </body>
