@@ -19,7 +19,7 @@
         <h1>Administrar Productos</h1>
 
           <a href="agregarproducto.jsp">Agregar Producto</a>
-        <a href="">Editar Producto</a>
+        <a href="editarproducto.jsp">Editar Producto</a>
 
         <TABLE>
             <tr>

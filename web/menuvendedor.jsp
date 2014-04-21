@@ -47,7 +47,7 @@
         <a href="ingresarcliente.jsp">Ingresar Cliente</a>
         <a href="url">Ingresar Venta</a>
         <a href="url">Ver ventas a cliente</a>
-        <a href="url" action="login" method="post">Mis ventas</a>
+        <a href="misventas.jsp" action="login" method="post">Mis ventas</a>
 
 
 
