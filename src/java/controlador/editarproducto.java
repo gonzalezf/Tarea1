@@ -32,8 +32,9 @@ public class editarproducto extends HttpServlet {
         PrintWriter out = response.getWriter();
 
             try {
-
-
+        /*    String id_producto2=request.getParameter("id_producto");
+                    out.println(id_producto2);
+                    out.println("holaaa!");*/
           registro regis=new registro();
           int id_producto = Integer.parseInt(request.getParameter("id_producto"));
           String nombre =request.getParameter("nombre").toUpperCase();

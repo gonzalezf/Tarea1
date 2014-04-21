@@ -63,7 +63,7 @@
                     if(wrongPassword.equals("yes"))
                     {
                      // out.print("<script>alert('ERROR');</script>");
-        %> <script>alert("ERROR");</script><%
+        %> <script>alert("Usuario o contraseña incorrecta");</script><%
                     }
                 }
 

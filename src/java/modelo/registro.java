@@ -69,6 +69,48 @@ public class registro{
 
     } // fin de InsertarUsuario
     // 0 : funciono; 1 = usuario no encontrado, 2 = contraseña incorrecta
+
+
+    public ArrayList<String> SearchProduct(String id_producto){
+
+    try{
+        Class.forName(classfor);
+        con=DriverManager.getConnection(url, usuario, clave);
+        String sql = "select nombre,descripcion, categoria,stock, precio from producto where id_producto = ?";
+
+        pr = con.prepareStatement(sql);
+        pr.setString(1, id_producto);
+
+
+        rs = pr.executeQuery();
+        //aqui debe ir el if!
+        ArrayList<String> str=new ArrayList<String>();
+        if(rs.next()){
+
+            str.add(rs.getString(1)); //nombre
+            str.add(rs.getString(2)); //descripcion
+            str.add(rs.getString(3)); //categoria
+            str.add(rs.getString(4)); //stock
+            str.add(rs.getString(5)); //precio
+            return str;
+        }
+        else{
+            str.add("rs.ERROR - Codigo 2");
+            return str;
+        }
+    }//fin del try
+    catch(Exception e){
+        ArrayList<String> str=new ArrayList<String>();
+
+        System.out.println(e.getMessage());
+
+        str.add("ERROR!");
+        return str;
+
+    } //fin de catch
+
+    } //fin de SearchProduct
+
     public ArrayList<String> Login(String rut,String contrasenna){
     try{
         Class.forName(classfor);
