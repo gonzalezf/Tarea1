@@ -36,6 +36,22 @@
         <servlet-name>vistaadministrarproductos</servlet-name>
         <servlet-class>controlador.vistaadministrarproductos</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>editarproducto</servlet-name>
+        <servlet-class>controlador.editarproducto</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ingresarcompr</servlet-name>
+        <servlet-class>controlador.ingresarcompr</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ingresarcompra</servlet-name>
+        <servlet-class>controlador.ingresarcompra</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>misventas</servlet-name>
+        <servlet-class>controlador.misventas</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ingresousuario</servlet-name>
         <url-pattern>/ingresousuario</url-pattern>
@@ -71,6 +87,22 @@
     <servlet-mapping>
         <servlet-name>vistaadministrarproductos</servlet-name>
         <url-pattern>/vistaadministrarproductos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>editarproducto</servlet-name>
+        <url-pattern>/editarproducto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ingresarcompr</servlet-name>
+        <url-pattern>/ingresarcompr</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ingresarcompra</servlet-name>
+        <url-pattern>/ingresarcompra</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>misventas</servlet-name>
+        <url-pattern>/misventas</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

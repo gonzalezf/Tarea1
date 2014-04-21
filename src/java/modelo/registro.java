@@ -235,6 +235,50 @@ public class registro{
     } // fin de AgregarProducto
 
 
+   public void EditarProducto(int id_producto,String nombre,String descripcion,String categoria,int stock,int precio){
+
+
+    try{
+        Class.forName(classfor);
+
+        con=DriverManager.getConnection(url, usuario, clave);
+        consulta = con.createStatement();
+        int r = consulta.executeUpdate("UPDATE producto SET descripcion = '"+descripcion+"',categoria ='"+categoria+"',precio ='"+precio+"' WHERE id_producto ="+id_producto+"");
+
+        System.out.println(r);
+    }
+
+    catch(Exception e)
+    {
+
+
+      System.out.println(e.getMessage());
+    } //fin de catch
+
+    } // fin de EditarProducto
+
+    public void AgregarCompra(int id_producto,int cantidad,int precio){
+
+   //terminar
+ //  Date date = new Date();
+    try{
+
+        Class.forName(classfor);
+        con=DriverManager.getConnection(url, usuario, clave);
+        consulta = con.createStatement();
+   //     int r = consulta.executeUpdate("INSERT INTO producto (id_producto,nombre,descripcion,categoria,stock,precio) VALUES ("+id_producto+",'"+nombre+"','"+descripcion+"','"+categoria+"',"+stock+","+precio+")");
+ //       System.out.println(r);
+    }
+
+    catch(Exception e)
+    {
+      System.out.println(e.getMessage());
+    } //fin de catch
+
+    } // fin de AgregarCompra
+
+
+
 /*
    public void VistaAdministrarProductos(){
    // String sql = "Insert into usuario values(?,?,?,?,?)";
