@@ -54,6 +54,7 @@ public class login extends HttpServlet {
           }
           if (result.get(0).equals("2"))
           {
+
               out.println("contraseña invalida");
                HttpSession session = request.getSession();
               session.setAttribute("InvalidLoginInfo", "yes");

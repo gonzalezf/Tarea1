@@ -4,6 +4,7 @@
     Author     : felipe
 --%>
 
+<%@page import="javax.swing.JOptionPane"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
@@ -31,7 +32,8 @@
         <div class ="loginbox">
             <h1>Iniciar sesión</h1>
                 <form action="login" method="post" > <!-- se ingresa rut y contrasenna para redirigir a determinada aplicaccion -->
-                  <p>RUT:</p>
+
+                    <p>RUT:</p>
                   <div id="input_wrapper">
                   <input class = "form_input" type="" value="" name="rut">
                   <div class = "clearfix"></div>
@@ -43,6 +45,7 @@
                   </div>
                   <div class ="buttonholder">
                   <input class="button" type="submit" value="Log in" name="login">
+                  <!--alert("probando, esto puede en jsp pero no en .java :(");-->
                   </div>
                 </form>
         </div>
@@ -59,12 +62,13 @@
                 {
                     if(wrongPassword.equals("yes"))
                     {
-                        
-                        out.println("<div class=\"loginboxerror\">Rut o contraseña inválidos</div>");
+                     // out.print("<script>alert('ERROR');</script>");
+        %> <script>alert("ERROR");</script><%
                     }
                 }
 
 %>
+
     </div>
     </body>
 </html>
