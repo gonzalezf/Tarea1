@@ -62,7 +62,8 @@
                     out.println("<TD>"+rs.getString(1)+"</TD>");
                     out.println("<TD>"+rs.getString(2)+"</TD>");
                     out.println("<TD>"+rs.getString(3)+"</TD>");
-
+                    
+                    out.print("<TD><a href='editarproducto.jsp?id_producto="+rs.getString(1)+"'> Editar Producto </a></TD>");
                     out.println("</TR>");
 
 
