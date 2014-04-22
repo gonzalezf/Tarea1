@@ -107,9 +107,24 @@ body
     margin-top: auto;
     margin-bottom: auto;
     border: 1px solid black;
-    border-radius: 5px;
+    border-radius: 20px;
     background-color: rgba(75, 75, 75, 0.3);
     color: #ffffff;
+}
+
+#logout_page{
+    width: 100%;
+    margin-top:100px;
+    text-align:center;
+}
+
+#logout_page h1{
+    font-size:40px;
+    margin-bottom:10px;
+}
+#logout_page h2{
+    font-size:20px;
+    margin-bottom:20px;
 }
 
 .loginbox h1
@@ -181,6 +196,7 @@ body
     clear: both;
 }
 .loginboxerror{
+    display:hidden;
     color:red;
     text-align: center;
     width: 300px ;
@@ -189,7 +205,6 @@ body
     margin-top: 12px;
     padding-top: 3px;
     padding-bottom: 3px;
-    
     margin-bottom: auto;
     border: 1px solid black;
     border-radius: 5px;
@@ -295,9 +310,9 @@ body
 }
 
 .crbox h1{
-    font-size:22px;
+    font-size:21px;
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 25px;
     margin-top: 10px;
 }
 .crbox #pl{
@@ -305,11 +320,13 @@ body
     font-size:16px;
     margin-left: 8px;
     text-align: center;
+    margin-bottom: 5px;
 }
 .crbox #pr{
     float:right;
     font-size:16px;
     margin-right:8px;
+    margin-bottom:8px;
 }
 
 .crbox #logout{
@@ -321,11 +338,11 @@ body
     padding-bottom: 4px;
     padding-top: 4px;
     margin-right: 20px;
-    margin-top:40px;
+    margin-top:8px;
     color: #000000;
     border-radius:3px;
     float:right;
-    background-color: #f74c4e;
+    background-color: #e6e6e6;
     border: 1px solid black;
     -webkit-transition: background-color .5s;
     -moz-transition: background-color .5s;
@@ -336,7 +353,7 @@ body
 
 .crbox #logout:hover
 {
-    background-color: #c61a1c;
+    background-color: #ff525a;
     -webkit-transition: background-color .5s;
     -moz-transition: background-color .5s;
     -o-transition: background-color .5s;
@@ -358,10 +375,11 @@ body
 #menu .item{
     width:302px;
     height: 40px;
-    margin-bottom: 1px;
-    border-top-right-radius:25px;
-    border-bottom-right-radius: 25px;
+    border-top-right-radius:5px;
+    border-bottom-right-radius: 5px;
     background-color: #929292;
+    //background-color: ;
+    border-bottom: 2px solid rgba(75, 75, 75, .5);
     -webkit-transition: width .5s, background-color .5s;
     -moz-transition: width .5s, background-color .5s;
     -o-transition: width .5s, background-color .5s;

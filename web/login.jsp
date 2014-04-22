@@ -24,6 +24,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="jquery-1.11.0.min.js"></script>
         <title>Iniciar sesión</title>
         <link rel="stylesheet" href="css/style.css" type="text/css">
     </head>
@@ -63,16 +64,17 @@
                 {
                     if(wrongPassword.equals("yes"))
                     {
-                     // out.print("<script>alert('ERROR');</script>");
-        %> <script>alert("Usuario o contraseña incorrecta");</script><%
+                        out.print("<div class=\"loginboxerror\">Usuario o contraseña incorrecta</div>");
                     }
                 }
 
-%>
-
+%>  
     </div>
     </div>
-
     </body>
 </html>
-
+<script>
+jQuery(document).ready( function(){
+    jQuery('.loginboxerror').fadeIn(1000)
+} );
+</script>

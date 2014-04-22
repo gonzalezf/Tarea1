@@ -31,10 +31,7 @@
     }
     else
     {
-        if(session.getAttribute("UserLevel").equals("Vendedor"))
-            response.sendRedirect("menuvendedor.jsp");
-        else if(session.getAttribute("UserLevel").equals("Administrador"))
-            response.sendRedirect("menuadministrador.jsp");
+        response.sendRedirect("home.jsp");
     }
         
 %>

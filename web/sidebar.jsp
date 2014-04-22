@@ -3,14 +3,11 @@
     Created on : Apr 20, 2014, 7:45:30 PM
     Author     : felipe
 --%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <div id = "sidebar">
 <div class="crbox">
-    <h1>InformaciÃ³n de SesiÃ³n</h1>
+    <h1>Información de Sesión</h1>
     <div id="pl">Usuario:</div>
-    <div id="pr">Felipe Morales</div>
+    <div id="pr"><% out.print(session.getAttribute("UserName").toString());%></div>
     <div class = "clearfix"></div>
     <div id="pl">Nivel:</div>
     <div id="pr"><% out.print(session.getAttribute("UserLevel").toString());%> </div>
@@ -19,11 +16,15 @@
 </div>
 <div class = "clearfix"></div>
 <div id="menu">
-     <div class="item"><a href="ingresarvendedor.jsp">Ingresar Vendedor</a><br></div>
-    <div class="item"><a href="url">Ingresar Cliente</a><br></div>
+    <div class="item"><a href="home.jsp">Inicio</a><br></div>
+<%
+    if(session.getAttribute("UserLevel").toString().equals("Administrador"))
+        out.println("<div class=\"item\"><a href=\"ingresarvendedor.jsp\">Ingresar Vendedor</a><br></div>");
+%>
+    <div class="item"><a href="ingresarcliente.jsp">Ingresar Cliente</a><br></div>
     <div class="item"><a href="administrarproductos.jsp">Administrar Productos</a><br></div>
-    <div class="item"><a href="url">Ingresar Compra</a><br></div>
-    <div class="item"><a href="url">Ingresar Venta</a><br></div>
+    <div class="item"><a href="ingresarcompra.jsp">Ingresar Compra</a><br></div>
+    <div class="item"><a href="ingresarventa.jsp">Ingresar Venta</a><br></div>
     <div class="item"><a href="url">Ver Ventas a Cliente</a><br></div>
 </div>
 <div class = "clearfix"></div>

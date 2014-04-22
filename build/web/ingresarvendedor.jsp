@@ -100,7 +100,6 @@
             <p>Repita contraseña:</p>
             <input class="input" type="password" value="<% out.print(passwordValidation); %>" name="repetircontrasenna">
             </div>
-            <div>
             <div class="clearfix"></div>
             <div id="left">
             <p>Ingrese comisión:</p>
