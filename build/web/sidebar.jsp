@@ -18,14 +18,13 @@
     <a id="logout" href="logout.jsp">Log out </a>
 </div>
 <div class = "clearfix"></div>
-<div class = "menu">
-    <h1>Menu Administrador</h1>
-        <a href="ingresarvendedor.jsp">Ingresar Vendedor</a>
-        <a href="url">Ingresar Cliente</a>
-        <a href="administrarproductos.jsp">Administrar Productos</a>
-        <a href="url">Ingresar Compra</a>
-        <a href="url">Ingresar Venta</a>
-        <a href="url">Ver Ventas a Cliente</a>
-        <br><br>
+<div id="menu">
+     <div class="item"><a href="ingresarvendedor.jsp">Ingresar Vendedor</a><br></div>
+    <div class="item"><a href="url">Ingresar Cliente</a><br></div>
+    <div class="item"><a href="administrarproductos.jsp">Administrar Productos</a><br></div>
+    <div class="item"><a href="url">Ingresar Compra</a><br></div>
+    <div class="item"><a href="url">Ingresar Venta</a><br></div>
+    <div class="item"><a href="url">Ver Ventas a Cliente</a><br></div>
 </div>
+<div class = "clearfix"></div>
 </div>

@@ -28,6 +28,7 @@
         <link rel="stylesheet" href="css/style.css" type="text/css">
     </head>
     <body>
+    <div id="login_page">
     <div class ="wrapper">
         <div class ="loginbox">
             <h1>Iniciar sesión</h1>
@@ -70,6 +71,8 @@
 %>
 
     </div>
+    </div>
+
     </body>
 </html>
 

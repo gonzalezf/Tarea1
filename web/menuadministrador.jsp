@@ -7,8 +7,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
-<link rel="stylesheet" href="css/style.css" type="text/css">
-<%@include file="sidebar.jsp" %>
 <%
     String logged_in = null;
     try{
@@ -39,8 +37,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Menu Administrador</title>
+        <link rel="stylesheet" href="css/style.css" type="text/css">
     </head>
     <body>
+        <%@include file="sidebar.jsp" %>
         <div id="page_content">
         le content
         </div>
