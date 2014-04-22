@@ -52,6 +52,10 @@
         <servlet-name>misventas</servlet-name>
         <servlet-class>controlador.misventas</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>editarproductobusqueda</servlet-name>
+        <servlet-class>controlador.editarproductobusqueda</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ingresousuario</servlet-name>
         <url-pattern>/ingresousuario</url-pattern>
@@ -103,6 +107,10 @@
     <servlet-mapping>
         <servlet-name>misventas</servlet-name>
         <url-pattern>/misventas</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>editarproductobusqueda</servlet-name>
+        <url-pattern>/editarproductobusqueda</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -16,6 +16,8 @@
 
                 <form action="editarproducto" method="post" >
 
+
+
                  <% String id_producto=request.getParameter("id_producto");
                    // out.print(id_producto);
                     String classfor="oracle.jdbc.driver.OracleDriver";
@@ -63,8 +65,11 @@
                 } //fin de catch
 
                 %>
+
+
                 <h2> Agregar Producto a la Base de Datos</h2>
-                <p>Codigo de producto:</p> 
+
+                <p>Codigo de producto:</p>
             <!--    <p><input type="text" value="" name="id_producto"></p>-->
                 <% out.print("<p><input type='text' value="+id_producto+" name='id_producto'></p>");   %>
 
@@ -76,13 +81,13 @@
                 <% out.print("<p><input type='text' value="+rs.getString(2)+" name='descripcion'></p>");   %>
                 <p>Ingrese Categoría</p>
                 <!--<p><input type="text" value="" name="categoria"></p>-->
-                <% out.print("<p><input type='text' value="+rs.getString(1)+" name='categoria'></p>");   %>
+                <% out.print("<p><input type='text' value="+rs.getString(3)+" name='categoria'></p>");   %>
                 <p>Ingrese Stock</p>
                 <!--<p><input type="text" value="" name="stock"></p>-->
-                <% out.print("<p><input type='text' value="+rs.getString(1)+" name='stock'></p>");   %>
+                <% out.print("<p><input type='text' value="+rs.getString(4)+" name='stock'></p>");   %>
                 <p>Ingrese Precio</p>
                 <!--<p><input type="text" value="" name="precio"></p>-->
-                <% out.print("<p><input type='text' value="+rs.getString(1)+" name='precio'></p>");   %>
+                <% out.print("<p><input type='text' value="+rs.getString(5)+" name='precio'></p>");   %>
 
                 <p> <input type="submit" value="Guardar Cambios" name="editarproducto"></p>
 
