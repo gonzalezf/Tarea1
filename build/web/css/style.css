@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Aldrich);
+@import url(http://fonts.googleapis.com/css?family=Noto+Sans);
 /*
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
@@ -67,16 +69,31 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 /**
  * De aqui para abajo escriban su codigo
  */
-@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+#login_page 
+{
+    background: url(../img/background.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover; 
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:0px;
+    left:0px;
+    background-color: #e7e0e0;
+}
+
 body 
 {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Noto Sans', sans-serif;
     color: #000000;
-    background-color: #ffffff;
+    background-color: #e7e0e0;
 }
+
 .wrapper{
     width: 600px;
-    height: 900px;
+    height: 500px;
     margin-left: auto ;
     margin-right: auto ;
     padding-top: 100px;
@@ -91,7 +108,8 @@ body
     margin-bottom: auto;
     border: 1px solid black;
     border-radius: 5px;
-    background-color: #E6E6E6;
+    background-color: rgba(75, 75, 75, 0.3);
+    color: #ffffff;
 }
 
 .loginbox h1
@@ -100,12 +118,13 @@ body
     font-size: 22pt;
     padding-top: 20px;
     padding-bottom: 30px;
+    color: #000000;
 }
 
 .loginbox #input_wrapper
 {
     margin-top: 5px;
-    margin-botton: 5px;
+    margin-bottom: 5px;
 }
 
 .loginbox p{
@@ -136,9 +155,21 @@ body
     padding-bottom: 4px;
     padding-left: 16px;
     padding-right: 16px;
-    background-color: #cbffc9;
+    background-color: #f0f0f0;
     border-radius: 4px;
     border: 1px solid black;
+    -webkit-transition: background-color .5s;
+    -moz-transition: background-color .5s;
+    -o-transition: background-color .5s;
+    transition: background-color .5s;
+}
+
+.loginbox .button:hover{
+    background-color: #3695d1;
+    -webkit-transition: background-color .5s;
+    -moz-transition: background-color .5s;
+    -o-transition: background-color .5s;
+    transition: background-color .5s;
 }
 
 .loginbox .buttonholder{
@@ -165,31 +196,102 @@ body
     background-color: #E6E6E6;
 }
 
-.menu{
-    height: 1000px;
-    width: 300px;
-    background-color: red;
-    border: 1px solid black;
-    border-radius: 5px;
+.pagecontent{
+    text-align:center;
+    float:right;
+    width:1008px;
+    margin-right: 25px;
 }
 
-.pagecontent{
-    background-color:blue;
+.pagecontent form p{
+    margin-bottom: 5px;
+}
+
+.pagecontent form .input{
+    width:170px;
+    height:22px;
+    border:1px solid black;
+    border-radius:5px;
+}
+
+.pagecontent form .submit{
+    width: 180px;
+    height: 40px;
+    border:1px solid black;
+    font-size:18px;
+    border-radius:10px;
+    background-color: #fefefe;
+    -webkit-transition: background-color .5s;
+    -moz-transition: background-color .5s;
+    -o-transition: background-color .5s;
+    transition: background-color .5s;
+}
+
+.pagecontent form #msg_error{
+    color:red;
+    font-size:16px;
+    margin-bottom:10px;
+}
+
+.pagecontent form #msg_assert{
+    color:green;
+    font-size:16px;
+    margin-bottom:10px;
+}
+.pagecontent form #msg_yellow{
+    color:yellow;
+    font-size:16px;
+    margin-bottom:10px;
+}
+
+.pagecontent form #msg_hidden{
+    visibility:hidden;
+    color:red;
+    font-size:16px;
+    margin-bottom:10px;
+}
+
+.pagecontent form .submit:hover{
+    background-color: #23af50;
+    -webkit-transition: background-color .5s;
+    -moz-transition: background-color .5s;
+    -o-transition: background-color .5s;
+    transition: background-color .5s;
+}
+
+.pagecontent form #left{
+    float:left;
+    margin-left: 230px;
+    margin-bottom:30px;
+}
+.pagecontent form #right{
+    float:right;
+    margin-right: 230px;
+    margin-bottom:30px;
+}
+
+.pagecontent h1{
+    font-size:40px;
+    margin-top: 40px;
+    margin-bottom: 40px;
 }
 
 #sidebar{
     float:left;
+    width:302px;
 }
 
 .crbox
 {
+    font-family: 'Aldrich', sans-serif;
     height:150px;
     width:300px;
-    border-radius:3px;
-    background-color: #E6E6E6;
+    border-radius:0px;
+    background-color: #dadada;
     float:left;
-    border: 1px solid black;
-    margin-bottom: 1px;
+    border-right: 3px solid rgba(0, 0, 0, .3);
+    border-bottom: 3px solid rgba(0, 0, 0, .3);
+    border-bottom-right-radius: 20px;
 }
 
 .crbox h1{
@@ -223,15 +325,66 @@ body
     color: #000000;
     border-radius:3px;
     float:right;
-    background-color: #f1f1f1;
+    background-color: #f74c4e;
     border: 1px solid black;
     -webkit-transition: background-color .5s;
+    -moz-transition: background-color .5s;
+    -o-transition: background-color .5s;
+    transition: background-color .5s;
     text-decoration:none;
 }
 
-.crbor #logout:hover
+.crbox #logout:hover
 {
-    background-color:#d5d5d5;
+    background-color: #c61a1c;
     -webkit-transition: background-color .5s;
+    -moz-transition: background-color .5s;
+    -o-transition: background-color .5s;
+    transition: background-color .5s;
 }
 
+#menu{
+    height: 375px;
+    width: 275px;
+    background-color: #E6E6E6;
+    border-right: 1px solid;
+    text-align: center;
+    border-style: none;
+    font-family: 'Aldrich', sans-serif;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+
+#menu .item{
+    width:302px;
+    height: 40px;
+    margin-bottom: 1px;
+    border-top-right-radius:25px;
+    border-bottom-right-radius: 25px;
+    background-color: #929292;
+    -webkit-transition: width .5s, background-color .5s;
+    -moz-transition: width .5s, background-color .5s;
+    -o-transition: width .5s, background-color .5s;
+    transition: width .5s, background-color .5s;
+    padding-top:20px;
+}
+
+#menu .item:hover{
+    background-color: #fea632;
+    width:335px;
+    -webkit-transition: width .5s, background-color .5s;
+    -moz-transition: width .5s, background-color .5s;
+    -o-transition: width .5s, background-color .5s;
+    transition: width .5s, background-color .5s;
+}
+#menu a, #menu a:link, #menu a:active, #menu a:visited
+{
+    font-size: 20px;
+    text-decoration:none;
+    color: #ffffff;
+    text-align: center;
+}
+
+#menu a:hover{
+    text-decoration: underline;
+}
