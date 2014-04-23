@@ -9,19 +9,44 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
-
+<%
+    //Esto verifica que el usuario haya iniciado sesión
+    //y que además tenga los permisos necesarios.
+    String logged_in = null;
+    try{
+        logged_in = (String)session.getAttribute("LoggedIn");
+    }
+    catch(Exception e)
+    {
+        response.setStatus( 403 );
+        return;
+    }
+    if(logged_in == null)
+    {
+        response.setStatus( 403 );
+        return;
+    }
+    if(logged_in.equals("no"))
+    {
+        response.setStatus( 403 );
+        return;
+    }
+%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Administrar Productos</title>
+        <link rel="stylesheet" href="css/style.css" type="text/css">
     </head>
     <body>
+    <%@include file="sidebar.jsp" %>
+    <div class="pagecontent">
         <h1>Administrar Productos</h1>
 
-          <a href="agregarproducto.jsp">Agregar Producto</a>
+        <a href="agregarproducto.jsp">Agregar Producto</a>
         <a href="editarproducto.jsp">Editar Producto</a>
 
-        <TABLE>
+        <table>
             <tr>
                 <td>ID PRODUCTO</td>
                 <td>NOMBRE </td>
@@ -86,6 +111,6 @@
         <!-- Diseñar vista -->
 
 
-        
+    </div>
     </body>
 </html>

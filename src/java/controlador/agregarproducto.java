@@ -43,7 +43,7 @@ public class agregarproducto extends HttpServlet {
 
           regis.AgregarProducto(id_producto,nombre,descripcion,categoria,stock,precio);
           //out.println(nombre);
-          response.sendRedirect("menuadministrador.jsp");
+          response.sendRedirect("administrarproductos.jsp");
 
 
 

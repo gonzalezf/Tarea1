@@ -25,7 +25,10 @@
     <div class="item"><a href="administrarproductos.jsp">Administrar Productos</a><br></div>
     <div class="item"><a href="ingresarcompra.jsp">Ingresar Compra</a><br></div>
     <div class="item"><a href="ingresarventa.jsp">Ingresar Venta</a><br></div>
-    <div class="item"><a href="url">Ver Ventas a Cliente</a><br></div>
+    <div class="item"><a href="verventas.jsp">Ver Ventas a Cliente</a><br></div>
+    <div class="item"><a href="misventas.jsp">Mis Ventas </a><br></div>
 </div>
 <div class = "clearfix"></div>
 </div>
+<script type="text/javascript">
+</script>

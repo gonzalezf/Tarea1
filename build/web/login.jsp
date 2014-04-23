@@ -4,7 +4,6 @@
     Author     : felipe
 --%>
 
-<%@page import="javax.swing.JOptionPane"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
@@ -27,54 +26,34 @@
         <script src="jquery-1.11.0.min.js"></script>
         <title>Iniciar sesión</title>
         <link rel="stylesheet" href="css/style.css" type="text/css">
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>        
+        <script type="text/javascript" src="js/script.js"></script>
     </head>
-    <body>
+    <body id="body_fade">
     <div id="login_page">
     <div class ="wrapper">
         <div class ="loginbox">
             <h1>Iniciar sesión</h1>
-                <form action="login" method="post" > <!-- se ingresa rut y contrasenna para redirigir a determinada aplicaccion -->
+                <form id="loginform" action="login" method="post" > <!-- se ingresa rut y contrasenna para redirigir a determinada aplicaccion -->
 
-                    <p>RUT:</p>
+                  <p>RUT:</p>
                   <div id="input_wrapper">
-                  <input class = "form_input" type="" value="" name="rut">
+                  <input id = "rut" class = "form_input" type="" value="" name="rut">
                   <div class = "clearfix"></div>
                   </div>
                   <div id="input_wrapper">
                   <p> Contraseña: </p>
-                  <input class = "form_input" type="password" value="" name="contrasenna">
+                  <input id="password" class = "form_input" type="password" value="" name="contrasenna">
                   <div class = "clearfix"></div>
                   </div>
                   <div class ="buttonholder">
-                  <input class="button" type="submit" value="Log in" name="login">
+                  <input id="login_button" class="button" type="submit" value="Log in" name="login">
                   <!--alert("probando, esto puede en jsp pero no en .java :(");-->
                   </div>
                 </form>
         </div>
-        <%         
-                String wrongPassword = null;
-                try{
-                    wrongPassword = (String)session.getAttribute("InvalidLoginInfo");
-                }
-                catch(Exception e)
-                {
-
-                }
-                if(wrongPassword != null)
-                {
-                    if(wrongPassword.equals("yes"))
-                    {
-                        out.print("<div class=\"loginboxerror\">Usuario o contraseña incorrecta</div>");
-                    }
-                }
-
-%>  
+        <div class="loginboxerror">Usuario o contraseña incorrecta</div>
     </div>
     </div>
     </body>
 </html>
-<script>
-jQuery(document).ready( function(){
-    jQuery('.loginboxerror').fadeIn(1000)
-} );
-</script>

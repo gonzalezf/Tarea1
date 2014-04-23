@@ -1,12 +1,11 @@
 <%-- 
-    Document   : misventas
-    Created on : 20-04-2014, 11:45:16 PM
-    Author     : Felipe Gonzalez
+    Document   : verventas.jsp
+    Created on : Apr 22, 2014, 7:34:04 PM
+    Author     : felipe
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <%
     //Esto verifica que el usuario haya iniciado sesión
     //y que además tenga los permisos necesarios.
