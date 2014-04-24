@@ -33,12 +33,15 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Home</title>
         <link rel="stylesheet" href="css/style.css" type="text/css">
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+        <script type="text/javascript" src="js/script.js"></script>
     </head>
-    <body>
+    <body id="body_fade">
         <%@include file="sidebar.jsp" %>
-        <div class="page_content">
+        <div class="pagecontent">
             <h1>Welcome!!</h1>
             <h2>Utilice el menu de la izquierda para comenzar</h2>
+            <img style="border:5px solid black;margin-top:30px;border-radius:300px" src="img/logout.jpg">
         </div>
     </body>
 </html>

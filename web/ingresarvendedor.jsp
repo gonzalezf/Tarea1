@@ -34,108 +34,46 @@
         response.setStatus( 403 );
         return;
     }
-    String data = null;
-    try{
-        data = (String)session.getAttribute("FormDataAvailable");
-    }
-    catch(Exception e)
-    {
-        
-    }
-    String rut = "";
-    String name = "";
-    String password = "";
-    String passwordValidation = "";
-    String comision = "";
-    String message = "";
-    String message_type = "";
-    if(data != null)
-    {
-        if(data.equals("yes"))
-        {
-            rut = (String)session.getAttribute("FormRut");
-            name = (String)session.getAttribute("FormName");
-            password = (String)session.getAttribute("FormPassword");
-            passwordValidation = (String)session.getAttribute("FormPasswordValidation");
-            comision = (String)session.getAttribute("FormComision");
-        }
-    }
-    
-    try
-    {
-        message = (String)session.getAttribute("Message");
-        message_type = (String)session.getAttribute("MessageType");
-    }
-    catch(Exception e)
-    {
-        message = "";
-        message_type = "None";
-    }
 %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Ingresar Vendedor</title>
         <link rel="stylesheet" href="css/style.css" type="text/css">
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
     </head>
     <body>
         <%@include file="sidebar.jsp" %>
         <div class="pagecontent">
-        <form action="ingresarvendedor" method="post" >
+        <form id = "submit_form" action="ingresarvendedor" method="post" >
             <h1>Ingresar nuevo vendedor</h1>
             <div id="left">
             <p>Ingrese RUT:</p>
-            <input class="input" type="text" value="<% out.print(rut); %>" name="rut">
+            <input id="form_1" class="input" type="text" value="" name="rut">
             </div>
             <div id="right">
             <p>Ingrese nombre:</p>
-            <input class="input" type="text" value="<% out.print(name); %>" name="nombre">
+            <input id="form_2" class="input" type="text" value="" name="nombre">
             </div>
             <div class="clearfix"></div>
             <div id="left">
             <p>Ingrese contraseña:</p>
-            <input class="input" type="password" value="<% out.print(password); %>" name="contrasenna">
+            <input id="form_3" class="input" type="password" value="" name="contrasenna">
             </div>
             <div id="right">
             <p>Repita contraseña:</p>
-            <input class="input" type="password" value="<% out.print(passwordValidation); %>" name="repetircontrasenna">
+            <input id="form_4" class="input" type="password" value="" name="repetircontrasenna">
             </div>
             <div class="clearfix"></div>
             <div id="left">
             <p>Ingrese comisión:</p>
-            <input class="input" type="text" value="<% out.print(comision); %>" name="comision">
+            <input id="form_5" class="input" type="text" value="" name="comision">
             </div>
             <div class="clearfix"></div>
-<%         
-            if(message != null && !message.equals(""))
-            {
-                if(message_type.equals("Error"))
-                {
-                    out.println("<div id=\"msg_error\">"+message+"</div>");
-                }
-                else if(message_type.equals("Warning"))
-                {
-                    out.println("<div id=\"msg_warning\">"+message+"</div>");
-                    session.setAttribute("Message", "");
-                }
-                else if(message_type.equals("Assert"))
-                {
-                    out.println("<div id=\"msg_assert\">"+message+"</div>");
-                    session.setAttribute("Message", "");
-                }
-                else
-                {
-                    out.println("<div id=\"msg_hidden\">Las contraseñas no coinciden</div>");
-                }
-            }
-            else
-            {
-                out.println("<div id=\"msg_hidden\">Las contraseñas no coinciden</div>");
-            }
-
-%>
-            <input class="submit" type="submit" value="Ingresar Vendedor" name="ingresarvendedor">
+            <input id="submit_button" class="submit" type="submit" value="Ingresar Vendedor" name="ingresarvendedor">
+            <div id="form_reply_message"></div>
         </form>
         </div>
+    <script type="text/javascript" src="js/script.js"></script>
     </body>
 </html>

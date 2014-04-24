@@ -31,64 +31,41 @@ public class login extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+    throws ServletException, IOException
+    {
+        response.setContentType("text/plain");  
+        response.setCharacterEncoding("UTF-8"); 
         PrintWriter out = response.getWriter();
-        try {
-
-
+        
+        try 
+        {
           registro mlogin=new registro();
-
           String rut =request.getParameter("rut").toUpperCase();
-          String contrasenna =request.getParameter("contrasenna").toUpperCase();
-          ArrayList<String> result = new ArrayList<String>();
-
+          String contrasenna = request.getParameter("contrasenna").toUpperCase();
+          ArrayList<String> result;
           result = mlogin.Login(rut,contrasenna);
-          
-          if (result.get(0).equals("1")){
-              out.println("usuario no existe!");
-              HttpSession session = request.getSession();
-              session.setAttribute("InvalidLoginInfo", "yes");
-              response.sendRedirect("login.jsp");
-              return;
-          }
-          if (result.get(0).equals("2"))
+          if (!result.get(0).equals("0"))
+              out.write("ERROR");
+          else
           {
-
-              out.println("contraseña invalida");
-               HttpSession session = request.getSession();
-              session.setAttribute("InvalidLoginInfo", "yes");
-              response.sendRedirect("login.jsp");
-              return;
-          }
-          if (result.get(0).equals("3")){
-               out.println("algo paso ups!");
-            }
-          if (result.get(0).equals("0")){
-            /*    out.println("usuario logueado");
-                out.println("Usted es "+result.get(1)+"");
-                out.println("Bienvenido "+result.get(2)+"");*/
                 HttpSession session = request.getSession();
                 session.setAttribute("LoggedIn", "yes");
-                session.setAttribute("InvalidLoginInfo", "no");
                 if(result.get(1).equals("ADMINISTRADOR"))
                   session.setAttribute("UserLevel", "Administrador");
                 else if(result.get(1).equals("VENDEDOR"))
                     session.setAttribute("UserLevel", "Vendedor");
                 session.setAttribute("UserName", result.get(2));
-                response.sendRedirect("home.jsp");
-
+                out.write("SUCCESS");
           }
-          else{
-               out.println("nose que onda");
-          }
-     
-
-        }catch(Exception e){
-            e.getStackTrace();
-            out.println(e.getMessage());
         }
-        finally {
+        catch(Exception e)
+        {
+            e.getStackTrace();
+            out.write("ERROR");
+            response.setStatus(500);
+        }
+        finally
+        {
             out.close();
         }
     } //fin de request!

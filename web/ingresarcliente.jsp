@@ -29,37 +29,6 @@
         response.setStatus( 403 );
         return;
     }
-    
-    String data = null;
-    try{
-        data = (String)session.getAttribute("FormDataAvailable");
-    }
-    catch(Exception e)
-    {
-        
-    }
-    String rut = "";
-    String name = "";
-    if(data != null)
-    {
-        if(data.equals("yes"))
-        {
-            rut = (String)session.getAttribute("FormRut");
-            name = (String)session.getAttribute("FormName");
-        }
-    }
-    String message = "";
-    String message_type = "";
-    try
-    {
-        message = (String)session.getAttribute("Message");
-        message_type = (String)session.getAttribute("MessageType");
-    }
-    catch(Exception e)
-    {
-        message = "";
-        message_type = "None";
-    }
 %>
 <html>
     <head>
