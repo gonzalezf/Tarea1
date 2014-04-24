@@ -112,7 +112,14 @@ $(document).ready(function()
         });
         e.preventDefault();
     });
-    $("#login_button").click(function(e){
+    $("#login_button").click(function(e)
+    {
+        var onCriticalError = function(response)
+        {
+            $("div.loginboxerror").html("Error en el servidor");
+            $("div.loginboxerror").hide().fadeIn(600);  
+            alert(response).toString();
+        };
         var checkResponse = function(response)
         {
             if(response.toString() === "SUCCESS")
@@ -130,7 +137,7 @@ $(document).ready(function()
         };
         $("#login_button").prop('disabled', true);
         $("div.loginboxerror").hide();
-        var frm = $('#submitform').serialize();
+        var frm = $('#loginform').serialize();
         $.ajax
         ({
             url: "login",
@@ -140,9 +147,9 @@ $(document).ready(function()
             {
                 checkResponse(response);
             },
-            error: function ()
+            error: function (response)
             {
-               $("div.loginboxerror").hide().fadeIn(600);
+               onCriticalError(response);
             },
             complete: function()
             {
