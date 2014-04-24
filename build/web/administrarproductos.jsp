@@ -54,7 +54,6 @@
             </tr>
 
       <%
-
             String classfor="oracle.jdbc.driver.OracleDriver";
             String url="jdbc:oracle:thin:@localhost:1521:XE";
             String usuario="admin";
@@ -65,45 +64,44 @@
             Statement consulta = null;
             ResultSet rs=null;
 
-            try{
-            Class.forName(classfor);
-
-            con=DriverManager.getConnection(url, usuario, clave);
-
-            } catch (ClassNotFoundException e) {
-                 System.out.println(e.toString());
-              }
-             try{
-            String sql= "select id_producto, nombre, stock from producto";
-            pr = con.prepareStatement(sql);
-
-
-            rs = pr.executeQuery();
-            //aqui debe ir el if!
-
-
-            while(rs.next()){
-                    out.println("<TR>");
-                    out.println("<TD>"+rs.getString(1)+"</TD>");
-                    out.println("<TD>"+rs.getString(2)+"</TD>");
-                    out.println("<TD>"+rs.getString(3)+"</TD>");
-                    
-                    out.print("<TD><a href='editarproducto.jsp?id_producto="+rs.getString(1)+"'> Editar Producto </a></TD>");
-                    out.println("</TR>");
-
-
+            try
+            {
+                Class.forName(classfor);
+                con=DriverManager.getConnection(url, usuario, clave);
 
             }
-            rs.close();
-            pr.close();
-            con.close();
+            catch (ClassNotFoundException e)
+            {
+                System.out.println(e.toString());
+            }
+            try
+            {  
+                //Agregar name
+                String sql= "SELECT ID_PRODUCTO, STOCK FROM PRODUCTO WHERE ROWNUM > 0 AND ROWNUM <= 10";
+                pr = con.prepareStatement(sql);
 
+
+                rs = pr.executeQuery();
+                //aqui debe ir el if!
+                out.print("<BR>LE WOW1<BR>");
+                while(rs.next())
+                {
+                    out.print("<BR>LE WOW<BR>");
+                    out.println("<TR>");
+                    out.println("<TD>"+rs.getString(0)+"</TD>");
+                    out.println("<TD>"+rs.getString(1)+"</TD>");
+
+                    out.print("<TD><a href='editarproducto.jsp?id_producto="+rs.getString(0)+"'> Editar Producto </a></TD>");
+                    out.println("</TR>");
+                }
+                rs.close();
+                pr.close();
+                con.close();
             } //fin del try
-            catch (SQLException e) {
-              }
-
-
-
+            catch (SQLException e)
+            {
+                out.print("<BR>LE ERROR<BR>");
+            }
             %>
 
         </TABLE>
