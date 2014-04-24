@@ -6,8 +6,15 @@
         <group>
             <file>file:/home/felipe/bdrepo/Tarea1/web/sidebar.jsp</file>
             <file>file:/home/felipe/bdrepo/Tarea1/web/login.jsp</file>
+            <file>file:/home/felipe/bdrepo/Tarea1/web/ingresarvendedor.jsp</file>
+            <file>file:/home/felipe/bdrepo/Tarea1/src/java/modelo/registro.java</file>
+            <file>file:/home/felipe/bdrepo/Tarea1/src/java/controlador/ingresarcliente.java</file>
+            <file>file:/home/felipe/bdrepo/Tarea1/web/index.jsp</file>
             <file>file:/home/felipe/bdrepo/Tarea1/web/css/style.css</file>
-            <file>file:/home/felipe/bdrepo/Tarea1/web/menuadministrador.jsp</file>
+            <file>file:/home/felipe/bdrepo/Tarea1/web/home.jsp</file>
+            <file>file:/home/felipe/bdrepo/Tarea1/web/ingresarcliente.jsp</file>
+            <file>file:/home/felipe/bdrepo/Tarea1/src/java/controlador/ingresarvendedor.java</file>
+            <file>file:/home/felipe/bdrepo/Tarea1/src/java/controlador/login.java</file>
         </group>
     </open-files>
 </project-private>

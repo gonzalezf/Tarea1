@@ -71,18 +71,12 @@ public class login extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.setAttribute("LoggedIn", "yes");
                 session.setAttribute("InvalidLoginInfo", "no");
-                if(result.get(1).equals("ADMINISTRADOR")){
+                if(result.get(1).equals("ADMINISTRADOR"))
                   session.setAttribute("UserLevel", "Administrador");
-                  response.sendRedirect("menuadministrador.jsp"); //redirecciona cuando ya ingreso en la BD
-                  return;
-
-                }
-                if(result.get(1).equals("VENDEDOR")){
+                else if(result.get(1).equals("VENDEDOR"))
                     session.setAttribute("UserLevel", "Vendedor");
-                    session.setAttribute("InvalidLoginInfo", "no");
-                    response.sendRedirect("menuvendedor.jsp");
-                    return;
-                }
+                session.setAttribute("UserName", result.get(2));
+                response.sendRedirect("home.jsp");
 
           }
           else{

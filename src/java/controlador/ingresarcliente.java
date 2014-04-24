@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import modelo.registro;
 /**
@@ -27,16 +28,30 @@ public class ingresarcliente extends HttpServlet {
         try {
           registro regis=new registro();
           String rut =request.getParameter("rut").toUpperCase();
-
           String nombre =request.getParameter("nombre").toUpperCase();
+          HttpSession session = request.getSession();
+          session.setAttribute("FormDataAvailable", "yes");
+          session.setAttribute("FormRut", rut);
+          session.setAttribute("FormName", nombre);
+          if(!regis.validRut(rut))
+          {
+            session.setAttribute("Message", "El RUT no es válido");
+            session.setAttribute("MessageType", "Error");
+            response.sendRedirect("ingresarcliente.jsp");
+            return;
+          }
+          else if(nombre.equals(""))
+          {
+            session.setAttribute("Message", "Debe ingresar un nombre");
+            session.setAttribute("MessageType", "Error");
+            response.sendRedirect("ingresarcliente.jsp");
+            return;
+          }
 
           regis.IngresarCliente(rut,nombre);
           response.sendRedirect("ingresarcliente.jsp");
-
-
-
-
-          }finally {
+          }
+        finally {
             out.close();
         }
     }

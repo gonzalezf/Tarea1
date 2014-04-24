@@ -34,7 +34,27 @@ public class registro{
     private PreparedStatement pr=null;
     private Statement consulta = null;
     private ResultSet rs=null;
-
+    
+    //Verifica que le rut sea válido
+    public boolean validRut(String rut)
+    {
+        //Lista de caracteres validos
+        String validCharacters = "0123456789kK";
+        if(!rut.contains("-"))
+            return false;
+        
+        String info[] = rut.split("-", 2);
+        int i;
+        for(i = 0; i < info[0].length(); i++)
+        {
+            if(validCharacters.indexOf(info[0].charAt(i)) == -1)
+                return false;
+        }
+        if(info[1].length() != 1)
+            return false;
+        return validCharacters.indexOf(info[1].charAt(0)) != -1;
+    }
+    
     public void InsertarUsuario(String rut,String contrasenna,String nombre,String tipo,int comision){
     String sql = "Insert into usuario values(?,?,?,?,?)";
     try{

@@ -27,24 +27,18 @@
         response.setStatus( 403 );
         return;
     }
-    if(!session.getAttribute("UserLevel").toString().equals("Administrador"))
-    {
-        response.setStatus( 403 );
-        return;
-    }
 %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Menu Administrador</title>
+        <title>Home</title>
         <link rel="stylesheet" href="css/style.css" type="text/css">
     </head>
     <body>
         <%@include file="sidebar.jsp" %>
-        <div id="page_content">
-        le content
+        <div class="page_content">
+            <h1>Welcome!!</h1>
+            <h2>Utilice el menu de la izquierda para comenzar</h2>
         </div>
-
-
     </body>
 </html>

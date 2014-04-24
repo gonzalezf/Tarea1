@@ -32,8 +32,14 @@
 <html>
     <head>
         <title>Logout</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="css/style.css" type="text/css">
     </head>
     <body>
-        <h1> Sesión cerrada. Se te redirigira automáticamente en 5 segundos...</h1>
+    <div id="logout_page">
+        <h1> Sesión Cerrada /h1>
+        <h2> ¡Te esperamos con ansias! </h1>
+        <img style="border:5px solid black" src="img/logout.jpg">
+    </div>
     </body>
 </html>

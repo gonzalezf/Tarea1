@@ -39,6 +39,34 @@ public class ingresarvendedor extends HttpServlet {
           session.setAttribute("FormName", nombre);
           session.setAttribute("FormPasswordValidation", repetircontrasenna);
           session.setAttribute("FormComision", request.getParameter("comision"));
+          if(!regis.validRut(rut))
+          {
+            session.setAttribute("Message", "El RUT no es válido");
+            session.setAttribute("MessageType", "Error");
+            response.sendRedirect("ingresarvendedor.jsp");
+            return;
+          }
+          else if(nombre.equals(""))
+          {
+            session.setAttribute("Message", "Debe ingresar un nombre");
+            session.setAttribute("MessageType", "Error");
+            response.sendRedirect("ingresarvendedor.jsp");
+            return;
+          }
+          else if(contrasenna.length() < 6)
+          {
+            session.setAttribute("Message", "La contraseña es muy corta (6 caracteres minimo)");
+            session.setAttribute("MessageType", "Error");
+            response.sendRedirect("ingresarvendedor.jsp");
+            return;
+          }
+          else if(comision < 0)
+          {
+              session.setAttribute("Message", "La comisión debe ser mayor o igual que 0");
+              session.setAttribute("MessageType", "Error");
+              response.sendRedirect("ingresarvendedor.jsp");
+              return;
+          }
 
 
          /*validacion de contrasena valida */
