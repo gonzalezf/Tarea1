@@ -44,9 +44,18 @@
         <h1>Administrar Productos</h1>
 
         <a href="agregarproducto.jsp">Agregar Producto</a>
-        <a href="editarproducto.jsp">Editar Producto</a>
 
         <table>
+
+            <form action="editarproductobusqueda" method="post" >
+             <h2>Busqueda: </h2>
+             <p><input type='text' value='Ingrese nombre producto' name='clavebusqueda'></p>
+            
+            <p> <input type="submit" value="OK" name="editarproductobusqueda"></p>
+
+            
+            </form>
+
             <tr>
                 <td>ID PRODUCTO</td>
                 <td>NOMBRE </td>

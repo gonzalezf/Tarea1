@@ -352,6 +352,31 @@ public class registro{
 
     } // fin de AgregarCompra
 
+    public void IngresarVenta(String cliente,String producto,int cantidad){
+ //   String sql = "Insert into usuario values(?,?,?,?,?)";
+    //String tipo = "VENDEDOR";
+    try{
+        Class.forName(classfor);
+
+        con=DriverManager.getConnection(url, usuario, clave);
+
+
+
+        consulta = con.createStatement();
+      //  int r = consulta.executeUpdate("INSERT INTO usuario (rut, contrasenna,nombre,tipo,comision) VALUES ('"+rut+"','"+contrasenna+"','"+nombre+"','"+tipo+"',"+comision+")");
+        int r = consulta.executeUpdate("INSERT INTO venta (id_venta,id_cliente,id_usuario,monto_total,fecha,horan) VALUES ('"+rut+"','"+contrasenna+"','"+nombre+"','"+tipo+"',"+comision+")");
+
+        System.out.println(r);
+    }
+
+    catch(Exception e)
+    {
+
+
+      System.out.println(e.getMessage());
+    } //fin de catch
+    } // fin de IngresarVendedor
+
 
 
 /*

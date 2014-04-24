@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Felipe Gonzalez
  */
 import modelo.registro;
-public class editarproducto extends HttpServlet {
+public class ingresarventa extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -30,29 +30,20 @@ public class editarproducto extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-
-            try {
-        /*    String id_producto2=request.getParameter("id_producto");
-                    out.println(id_producto2);
-                    out.println("holaaa!");*/
+        try {
           registro regis=new registro();
-          int id_producto = Integer.parseInt(request.getParameter("id_producto"));
-          String nombre =request.getParameter("nombre").toUpperCase();
-          String descripcion =request.getParameter("descripcion").toUpperCase();
-          String categoria =request.getParameter("categoria").toUpperCase();
-          int precio = Integer.parseInt(request.getParameter("precio"));
-          int stock = Integer.parseInt(request.getParameter("stock"));
+          String cliente =request.getParameter("cliente").toUpperCase();
 
-          regis.EditarProducto(id_producto,nombre,descripcion,categoria,stock,precio);
-         // out.println(nombre+descripcion+categoria);
-          response.sendRedirect("administrarproductos.jsp");
+          String producto =request.getParameter("producto").toUpperCase();
+          int cantidad = Integer.parseInt(request.getParameter("cantidad").toUpperCase());
+
+          regis.IngresarVenta(cliente,producto,cantidad);
+          response.sendRedirect("ventaexitosa.jsp");
 
 
 
 
-
-
-        } finally {
+          }finally {
             out.close();
         }
     } 
