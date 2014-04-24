@@ -31,23 +31,23 @@ public class login extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+    throws ServletException, IOException
+    {
         response.setContentType("text/plain");  
         response.setCharacterEncoding("UTF-8"); 
         PrintWriter out = response.getWriter();
         
-        try {
-
+        try 
+        {
           registro mlogin=new registro();
-
           String rut =request.getParameter("rut").toUpperCase();
-          String contrasenna =request.getParameter("contrasenna").toUpperCase();
+          String contrasenna = request.getParameter("contrasenna").toUpperCase();
           ArrayList<String> result;
           result = mlogin.Login(rut,contrasenna);
-          if (!result.get(0).equals("0")){
+          if (!result.get(0).equals("0"))
               out.write("ERROR");
-          }
-          else{
+          else
+          {
                 HttpSession session = request.getSession();
                 session.setAttribute("LoggedIn", "yes");
                 if(result.get(1).equals("ADMINISTRADOR"))
@@ -55,14 +55,17 @@ public class login extends HttpServlet {
                 else if(result.get(1).equals("VENDEDOR"))
                     session.setAttribute("UserLevel", "Vendedor");
                 session.setAttribute("UserName", result.get(2));
-                out.write("NO_ERROR");
+                out.write("SUCCESS");
           }
-        }catch(Exception e){
+        }
+        catch(Exception e)
+        {
             e.getStackTrace();
-            out.print(e.getMessage());
+            out.write("ERROR");
             response.setStatus(500);
         }
-        finally {
+        finally
+        {
             out.close();
         }
     } //fin de request!

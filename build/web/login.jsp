@@ -7,6 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
+    //
     String logged_in = null;
     try{
         logged_in = (String)session.getAttribute("LoggedIn");
@@ -26,8 +27,7 @@
         <script src="jquery-1.11.0.min.js"></script>
         <title>Iniciar sesión</title>
         <link rel="stylesheet" href="css/style.css" type="text/css">
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>        
-        <script type="text/javascript" src="js/script.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
     </head>
     <body id="body_fade">
     <div id="login_page">
@@ -56,4 +56,5 @@
     </div>
     </div>
     </body>
+    <script type="text/javascript" src="js/script.js"></script>
 </html>

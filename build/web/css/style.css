@@ -263,11 +263,10 @@ body
     margin-bottom:10px;
 }
 
-.pagecontent form #msg_hidden{
-    visibility:hidden;
+.pagecontent form #form_reply_message{
     color:red;
     font-size:16px;
-    margin-bottom:10px;
+    margin-top:10px;
 }
 
 .pagecontent form .submit:hover{
