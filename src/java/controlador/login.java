@@ -61,7 +61,7 @@ public class login extends HttpServlet {
         catch(Exception e)
         {
             e.getStackTrace();
-            out.write("ERROR");
+            e.printStackTrace(out);
             response.setStatus(500);
         }
         finally
