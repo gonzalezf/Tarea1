@@ -31,6 +31,11 @@ public class ingresarventa extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
+<<<<<<< HEAD
+=======
+
+            
+>>>>>>> 2f281c24a24de2551b8edad5abcebe9c134ffbb1
           registro regis=new registro();
           String cliente =request.getParameter("cliente").toUpperCase();
 
