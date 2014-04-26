@@ -115,7 +115,7 @@
 
             %>
 
-        </TABLE>
+        </table>
 
         <!-- Diseñar vista -->
 

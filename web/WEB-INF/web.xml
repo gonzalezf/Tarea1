@@ -60,6 +60,10 @@
         <servlet-name>ingresarventa</servlet-name>
         <servlet-class>controlador.ingresarventa</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>verventas</servlet-name>
+        <servlet-class>controlador.verventas</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ingresousuario</servlet-name>
         <url-pattern>/ingresousuario</url-pattern>
@@ -119,6 +123,10 @@
     <servlet-mapping>
         <servlet-name>ingresarventa</servlet-name>
         <url-pattern>/ingresarventa</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>verventas</servlet-name>
+        <url-pattern>/verventas</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

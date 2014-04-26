@@ -11,15 +11,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import java.sql.*;
-
 /**
  *
  * @author Felipe Gonzalez
  */
-import modelo.registro;
-public class misventas extends HttpServlet {
+public class verventas extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -32,21 +29,18 @@ public class misventas extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-
         try {
 
 
-          registro regis=new registro();
+            
 
-          String rut =request.getParameter("rut").toUpperCase();
-          String contrasenna =request.getParameter("contrasenna").toUpperCase();
-
-
-         int comprobacion = regis.MisVentasLogin(rut, contrasenna); //ojo aqui , revisar! porque puse 1? .-.
-      //   out.println("'"+comprobacion+"'");
-
-          //response.sendRedirect("index.jsp"); //redirecciona cuando ya ingreso en la BD
-          if (comprobacion==1){ //asi se compara?
+        //    String nombrecliente =request.getParameter("esgogercliente").toUpperCase();
+          //  out.println(nombrecliente);
+         /*  <script>
+            var e = document.getElementById("<%=escogercliente%>");
+            var strUser = e.options[e.selectedIndex].value;
+            </script>*/
+            String nombrecliente = request.getParameter("escogercliente");
 
             String classfor="oracle.jdbc.driver.OracleDriver";
             String url="jdbc:oracle:thin:@localhost:1521:XE";
@@ -55,28 +49,41 @@ public class misventas extends HttpServlet {
 
             Connection con=null;
             PreparedStatement pr=null;
+            PreparedStatement pr1 = null;
             Statement consulta = null;
+            Statement consulta1 = null;
             ResultSet rs=null;
-
+            ResultSet rs1 = null;
+             
             try{
                 Class.forName(classfor);
 
                 con=DriverManager.getConnection(url, usuario, clave);
+                
 
            } catch (ClassNotFoundException e) {
                      System.out.println(e.toString());
            }
-                 try{
-                   
-            String sql= "select id_venta,id_cliente,monto_total,fecha,time from venta where id_usuario ='"+rut+"'";
-        //   out.println(sql);
-            pr = con.prepareStatement(sql);
+            try{
+            
+            String sql0 = "select rut from cliente where nombre ='"+nombrecliente+"'";
+           // out.println(sql0);
+            pr1 = con.prepareStatement(sql0);
+            rs1 = pr1.executeQuery();
+
+            while (rs1.next()){
+            String id_cliente = rs1.getString(1);
+
+            //out.println("id_cliente es = "+id_cliente+"");
+
+                String sql= "select id_venta,id_usuario,monto_total,fecha,time from venta where id_cliente ='"+id_cliente+"'";
+                //out.println(sql);
+                pr = con.prepareStatement(sql);
 
 
-            rs = pr.executeQuery();
-            //aqui debe ir el if!
-
-            out.println("<table><td>ID VENTA</td><td>ID CLIENTE </td> <td>MONTO TOTAL</td> <td>FECHA</td> <td>HORA</td>");
+                rs = pr.executeQuery();
+  
+                            out.println("<table><td>ID VENTA</td><td>ID USUARIO </td> <td>MONTO TOTAL</td> <td>FECHA</td> <td>HORA</td>");
             while(rs.next()){
 
                     out.println("<TR>");
@@ -90,10 +97,16 @@ public class misventas extends HttpServlet {
 
 
 
-            }
+                }
             out.println("</table>");
+                }
+
+            //aqui debe ir el if!
+
+            rs1.close();
             rs.close();
             pr.close();
+            pr1.close();
             con.close();
 
             } //fin del try
@@ -103,10 +116,8 @@ public class misventas extends HttpServlet {
 
 
 
-          }
-           else{
-           out.println("Usuario o contrasenna invalida");
-           }
+          //response.sendRedirect("index.jsp"); //redirecciona cuando ya ingreso en la BD
+
 
         }catch(Exception e){
             e.getStackTrace();
