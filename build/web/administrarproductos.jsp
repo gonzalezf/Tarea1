@@ -113,7 +113,7 @@
             }
             %>
 
-        </TABLE>
+        </table>
 
         <!-- Diseñar vista -->
 

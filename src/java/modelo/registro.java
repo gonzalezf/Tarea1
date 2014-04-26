@@ -388,6 +388,58 @@ public class registro{
     } // fin de IngresarVendedor
 
 
+    public int MisVentasLogin(String rut, String contrasenna){
+        try{
+
+            Class.forName(classfor);
+
+        con=DriverManager.getConnection(url, usuario, clave);
+
+      
+        consulta = con.createStatement();
+
+      //  int r = consulta.executeUpdate("INSERT INTO usuario (rut, contrasenna,nombre,tipo,comision) VALUES ('"+rut+"','"+contrasenna+"','"+nombre+"','"+tipo+"',"+comision+")");
+   //     int r = consulta.executeUpdate("INSERT INTO venta (id_venta,id_cliente,id_usuario,monto_total,fecha,horan) VALUES ('"+rut+"','"+contrasenna+"','"+nombre+"','"+tipo+"',"+comision+")");
+           String sql="select contrasenna from usuario where rut ='"+rut+"'";
+           
+  //         String sql= "'select id_venta,id_cliente,monto_total,fecha,hora from venta where id_usuario ="+id_usuario+"'";
+            pr = con.prepareStatement(sql);
+
+
+            rs = pr.executeQuery();
+            //aqui debe ir el if!
+
+
+
+            while(rs.next()){
+
+                    if(rs.getString(1).equals(contrasenna)){
+                        rs.close();
+                        return 1;
+                    }
+                    else{
+                        rs.close();
+                        return 2; //contrasenna invalida!
+                    }
+
+            }
+            
+            return -1;
+
+    }
+
+    catch(Exception e)
+    {
+
+
+      System.out.println(e.getMessage());
+
+    } //fin de catch
+
+
+    return 8;
+
+    }
 
 /*
    public void VistaAdministrarProductos(){
