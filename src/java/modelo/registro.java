@@ -265,26 +265,36 @@ public class registro{
 
 
 
-    public void IngresarCliente(String rut,String nombre){
-    String sql = "Insert into cliente values(?,?)";
-
-    try{
-        Class.forName(classfor);
-
-        con=DriverManager.getConnection(url, usuario, clave);
-        consulta = con.createStatement();
-        int r = consulta.executeUpdate("INSERT INTO cliente (rut,nombre) VALUES ('"+rut+"','"+nombre+"')");
-
-        System.out.println(r);
-    }
-
-    catch(Exception e)
+    public String IngresarCliente(String rut,String nombre)
     {
+        try
+        {
+            Class.forName(classfor);
 
+            con=DriverManager.getConnection(url, usuario, clave);
+            consulta = con.createStatement();
+            int r = consulta.executeUpdate("INSERT INTO cliente (rut, nombre) VALUES ('"+rut+"','"+nombre+"')");
 
-      System.out.println(e.getMessage());
-    } //fin de catch
-
+            System.out.println(r);
+        }
+        catch(ClassNotFoundException e)
+        {
+            return "Class not found (Class.forName(classfor))";
+        }
+        catch(SQLException ex)
+        {
+            String error = " ";
+            for (Throwable e : ex)
+            {
+                if (e instanceof SQLException)
+                {
+                    e.printStackTrace(System.err);
+                    error = error + " " + e.getMessage();
+                }
+            }
+            return error;
+        }
+        return "";
     } // fin de IngresarCliente
 
     public void AgregarProducto(int id_producto,String nombre,String descripcion,String categoria,int stock,int precio){

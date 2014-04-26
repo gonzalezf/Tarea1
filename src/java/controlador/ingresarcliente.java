@@ -22,36 +22,39 @@ public class ingresarcliente extends HttpServlet {
 
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+    throws ServletException, IOException
+    {
+        response.setContentType("text/plain");  
+        response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
-        try {
-          registro regis=new registro();
-          String rut =request.getParameter("rut").toUpperCase();
-          String nombre =request.getParameter("nombre").toUpperCase();
-          HttpSession session = request.getSession();
-          session.setAttribute("FormDataAvailable", "yes");
-          session.setAttribute("FormRut", rut);
-          session.setAttribute("FormName", nombre);
-          if(!regis.validRut(rut))
-          {
-            session.setAttribute("Message", "El RUT no es válido");
-            session.setAttribute("MessageType", "Error");
-            response.sendRedirect("ingresarcliente.jsp");
-            return;
-          }
-          else if(nombre.equals(""))
-          {
-            session.setAttribute("Message", "Debe ingresar un nombre");
-            session.setAttribute("MessageType", "Error");
-            response.sendRedirect("ingresarcliente.jsp");
-            return;
-          }
-
-          regis.IngresarCliente(rut,nombre);
-          response.sendRedirect("ingresarcliente.jsp");
-          }
-        finally {
+        try
+        {
+            registro regis=new registro();
+            String rut =request.getParameter("rut").toUpperCase();
+            String nombre =request.getParameter("nombre").toUpperCase();
+            if(!regis.validRut(rut))
+            {
+                out.write("ERROR:El RUT no es válido:#form_1");
+            }
+            else if(nombre.equals(""))
+            {
+                out.write("ERROR:Debe ingresar un nombre:#form_2");
+            }
+            else
+            {
+                String error = regis.IngresarCliente(rut, nombre);
+                if(error.equals(""))
+                {
+                    out.write("SUCCESS:Cliente ingresado exitosamente");
+                }
+                else
+                {
+                    out.write("ERROR:Ya existe un cliente con aquel RUT:#form_3");
+                }
+            }
+        }
+        finally
+        {
             out.close();
         }
     }

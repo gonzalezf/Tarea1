@@ -277,14 +277,37 @@ body
     transition: background-color .5s;
 }
 
-.pagecontent form #left{
+.pagecontent #submit_form #left{
     float:left;
     margin-left: 230px;
     margin-bottom:30px;
 }
-.pagecontent form #right{
+.pagecontent #submit_form #center{
+    float:left;
+    margin-left: 60px;
+    margin-right: 60px;
+    margin-bottom:30px;
+}
+.pagecontent #submit_form #right{
     float:right;
     margin-right: 230px;
+    margin-bottom:30px;
+}
+
+.pagecontent #submit_form_compra #left{
+    float:left;
+    margin-left: 170px;
+    margin-bottom:30px;
+}
+.pagecontent #submit_form_compra #center{
+    float:left;
+    margin-left: 80px;
+    margin-right: 60px;
+    margin-bottom:30px;
+}
+.pagecontent #submit_form_compra #right{
+    float:right;
+    margin-right: 150px;
     margin-bottom:30px;
 }
 

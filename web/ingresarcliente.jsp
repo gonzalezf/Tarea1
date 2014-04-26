@@ -35,55 +35,30 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Ingresar cliente</title>
         <link rel="stylesheet" href="css/style.css" type="text/css">
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
     </head>
     <body>
         <%@include file="sidebar.jsp" %>
         <div class="pagecontent">
-            <form class: action="ingresarcliente" method="post" >
+            <form id="submit_form" action="ingresarcliente" method="post" >
                 <h1>Ingresar nuevo cliente</h1>
 
                 <h2></h2>
                 
                 <div id="left">
                 <p>Ingrese rut:</p>
-                <input class="input" type="text" value="" name="rut">
+                <input id="form_1" class="input" type="text" value="" name="rut">
                 </div>
                 
                 <div id="right">
                 <p>Ingrese Nombre:</p>
-                <input class="input" type="text" value="" name="nombre">
+                <input id="form_2" class="input" type="text" value="" name="nombre">
                 </div>
                 <div class="clearfix"></div>
-<%         
-                if(message != null && !message.equals(""))
-                {
-                    if(message_type.equals("Error"))
-                    {
-                        out.println("<div id=\"msg_error\">"+message+"</div>");
-                    }
-                    else if(message_type.equals("Warning"))
-                    {
-                        out.println("<div id=\"msg_warning\">"+message+"</div>");
-                        session.setAttribute("Message", "");
-                    }
-                    else if(message_type.equals("Assert"))
-                    {
-                        out.println("<div id=\"msg_assert\">"+message+"</div>");
-                        session.setAttribute("Message", "");
-                    }
-                    else
-                    {
-                        out.println("<div id=\"msg_hidden\">Las contraseñas no coinciden</div>");
-                    }
-                }
-                else
-                {
-                    out.println("<div id=\"msg_hidden\">Las contraseñas no coinciden</div>");
-                }
-
-%>
-                <input class="submit" type="submit" value="Ingresar Cliente" name="ingresarcliente">
+                <input id = "submit_button" class="submit" type="submit" value="Ingresar Cliente" name="ingresarcliente">
+                <div id = "form_reply_message"></div>
            </form>
          </div>
     </body>
+    <script type="text/javascript" src="js/script.js"></script>
 </html>
