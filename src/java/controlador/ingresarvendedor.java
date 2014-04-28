@@ -29,9 +29,9 @@ public class ingresarvendedor extends HttpServlet {
         try
         {
             registro regis = new registro();
-            String rut =request.getParameter("rut").toUpperCase();
-            String contrasenna =request.getParameter("contrasenna").toUpperCase();
-            String nombre =request.getParameter("nombre").toUpperCase();
+            String rut = request.getParameter("rut").toUpperCase();
+            String contrasenna = request.getParameter("contrasenna").toUpperCase();
+            String nombre = request.getParameter("nombre").toUpperCase();
             String repetircontrasenna = request.getParameter("repetircontrasenna").toUpperCase();
             int comision = Integer.parseInt(request.getParameter("comision"));
             if(!regis.validRut(rut))
@@ -53,8 +53,13 @@ public class ingresarvendedor extends HttpServlet {
                }
                else
                {
-                   regis.IngresarVendedor(rut,contrasenna,nombre,comision);
-                   out.write("SUCCESS:Vendedor ingresado correctamente");
+                   String error = regis.IngresarVendedor(rut, contrasenna, nombre, comision);
+                   if(error.equals(""))
+                       out.write("SUCCESS:Vendedor ingresado correctamente");
+                   else
+                   {
+                       out.write("ERROR:Ya existe vendedor con aquel RUT:#form_6");
+                   }
                }
             }
         }
@@ -62,7 +67,8 @@ public class ingresarvendedor extends HttpServlet {
         {
             out.write("ERROR:Se ingresó un número inválido en comisión:#form_5");
         }
-        finally { 
+        finally
+        { 
             out.close();
         }
     } 

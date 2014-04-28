@@ -30,6 +30,11 @@
         response.setStatus( 403 );
         return;
     }
+    if(!session.getAttribute("UserLevel").toString().equals("Administrador"))
+    {
+        response.setStatus( 403 );
+        return;
+    }
 %>
 <html>
     <head>
@@ -39,18 +44,28 @@
     </head>
     <body>
     <%@include file="sidebar.jsp" %>
-                    <h2>Ingresar Compra a la base de Datos</h2>
-                    <p>Ingrese id_producto</p>
-                    <p><input type="text" value="" name="id_producto"></p>
-
-                    <p>Ingrese cantidad</p>
-                    <p><input type="text" value="" name="cantidad"></p>
-
-                    <p>Ingrese precio</p>
-                    <p><input type="text" value="" name="precio"</p>
-
-                    <p> <input type="submit" value="Ingresar Compra" name="ingresarcompra"></p>
-
-
+    <div class="pagecontent">
+        <form id = "submit_form_compra" action="ingresarcompra.jsp" method="post" >
+            <h1>Ingresar Compra a la base de Datos</h1>
+            <div id="left">
+            <p>Producto</p>
+            1
+            <input class="input" type="text" value="" name="id_producto">
+            </div>
+            
+            <div id="center">
+            <p>Ingrese cantidad</p>
+            <input class="input" type="text" value="" name="cantidad">
+            </div>
+            
+            <div id="right">
+            <p>Ingrese precio</p>
+            <input class="input" type="text" value="" name="precio">
+            </div>
+            <div class="clearfix"></div>
+            <input id="submit_button" class="submit" type="submit" value="Ingresar Compra" name="ingresarvendedor">
+            <div id="form_reply_message"></div>
+        </form>
+    </div>
     </body>
 </html>

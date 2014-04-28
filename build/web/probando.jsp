@@ -47,6 +47,8 @@
                     });
     </body>
 </html>
+<<<<<<< HEAD
+=======
 
         <h2><a href="#" id="addScnt">Add Another Input Box</a></h2>
 
@@ -107,3 +109,4 @@
 
                     });
     </script>
+>>>>>>> 2f281c24a24de2551b8edad5abcebe9c134ffbb1

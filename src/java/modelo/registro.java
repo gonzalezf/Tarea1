@@ -35,7 +35,7 @@ public class registro{
     private Statement consulta = null;
     private ResultSet rs=null;
     
-    //Verifica que le rut sea válido
+    //Verifica que el rut sea válido
     public boolean validRut(String rut)
     {
         //Lista de caracteres validos
@@ -43,6 +43,7 @@ public class registro{
         if(!rut.contains("-"))
             return false;
         
+        //Dividirlos por -
         String info[] = rut.split("-", 2);
         int i;
         for(i = 0; i < info[0].length(); i++)
@@ -50,6 +51,8 @@ public class registro{
             if(validCharacters.indexOf(info[0].charAt(i)) == -1)
                 return false;
         }
+        
+        //Solo un caracter despues del digito verificador
         if(info[1].length() != 1)
             return false;
         return validCharacters.indexOf(info[1].charAt(0)) != -1;
@@ -226,52 +229,72 @@ public class registro{
         this.tipo = tipo;
     }
 
-    public void IngresarVendedor(String rut,String contrasenna,String nombre,int comision){
- //   String sql = "Insert into usuario values(?,?,?,?,?)";
-    String tipo = "VENDEDOR";
-    try{
-        Class.forName(classfor);
-
-        con=DriverManager.getConnection(url, usuario, clave);
-
-
-
-        consulta = con.createStatement();
-        int r = consulta.executeUpdate("INSERT INTO usuario (rut, contrasenna,nombre,tipo,comision) VALUES ('"+rut+"','"+contrasenna+"','"+nombre+"','"+tipo+"',"+comision+")");
-
-        System.out.println(r);
-    }
-    
-    catch(Exception e)
+    public String IngresarVendedor(String rut, String contrasenna, String nombre, int comision)
     {
+ //   String sql = "Insert into usuario values(?,?,?,?,?)";
+        String tipo = "VENDEDOR";
+        try
+        {
+            Class.forName(classfor);
 
+            con=DriverManager.getConnection(url, usuario, clave);
+            consulta = con.createStatement();
+            int r = consulta.executeUpdate("INSERT INTO usuario (rut, contrasenna,nombre,tipo,comision) VALUES ('"+rut+"','"+contrasenna+"','"+nombre+"','"+tipo+"',"+comision+")");
 
-      System.out.println(e.getMessage());
-    } //fin de catch
+            System.out.print(r);
+        }
+        catch(ClassNotFoundException e)
+        {
+            return "Class not found (Class.forName(classfor))";
+        }
+        catch(SQLException ex)
+        {
+            String error = " ";
+            for (Throwable e : ex)
+            {
+                if (e instanceof SQLException)
+                {
+                    e.printStackTrace(System.err);
+                    error = error + " " + e.getMessage();
+                }
+            }
+            return error;
+        }
+        return "";
     } // fin de IngresarVendedor
 
 
 
-    public void IngresarCliente(String rut,String nombre){
-    String sql = "Insert into cliente values(?,?)";
-
-    try{
-        Class.forName(classfor);
-
-        con=DriverManager.getConnection(url, usuario, clave);
-        consulta = con.createStatement();
-        int r = consulta.executeUpdate("INSERT INTO cliente (rut,nombre) VALUES ('"+rut+"','"+nombre+"')");
-
-        System.out.println(r);
-    }
-
-    catch(Exception e)
+    public String IngresarCliente(String rut,String nombre)
     {
+        try
+        {
+            Class.forName(classfor);
 
+            con=DriverManager.getConnection(url, usuario, clave);
+            consulta = con.createStatement();
+            int r = consulta.executeUpdate("INSERT INTO cliente (rut, nombre) VALUES ('"+rut+"','"+nombre+"')");
 
-      System.out.println(e.getMessage());
-    } //fin de catch
-
+            System.out.println(r);
+        }
+        catch(ClassNotFoundException e)
+        {
+            return "Class not found (Class.forName(classfor))";
+        }
+        catch(SQLException ex)
+        {
+            String error = " ";
+            for (Throwable e : ex)
+            {
+                if (e instanceof SQLException)
+                {
+                    e.printStackTrace(System.err);
+                    error = error + " " + e.getMessage();
+                }
+            }
+            return error;
+        }
+        return "";
     } // fin de IngresarCliente
 
     public void AgregarProducto(int id_producto,String nombre,String descripcion,String categoria,int stock,int precio){
@@ -282,7 +305,7 @@ public class registro{
 
         con=DriverManager.getConnection(url, usuario, clave);
         consulta = con.createStatement();
-        int r = consulta.executeUpdate("INSERT INTO producto (id_producto,nombre,descripcion,categoria,stock,precio) VALUES ("+id_producto+",'"+nombre+"','"+descripcion+"','"+categoria+"',"+stock+","+precio+")");
+        int r = consulta.executeUpdate("INSERT INTO producto (id_producto,descripcion,categoria,stock,precio) VALUES (DEFAULT,'"+descripcion+"','"+categoria+"',"+stock+","+precio+")");
 
         System.out.println(r);
     }

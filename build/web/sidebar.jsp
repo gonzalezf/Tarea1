@@ -22,7 +22,10 @@
         out.println("<div class=\"item\"><a href=\"ingresarvendedor.jsp\">Ingresar Vendedor</a><br></div>");
 %>
     <div class="item"><a href="ingresarcliente.jsp">Ingresar Cliente</a><br></div>
-    <div class="item"><a href="administrarproductos.jsp">Administrar Productos</a><br></div>
+<%
+    if(session.getAttribute("UserLevel").toString().equals("Administrador"))
+        out.println("<div class=\"item\"><a href=\"administrarproductos.jsp\">Administrar Productos</a><br></div>");
+%>
     <div class="item"><a href="ingresarcompra.jsp">Ingresar Compra</a><br></div>
     <div class="item"><a href="ingresarventa.jsp">Ingresar Venta</a><br></div>
     <div class="item"><a href="verventas.jsp">Ver Ventas a Cliente</a><br></div>
