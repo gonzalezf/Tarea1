@@ -44,6 +44,7 @@ public class misventas extends HttpServlet {
 
          int comprobacion = regis.MisVentasLogin(rut, contrasenna); //ojo aqui , revisar! porque puse 1? .-.
       //   out.println("'"+comprobacion+"'");
+         session.getAttribute("UserLevel").toString();
 
           //response.sendRedirect("index.jsp"); //redirecciona cuando ya ingreso en la BD
           if (comprobacion==1){ //asi se compara?
