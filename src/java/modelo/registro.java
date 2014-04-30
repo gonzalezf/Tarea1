@@ -11,7 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.*;
 import java.util.ArrayList;
-import javax.servlet.*;
+import javax.servlet.http.HttpSession;
 /**
  *
  * @author Felipe Gonzalez
@@ -35,6 +35,41 @@ public class registro{
     private Statement consulta = null;
     private ResultSet rs=null;
     
+    static public boolean IsLoggedIn(HttpSession session)
+    {
+        String logged_in = null;
+        try
+        {
+            logged_in = (String)session.getAttribute("LoggedIn");
+        }
+        catch(Exception e)
+        {
+            return false;
+        }
+        if(logged_in == null)
+        {
+            return false;
+        }
+        else if(logged_in.equals("no"))
+        {
+            return false;
+        }
+        return true;
+    }
+    
+    static public String GetUserLevel(HttpSession session)
+    {
+        if(!IsLoggedIn(session))
+            return "";
+        return (String)session.getAttribute("UserLevel");
+    }
+    
+    static public String GetUserRUT(HttpSession session)
+    {
+        if(!IsLoggedIn(session))
+            return "";
+        return (String)session.getAttribute("UserRUT");
+    }
     //Verifica que el rut sea válido
     public boolean validRut(String rut)
     {

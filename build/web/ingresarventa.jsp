@@ -1,15 +1,44 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*" %>
+<%@ page import="modelo.registro" %>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
-
+<%
+    //Esto verifica que el usuario haya iniciado sesión
+    //y que además tenga los permisos necesarios.
+    if(!registro.IsLoggedIn(session))
+    {
+        response.sendRedirect("index.jsp");
+        return;
+    }
+%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Ingresar Venta</title>
+        <title>Ingresar cliente</title>
+        <link rel="stylesheet" href="css/style.css" type="text/css">
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
     </head>
     <body>
+        <%@include file="sidebar.jsp" %>
+        <div class="pagecontent">
+        <h1>Ingresar Venta</h1>
+        
+  
+
+<!--
+                    <h2>Ingresar Venta a la base de Datos</h2>
+                    <p>Escoja cliente:</p>
+                    <p><input type="text" value="Ingrese Cliente" name="cliente"></p>
+                    <p>Ingrese Producto</p>
+                    <p><input type="text" value="" name="producto"></p>
+                    <p>Ingrese Cantidad</p>
+                    <p><input type="text" value="" name="cantidad"></p>
+                    <p> <input type="submit" value="Finalizar" name="ingresarventa"></p>
+                </form>
+    -->
+     
             <% 
         
             String classfor="oracle.jdbc.driver.OracleDriver";
@@ -55,7 +84,7 @@
               <div id="AddMoreFileBox"> Ingresar Cliente (Boton)!</div>
 
         </div>
-      <form action="ingresarventa" method="post" >
+      <form id = "submit_form" action="ingresarventa" method="post" >
             <script>
 
 
@@ -79,7 +108,7 @@
                     $(InputsWrapper).append('<div class="removeclass"><p><input type="text" name="cliente'+FieldCount+'" id="cliente_'+FieldCount+'" value="Ingrese Cliente"/><a href="#" class="removeclass">&times;</a></p><p><input type="text" name="producto'+FieldCount+'" id="producto_'+FieldCount+'" value="Ingrese Producto"/></p><p><input type="text" name="cantidad'+FieldCount+'" id="cantidad_'+FieldCount+'" value="Ingrese Cantidad"/></p></div>');
                         x++; //text box increment
                     }
-            return false;
+                    e.preventDefault();
             });
 
             $("body").on("click",".removeclass", function(e){ //user click on remove text
@@ -107,9 +136,6 @@
               }
 
         %>
-
-
-
+        </div>
     </body>
 </html>
->>>>>>> 2f281c24a24de2551b8edad5abcebe9c134ffbb1

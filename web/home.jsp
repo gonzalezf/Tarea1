@@ -41,7 +41,7 @@
         <div class="pagecontent">
             <h1>Welcome!!</h1>
             <h2>Utilice el menú de la izquierda para comenzar</h2>
-            <img style="border:5px solid black;margin-top:30px;border-radius:300px" src="img/logout.jpg">
+            <img id="cow" src="img/logout.jpg">
         </div>
     </body>
 </html>

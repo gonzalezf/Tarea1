@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 //Todo esto se ejecuta al principio de la pagina.
+var dynamic_input_count = 1;
 $(document).ready(function() 
 {
     //Fade en cuanto carga la pagina, usado por el logo de la vaca
@@ -35,6 +36,86 @@ $(document).ready(function()
     $(".input").focus(function(e){
         $(this).css('background-color', '#ffffff');
     });
+    
+    $("#submit_button_compra").click(function(e)
+    {
+        var resetAllFormElements = function()
+        {
+            for(var i = 1; i <= $(".input").length; i++)
+            {
+                $("#form_"+i.toString()).css('background-color', '#ffffff');
+            }
+        };
+        var resetAllFormElementsValue = function()
+        {
+            for(var i = 1; i <= $(".input").length; i++)
+            {
+                $("#form_"+i.toString()).val('');
+            }
+        };
+        var checkResponse = function(response)
+        {
+            var result = response.toString();  
+            if(result.indexOf(':') !== -1)
+            {
+                var arr = result.split(':', 3);
+                if(arr[0].toString() === "SUCCESS")
+                {
+                    resetAllFormElements();
+                    resetAllFormElementsValue();
+                    $("#form_reply_message").css('color', 'green');
+                    $("#form_reply_message").html(arr[1]);
+                    $("#form_reply_message").hide().fadeIn(500);
+                    setTimeout(function(){
+                        $("#form_reply_message").fadeOut(5000);
+                    }, 3000);
+                }
+                else if(arr[0].toString() === "ERROR")
+                {
+                    resetAllFormElements();
+                    $("#form_reply_message").css('color', 'red');
+                    $("#form_reply_message").html(arr[1]);
+                    $("#form_reply_message").hide().fadeIn(500);
+                    $(arr[2].toString()).css('background-color', 'rgba(255, 13, 0, 0.4)');
+                }
+            }
+            else
+            {
+                resetAllFormElements();
+                $("#form_reply_message").css('color', 'red');
+                $("#form_reply_message").html("Ocurrió un error cŕitico en el servidor");
+                $("#form_reply_message").hide().fadeIn(500);
+            }
+                
+        };
+        $("#submit_button").prop('disabled', true);
+        $("#form_reply_message").hide();
+        var frm = "total="+dynamic_input_count+"&"+$('#submit_form_compra').serialize();
+        alert(frm);
+        $.ajax
+        ({
+            url: $("#submit_button_compra").attr("name"),
+            type: "post",
+            data: frm,
+            success: function(response)
+            {
+                checkResponse(response);
+            },
+            error: function ()
+            {
+               resetAllFormElements();
+                $("#form_reply_message").css('color', 'red');
+                $("#form_reply_message").html("Ocurrió un error cŕitico en el servidor");
+                $("#form_reply_message").hide().fadeIn(500);
+            },
+            complete: function()
+            {
+               $("#submit_button").prop('disabled', false);
+           }
+        });
+        e.preventDefault();
+    });
+    
     $("#submit_button").click(function(e)
     {
         var resetAllFormElements = function()
@@ -89,6 +170,7 @@ $(document).ready(function()
         $("#submit_button").prop('disabled', true);
         $("#form_reply_message").hide();
         var frm = $('#submit_form').serialize();
+        alert(frm);
         $.ajax
         ({
             url: $("#submit_button").attr("name"),
@@ -158,4 +240,14 @@ $(document).ready(function()
         });
         event.preventDefault();
     });
+});
+
+
+$(document).on('click', '#plus_button' ,function(e)
+{
+    dynamic_input_count++;
+    $("#plus_button").css('visibility','hidden');
+    $("#plus_button").attr('id', 'plus_button_ignore');
+    $("#InputAddStart").append("<div id=\"left\">"+dynamic_input_count+" <select class=\"input\" name=\"id_producto_"+dynamic_input_count+"\">"+select_items+"</select></div><div id=\"center\"><input class=\"input\" type=\"text\" value=\"\" name=\"cantidad_"+dynamic_input_count+"\"></div><div id=\"right\"><input class=\"input\" type=\"text\" value=\"\" name=\"precio_"+dynamic_input_count+"\"><input id=\"plus_button\" class=\"submit\" type=\"submit\" value=\"+\" name=\"nothing\"></div><div class=\"clearfix\"></div>");
+    e.preventDefault();
 });

@@ -5,17 +5,11 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import="modelo.registro" %>
 <!DOCTYPE html>
 <%
-    //
-    String logged_in = null;
-    try{
-        logged_in = (String)session.getAttribute("LoggedIn");
-    }
-    catch(Exception e)
-    {
-    }
-    if(logged_in != null && logged_in.equals("yes"))
+    //Verificamos que el usuario haya iniciado sesion.
+    if(registro.IsLoggedIn(session))
     {
         response.sendRedirect("index.jsp");
         return;

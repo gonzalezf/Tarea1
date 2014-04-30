@@ -30,6 +30,7 @@
     <div class="item"><a href="ingresarventa.jsp">Ingresar Venta</a><br></div>
     <div class="item"><a href="verventas.jsp">Ver Ventas a Cliente</a><br></div>
     <div class="item"><a href="misventas.jsp">Mis Ventas </a><br></div>
+    <div class="sidebarend"><div id="pepe">Pepe's Work</div><img src='img/logout.jpg'></div>
 </div>
 <div class = "clearfix"></div>
 </div>

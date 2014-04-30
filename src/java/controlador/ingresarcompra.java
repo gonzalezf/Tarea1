@@ -32,15 +32,22 @@ public class ingresarcompra extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        try {
-          registro regis=new registro();
-          int id_producto = Integer.parseInt(request.getParameter("id_producto"));
-          int cantidad = Integer.parseInt(request.getParameter("cantidad"));
-          int precio = Integer.parseInt(request.getParameter("precio"));
+        try
+        {
+            registro regis=new registro();
+            String totalString = request.getParameter("total");
+            if(!registro.IsValidInt(totalString))
+            {
+                out.write("ERROR:Ocurrió un error cŕitico en el servidor:#form_0");
+                out.close;
+                break;
+            }
+            int total = Integer.parseInt(totalString);
+            if()
 
 
-     //     regis.IngresarCompra(id_producto,cantidad,precio);
-          response.sendRedirect("compraexitosa.jsp");
+            regis.IngresarCompra(id_producto,cantidad,precio);
+            response.sendRedirect("compraexitosa.jsp");
 
         } finally { 
             out.close();
