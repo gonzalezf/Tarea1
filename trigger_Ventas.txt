@@ -1,0 +1,25 @@
+CREATE OR REPLACE TRIGGER trigger_Ventas
+AFTER INSERT ON DETALLE_VENTA
+	FOR EACH ROW
+	DECLARE
+	nueva_cantidad NUMBER;
+	vendedor varchar(20);
+	precio_pr NUMBER;
+	comision_total NUMBER;
+	BEGIN
+	-- Obtengo el vendedor
+	SELECT ID_USUARIO INTO vendedor FROM VENTA WHERE ID_VENTA = :NEW.ID_VENTA;
+
+	-- Obtengo stock atual
+	SELECT CANTIDAD INTO nueva_cantidad FROM PRODUCTOS WHERE ID_PRODUCTO = :NEW.ID_PRODUCTO;
+
+	-- Obtengo precio del producto
+	SELECT PRECIO INTO precio_pr FROM PRODUCTOS WHERE ID_PRODUCTO = :NEW.ID_PRODUCTO;
+	SELECT COMISION INTO comision_total FROM USUARIOS WHERE RUT = vendedor;
+	comision_total := comision_total + (precio_pr * :NEW.CANTIDAD/10);
+	nueva_cantidad := nueva_cantidad - :NEW.CANTIDAD;
+
+	UPDATE USUARIOS SET COMISION = comision_total WHERE RUT = vendedor;
+	UPDATE PRODUCTOS SET CANTIDAD = nueva_cantidad WHERE ID_PRODUCTO = :NEW.ID_PRODUCTO;
+END trigger_Ventas;
+/

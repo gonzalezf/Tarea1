@@ -56,6 +56,7 @@ $(document).ready(function()
         var checkResponse = function(response)
         {
             var result = response.toString();  
+            alert(result);
             if(result.indexOf(':') !== -1)
             {
                 var arr = result.split(':', 3);
@@ -91,7 +92,6 @@ $(document).ready(function()
         $("#submit_button").prop('disabled', true);
         $("#form_reply_message").hide();
         var frm = "total="+dynamic_input_count+"&"+$('#submit_form_compra').serialize();
-        alert(frm);
         $.ajax
         ({
             url: $("#submit_button_compra").attr("name"),
@@ -170,7 +170,6 @@ $(document).ready(function()
         $("#submit_button").prop('disabled', true);
         $("#form_reply_message").hide();
         var frm = $('#submit_form').serialize();
-        alert(frm);
         $.ajax
         ({
             url: $("#submit_button").attr("name"),
@@ -199,8 +198,7 @@ $(document).ready(function()
         var onCriticalError = function(response)
         {
             $("div.loginboxerror").html("Error en el servidor");
-            $("div.loginboxerror").hide().fadeIn(600);  
-            alert(response).toString();
+            $("div.loginboxerror").hide().fadeIn(600);
         };
         var checkResponse = function(response)
         {
@@ -248,6 +246,6 @@ $(document).on('click', '#plus_button' ,function(e)
     dynamic_input_count++;
     $("#plus_button").css('visibility','hidden');
     $("#plus_button").attr('id', 'plus_button_ignore');
-    $("#InputAddStart").append("<div id=\"left\">"+dynamic_input_count+" <select class=\"input\" name=\"id_producto_"+dynamic_input_count+"\">"+select_items+"</select></div><div id=\"center\"><input class=\"input\" type=\"text\" value=\"\" name=\"cantidad_"+dynamic_input_count+"\"></div><div id=\"right\"><input class=\"input\" type=\"text\" value=\"\" name=\"precio_"+dynamic_input_count+"\"><input id=\"plus_button\" class=\"submit\" type=\"submit\" value=\"+\" name=\"nothing\"></div><div class=\"clearfix\"></div>");
+    $("#InputAddStart").append("<div id=\"left\">"+dynamic_input_count+" <select id = \"form_"+((dynamic_input_count-1)*3+1)+"\" class=\"input\" name=\"id_producto_"+dynamic_input_count+"\">"+select_items+"</select></div><div id=\"center\"><input id = \"form_"+((dynamic_input_count-1)*3+2)+"\" class=\"input\" type=\"text\" value=\"\" name=\"cantidad_"+dynamic_input_count+"\"></div><div id=\"right\"><input id = \"form_"+((dynamic_input_count-1)*3+3)+"\" class=\"input\" type=\"text\" value=\"\" name=\"precio_"+dynamic_input_count+"\"><input id=\"plus_button\" class=\"submit\" type=\"submit\" value=\"+\" name=\"nothing\"></div><div class=\"clearfix\"></div>");
     e.preventDefault();
 });

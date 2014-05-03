@@ -38,7 +38,7 @@
                     <p> <input type="submit" value="Finalizar" name="ingresarventa"></p>
                 </form>
     -->
-     
+     <form action="ingresarventa" method="post" >
             <% 
         
             String classfor="oracle.jdbc.driver.OracleDriver";
@@ -66,22 +66,17 @@
 
             rs = pr.executeQuery();
             //aqui debe ir el if!
-            %>
-
-
-  
-      
-            <%
+       
 
            out.println("<select name='escogercliente'>");
             while(rs.next()){
-                  out.println("<option id='cliente'>"+rs.getString(1)+"</option>");
+                  out.println("<option>"+rs.getString(1)+"</option>");
             }
            out.println("</select>"); %>
-
+  <div id="AddMoreFileBox"> Ingresar Cliente (Boton)!</div>
         <div id="InputsWrapper">
 
-              <div id="AddMoreFileBox"> Ingresar Cliente (Boton)!</div>
+            
 
         </div>
       <form id = "submit_form" action="ingresarventa" method="post" >

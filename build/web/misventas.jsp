@@ -35,35 +35,21 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Mis Ventas</title>
         <link rel="stylesheet" href="css/style.css" type="text/css">
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
     </head>
     <body>
-        <%@include file="sidebar.jsp" %>
-                
-                    <h2>Mis Ventas!</h2>
-                    
-             <form class: action="misventas" method="post" >
-                <h2>Por seguridad , vuelva a loguearse.</h2>
+    <%@include file="sidebar.jsp" %>
+    <div class="pagecontent">
+        <form action="misventas" method="post" >
+           <h1>Mis Ventas!</h1> 
+           <h2>Por seguridad , vuelva a loguearse.</h2>
+           <p>Ingrese rut:</p>
+           <input class="input" type="text" value="" name="rut">
+           <p>Ingrese Contraseña:</p>
+           <input class="input" type="text" value="" name="contrasenna">
 
-           
-                
-               
-                <p>Ingrese rut:</p>
-                <input class="input" type="text" value="" name="rut">
-          
-                
-             
-                <p>Ingrese Contraseña:</p>
-                <input class="input" type="text" value="" name="contrasenna">
-             
-                <input class="submit" type="submit" value="Comprobar Usuario" name="misventas">
-
-             </form>
-
-
-
-
-
-
-
+           <input class="submit" type="submit" value="Comprobar Usuario" name="misventas">
+        </form>
+    </div>
     </body>
 </html>

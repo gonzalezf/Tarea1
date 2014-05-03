@@ -16,6 +16,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author Felipe Gonzalez
  */
+
+
 public class registro{
 
     private String rut;
@@ -25,36 +27,50 @@ public class registro{
     private int comision;
 
 
-    private String classfor="oracle.jdbc.driver.OracleDriver";
-    private String url="jdbc:oracle:thin:@localhost:1521:XE";
-    private String usuario="admin";
-    private String clave="pelife18";
+    private final String classfor="oracle.jdbc.driver.OracleDriver";
+    private final String url="jdbc:oracle:thin:@localhost:1521:XE";
+    private final String usuario="ADMIN";
+    private final String clave="pelife18";
 
     private Connection con=null;
     private PreparedStatement pr=null;
     private Statement consulta = null;
     private ResultSet rs=null;
     
+    static public boolean IsValidNumber(String check)
+    {
+        if(check.equals(""))
+            return false;
+        try
+        {
+            Integer.parseInt(check);
+            return true;
+        }
+        catch(NumberFormatException e)
+        {
+            return false;
+        }
+    }
     static public boolean IsLoggedIn(HttpSession session)
     {
-        String logged_in = null;
+        String logged_in;
         try
         {
             logged_in = (String)session.getAttribute("LoggedIn");
+            if(logged_in == null)
+            {
+                return false;
+            }
+            else if(logged_in.equals("no"))
+            {
+                return false;
+            }
+            return true;
         }
         catch(Exception e)
         {
             return false;
         }
-        if(logged_in == null)
-        {
-            return false;
-        }
-        else if(logged_in.equals("no"))
-        {
-            return false;
-        }
-        return true;
     }
     
     static public String GetUserLevel(HttpSession session)
@@ -169,7 +185,7 @@ public class registro{
 
     } //fin de SearchProduct
 
-    public ArrayList<String> Login(String rut,String contrasenna){
+    public ArrayList<String> Login(String rut, String contrasenna){
     try{
         Class.forName(classfor);
 
@@ -196,6 +212,7 @@ public class registro{
             }
             else
             {
+                str.add(rs.getString(1)+"=="+contrasenna);
                 str.add("2"); //contrasenna incorrecta
                 str.add("incorrecto");
                 str.add("incorrecto");
@@ -397,7 +414,28 @@ public class registro{
 
     } // fin de AgregarCompra
 
-    public void IngresarVenta(String cliente,String producto,int cantidad){
+    public int IngresarCompra(int monto_total, String fecha, String hora)
+    {
+        try
+        {
+            Class.forName(classfor);
+            con = DriverManager.getConnection(url, usuario, clave);
+            String query = "INSERT INTO COMPRA (MONTO_TOTAL, FECHA, HORA) VALUES (?, ?, ?) returning id_compra into ?";
+            CallableStatement cs = con.prepareCall(query);
+            cs.setInt(1, monto_total);
+            cs.setString(2, fecha);
+            cs.setString(3, hora);
+            cs.registerOutParameter(4, java.sql.Types.NUMERIC);
+            cs.executeQuery();
+            return cs.getInt(4);
+        }
+        catch(Exception e)
+        {
+            return -2;
+        }
+        return -1;
+    }
+    public void IngresarVenta(String cliente, String id, int cantidad, int precio){
  //   String sql = "Insert into usuario values(?,?,?,?,?)";
     //String tipo = "VENDEDOR";
     try{

@@ -41,11 +41,11 @@ public class login extends HttpServlet {
         {
           registro mlogin=new registro();
           String rut =request.getParameter("rut").toUpperCase();
-          String contrasenna = request.getParameter("contrasenna").toUpperCase();
+          String contrasenna = request.getParameter("contrasenna");
           ArrayList<String> result;
-          result = mlogin.Login(rut,contrasenna);
+          result = mlogin.Login(rut, contrasenna);
           if (!result.get(0).equals("0"))
-              out.write("ERROR");
+              out.write("ERROR ("+result.get(0)+")");
           else
           {
                 HttpSession session = request.getSession();
@@ -55,6 +55,7 @@ public class login extends HttpServlet {
                 else if(result.get(1).equals("VENDEDOR"))
                     session.setAttribute("UserLevel", "Vendedor");
                 session.setAttribute("UserName", result.get(2));
+                session.setAttribute("RUT",rut);
                 out.write("SUCCESS");
           }
         }

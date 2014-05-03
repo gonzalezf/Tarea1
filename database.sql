@@ -50,6 +50,15 @@ CREATE TABLE  "PRODUCTO"
    )
 /
 
+CREATE OR REPLACE TRIGGER  "BI_PRODUCTO" 
+  before insert on "PRODUCTO"               
+  for each row  
+begin   
+    select "PRODUCTO_SEQ1".nextval into :NEW.ID_PRODUCTO from dual; 
+end; 
+
+/
+
 CREATE TABLE  "DETALLE_VENTA" 
    (	"ID_DETALLE_VENTA" NUMBER, 
 	"ID_VENTA" NUMBER, 

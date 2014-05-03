@@ -29,14 +29,42 @@ public class ingresarventa extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("text/plain");  
+        response.setCharacterEncoding("UTF-8"); 
         PrintWriter out = response.getWriter();
-        try {
-          registro regis= new registro();
-          String cliente =request.getParameter("cliente").toUpperCase();
-
-          String producto =request.getParameter("producto").toUpperCase();
-          int cantidad = Integer.parseInt(request.getParameter("cantidad").toUpperCase());
+        try
+        {
+            String total_s = request.getParameter("total");
+            int total;
+            try
+            {
+                total = Integer.parseInt(total_s);
+            }
+            catch(NumberFormatException e)
+            {
+                out.write("ERROR:Ocurrio un error con los datos:#none");
+                return;
+            }
+            //Primero verificamos que el stock este completo...
+            for(int i = 1; i <= total; i++)
+            {
+                String producto = request.getParameter("id_producto_"+i);
+                String cantidad = request.getParameter("cantidad_"+i);
+                String precio = request.getParameter("precio_"+i);
+                if(!registro.IsValidNumber(producto))
+                {
+                    out.write("ERROR:Debe seleccionar un producto:#form_"+i*1);
+                    return;
+                }
+                else if(!registro.IsValidNumber(cantidad))
+                {
+                    out.write("ERROR:Debe ingresar una cantidad:#form_"+i*2);
+                }
+                else if(!registro.IsValidNumber(precio))
+                {
+                    out.write("ERROR:Debe ingresar un precio:#form_"+i*3);
+                }
+            }
 
           regis.IngresarVenta(cliente,producto,cantidad);
           response.sendRedirect("ventaexitosa.jsp");
