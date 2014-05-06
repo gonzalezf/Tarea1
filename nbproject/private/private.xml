@@ -9,8 +9,13 @@
             <file>file:/home/felipe/bdrepo/Tarea1/web/ingresarvendedor.jsp</file>
             <file>file:/home/felipe/bdrepo/Tarea1/web/sidebar.jsp</file>
             <file>file:/home/felipe/bdrepo/Tarea1/src/java/modelo/registro.java</file>
+            <file>file:/home/felipe/bdrepo/Tarea1/src/java/controlador/ingresarventa.java</file>
+            <file>file:/home/felipe/bdrepo/Tarea1/web/ingresarcompra.jsp</file>
+            <file>file:/home/felipe/bdrepo/Tarea1/web/misventas.jsp</file>
             <file>file:/home/felipe/bdrepo/Tarea1/web/administrarproductos.jsp</file>
             <file>file:/home/felipe/bdrepo/Tarea1/web/agregarproducto.jsp</file>
+            <file>file:/home/felipe/bdrepo/Tarea1/web/ingresarventa.jsp</file>
+            <file>file:/home/felipe/bdrepo/Tarea1/src/java/controlador/ingresarvendedor.java</file>
         </group>
     </open-files>
 </project-private>

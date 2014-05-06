@@ -66,7 +66,7 @@ public class ingresarventa extends HttpServlet {
                 }
             }
 
-          regis.IngresarVenta(cliente,producto,cantidad);
+          //regis.IngresarVenta(cliente,producto,cantidad);
           response.sendRedirect("ventaexitosa.jsp");
 
 

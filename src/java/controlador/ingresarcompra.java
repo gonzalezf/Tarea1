@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 /**
  *
@@ -126,15 +125,16 @@ public class ingresarcompra extends HttpServlet {
                 out.write("ERROR:No se pudo ingresar la compra ("+id_compra+"):#none");
                 return;
             }
-            out.write("ERROR:idcompra="+id_compra+":#noform");
             //No hay mas errores, se supone.
-            /*
             for(int[] array: queryList)
             {
-                regis.IngresarCompraDetalle(array[0], array[2], array[1]);
+                regis.IngresarCompraDetalle(id_compra, array[0], array[1], array[2]);
             }
             out.write("SUCCESS:Compra ingresada satisfactoriamente");
-            */
+        }
+        catch(NullPointerException e)
+        {
+            out.write("ERROR:No existe productos o no se seleccionó uno en todos los campos:#form__000");
         }
         finally
         {

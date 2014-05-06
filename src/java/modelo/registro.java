@@ -190,7 +190,7 @@ public class registro{
         Class.forName(classfor);
 
         con=DriverManager.getConnection(url, usuario, clave);
-        String sql = "select contrasenna, tipo, nombre from usuario where rut = ?";
+        String sql = "SELECT CONTRASENNA, TIPO, NOMBRE FROM USUARIO WHERE RUT = ?";
 
         pr = con.prepareStatement(sql);
         pr.setString(1, rut);
@@ -208,7 +208,7 @@ public class registro{
 
                 str.add(rs.getString(2)); //tipo
                 str.add(rs.getString(3)); //nombre
-                 return str;
+                return str;
             }
             else
             {
@@ -420,7 +420,7 @@ public class registro{
         {
             Class.forName(classfor);
             con = DriverManager.getConnection(url, usuario, clave);
-            String query = "INSERT INTO COMPRA (MONTO_TOTAL, FECHA, HORA) VALUES (?, ?, ?) returning id_compra into ?";
+            String query = "BEGIN INSERT INTO COMPRA (MONTO_TOTAL, FECHA, HORA) VALUES (?, ?, ?) returning ID_COMPRA into ?; END;";
             CallableStatement cs = con.prepareCall(query);
             cs.setInt(1, monto_total);
             cs.setString(2, fecha);
@@ -429,12 +429,42 @@ public class registro{
             cs.executeQuery();
             return cs.getInt(4);
         }
-        catch(Exception e)
+        catch (ClassNotFoundException e)
+        {
+            return -1;
+        }
+        catch(SQLException e)
         {
             return -2;
         }
-        return -1;
     }
+    
+    public String IngresarCompraDetalle(int id_compra, int id_producto, int total, int precio)
+    {
+        try
+        {
+            Class.forName(classfor);
+            con = DriverManager.getConnection(url, usuario, clave);
+            String query = "INSERT INTO DETALLE_COMPRA (ID_COMPRA, ID_PRODUCTO, CANTIDAD, PRECIO) VALUES(?, ?, ?, ?)";
+            CallableStatement cs = con.prepareCall(query);
+            cs.setInt(1, id_compra);
+            cs.setInt(2, id_producto);
+            cs.setInt(3, total);
+            cs.setInt(4, precio);
+            cs.executeQuery();
+            return "";
+        }
+        catch (ClassNotFoundException e)
+        {
+            return e.toString();
+        }
+        catch(SQLException e)
+        {
+            return e.toString();
+        }
+    }
+    
+    
     public void IngresarVenta(String cliente, String id, int cantidad, int precio){
  //   String sql = "Insert into usuario values(?,?,?,?,?)";
     //String tipo = "VENDEDOR";
