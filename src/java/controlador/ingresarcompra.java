@@ -130,7 +130,7 @@ public class ingresarcompra extends HttpServlet {
             {
                 regis.IngresarCompraDetalle(id_compra, array[0], array[1], array[2]);
             }
-            out.write("SUCCESS:Compra ingresada satisfactoriamente");
+            out.write("SUCCESS:Compra ingresada satisfactoriamente:"+id_compra);
         }
         catch(NullPointerException e)
         {

@@ -70,6 +70,7 @@ $(document).ready(function()
                     setTimeout(function(){
                         $("#form_reply_message").fadeOut(5000);
                     }, 3000);
+                    window.location.replace("ingresarcompradone.jsp?compra="+arr[2]);
                 }
                 else if(arr[0].toString() === "ERROR")
                 {

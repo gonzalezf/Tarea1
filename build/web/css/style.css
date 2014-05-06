@@ -218,15 +218,18 @@ body
 }
 
 .pagecontent .tablewrapper{
-    margin-left:230px;
+    margin-left:150px;
     margin-top:20px;
 }
-.pagecontent th{
+.pagecontent th, td{
     border: 1px solid black;
     width: 100px;
     height:35px;
     text-align:center;
     background-color: #ffffff;
+}
+
+.pagecontent th{
     font-weight: bold;
 }
 
@@ -234,7 +237,7 @@ body
     width:350px;
 }
 .pagecontent .table_total{
-    margin-left: 351px;
+    margin-left: 452px;
 }
 .pagecontent .table_total th{
     width:100px;
