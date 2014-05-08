@@ -81,7 +81,7 @@
     <%@include file="sidebar.jsp" %>
     <div class="pagecontent">
         <form id = "submit_form_compra" action="ingresarcompra" method="post" >
-            <h1>Ingresar Compra a la base de Datos</h1>
+            <h1>Ingrese datos de la compra:</h1>
             <div id="InputAddStart">
             <div id="left">
              <p style="text-align:center;">Producto</p>
@@ -111,6 +111,7 @@
             <div id="form_reply_message"></div>
         </form>
     </div>
+    <div class = "clearfix"></div>
     </body>
     <script src="js/script.js"> </script>
 </html>

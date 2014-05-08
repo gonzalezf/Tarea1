@@ -27,7 +27,7 @@
         return;
     }
     session.invalidate();
-    response.setHeader("Refresh", "3; login.jsp");
+    response.setHeader("Refresh", "4; index.jsp");
 %>
 <html>
     <head>
@@ -39,9 +39,11 @@
     </head>
     <body id="body_fade">
     <div class="pagecontent">
+        <div id="logout_wrapper">
         <h1> Sesión Cerrada </h1>
         <h2> ¡Te esperamos con ansias! </h1>
         <img id="fademeslowly" style="border:5px solid black;margin-top:30px;border-radius:300px"src="img/logout.jpg">
+        </div>
     </div>
     </body>
 </html>

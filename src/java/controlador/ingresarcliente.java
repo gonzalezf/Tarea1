@@ -11,7 +11,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import modelo.registro;
 /**
@@ -49,7 +48,7 @@ public class ingresarcliente extends HttpServlet {
                 }
                 else
                 {
-                    out.write("ERROR:Ya existe un cliente con aquel RUT:#form_3");
+                    out.write("ERROR:Ya existe un cliente con aquel RUT"+error+":#form_3");
                 }
             }
         }

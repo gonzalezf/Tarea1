@@ -28,31 +28,47 @@ public class editarproducto extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("text/plain");  
+        response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
 
-            try {
-        /*    String id_producto2=request.getParameter("id_producto");
-                    out.println(id_producto2);
-                    out.println("holaaa!");*/
-          registro regis=new registro();
-          int id_producto = Integer.parseInt(request.getParameter("id_producto"));
-          String nombre =request.getParameter("nombre").toUpperCase();
-          String descripcion =request.getParameter("descripcion").toUpperCase();
-          String categoria =request.getParameter("categoria").toUpperCase();
-          int precio = Integer.parseInt(request.getParameter("precio"));
-          int stock = Integer.parseInt(request.getParameter("stock"));
-
-          regis.EditarProducto(id_producto,nombre,descripcion,categoria,stock,precio);
-         // out.println(nombre+descripcion+categoria);
-          response.sendRedirect("administrarproductos.jsp");
-
-
-
-
-
-
-        } finally {
+        try
+        {
+            registro regis=new registro();
+            int id_producto = Integer.parseInt(request.getParameter("id_producto"));
+            String descripcion =request.getParameter("descripcion");
+            String categoria =request.getParameter("categoria").toUpperCase();
+            int precio;
+            try
+            {
+                precio = Integer.parseInt(request.getParameter("precio"));
+            }
+            catch(NumberFormatException e)
+            {
+                out.write("ERROR:El precio debe ser un número positivo:#form_6");
+                return;
+            }
+            if(precio < 0)
+            {
+                out.write("ERROR:El precio debe ser un número positivo:#form_6");
+                return;
+            }
+            String error = regis.EditarProducto(id_producto, descripcion, categoria, precio);
+            if(error.equals(""))
+            {
+                out.write("SUCCESS:Producto editado exitosamente");
+            }
+            else
+            {
+                out.write("ERROR:"+error+":#nodiv");
+            }
+        } 
+        catch(Exception e)
+        {
+            out.write("ERROR:"+e.toString()+":zomg");
+        }
+        finally
+        {
             out.close();
         }
     } 

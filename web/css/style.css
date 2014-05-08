@@ -87,6 +87,7 @@ body
     font-family: 'Noto Sans', sans-serif;
     color: #000000;
     background-color: #e7e0e0;
+    min-width: 1250px;
 }
 
 .wrapper{
@@ -215,10 +216,17 @@ body
     float:right;
     width:1008px;
     margin-right: 25px;
+    resize: none;
+    position: static;
 }
 
 .pagecontent .tablewrapper{
     margin-left:150px;
+    margin-top:20px;
+}
+
+.pagecontent .tablewrapper_adminprod{
+    margin-left:330px;
     margin-top:20px;
 }
 .pagecontent th, td{

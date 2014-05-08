@@ -39,7 +39,7 @@ public class misventas extends HttpServlet {
           registro regis=new registro();
 
           String rut =request.getParameter("rut").toUpperCase();
-          String contrasenna =request.getParameter("contrasenna").toUpperCase();
+          String contrasenna =request.getParameter("contrasenna");
 
 
          int comprobacion = regis.MisVentasLogin(rut, contrasenna); //ojo aqui , revisar! porque puse 1? .-.

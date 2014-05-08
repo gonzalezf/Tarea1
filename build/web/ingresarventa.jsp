@@ -24,22 +24,8 @@
         <%@include file="sidebar.jsp" %>
         <div class="pagecontent">
         <h1>Ingresar Venta</h1>
-        
-  
-
-<!--
-                    <h2>Ingresar Venta a la base de Datos</h2>
-                    <p>Escoja cliente:</p>
-                    <p><input type="text" value="Ingrese Cliente" name="cliente"></p>
-                    <p>Ingrese Producto</p>
-                    <p><input type="text" value="" name="producto"></p>
-                    <p>Ingrese Cantidad</p>
-                    <p><input type="text" value="" name="cantidad"></p>
-                    <p> <input type="submit" value="Finalizar" name="ingresarventa"></p>
-                </form>
-    -->
-     <form action="ingresarventa" method="post" >
-            <% 
+        <form id="submit_form" action="ingresarventa" method="post" >
+        <% 
         
             String classfor="oracle.jdbc.driver.OracleDriver";
             String url="jdbc:oracle:thin:@localhost:1521:XE";
@@ -51,21 +37,25 @@
             Statement consulta = null;
             ResultSet rs=null;
 
-            try{
-            Class.forName(classfor);
+            try
+            {
+                Class.forName(classfor);
 
-            con=DriverManager.getConnection(url, usuario, clave);
+                con=DriverManager.getConnection(url, usuario, clave);
 
-            } catch (ClassNotFoundException e) {
-                 System.out.println(e.toString());
-              }
-             try{
-            String sql= "select nombre from cliente";
-            pr = con.prepareStatement(sql);
+            }
+            catch (ClassNotFoundException e)
+            {
+                System.out.println(e.toString());
+            }
+            try
+            {
+                String sql= "SELECT NOMBRE FROM CLIENTE";
+                pr = con.prepareStatement(sql);
 
 
-            rs = pr.executeQuery();
-            //aqui debe ir el if!
+                rs = pr.executeQuery();
+                //aqui debe ir el if!
        
 
            out.println("<select name='escogercliente'>");

@@ -109,7 +109,7 @@
     </head>
     <body>
     <%@include file="sidebar.jsp" %>
-    <div class="pagecontent">
+    <div id="body_fade" class="pagecontent">
         <h1>Compra Ingresada con exito</h1>
         <h2>Detalles de la compra:</h2>
         <br>
@@ -140,5 +140,5 @@
     </div>         
     </div>
     </body>
-    <script src="js/script.js"> </script>
+    <script type="text/javascript" src="js/script.js"></script>
 </html>

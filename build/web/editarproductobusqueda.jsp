@@ -8,9 +8,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Administrar Productos</title>
+        <link rel="stylesheet" href="css/style.css" type="text/css">
     </head>
     <body>
+    <%@include file="sidebar.jsp" %>
+    <div class="pagecontent">
         <h1>Editar Producto</h1>
                 <form action="editarproducto" method="post" >
 
@@ -90,6 +93,6 @@
 
                 </form>
 
-
+    </div>
     </body>
 </html>

@@ -38,32 +38,48 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Ingresar Vendedor</title>
+        <title>Agregar producto</title>
         <link rel="stylesheet" href="css/style.css" type="text/css">
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
     </head>
     <body>
         <%@include file="sidebar.jsp" %>
-
-        <form action="agregarproducto" method="post" >
-            <h2> Agregar Producto a la Base de Datos</h2>
-            <p>Codigo de producto:</p>
-            <p><input type="text" value="" name="id_producto"></p>
+        <div class="pagecontent">
+        <h1>Agregar Producto</h1>
+        <form id="submit_form" action="agregarproducto" method="post" >
+            <div id="left">
             <p>Ingrese Nombre</p>
-            <p><input type="text" value="" name="nombre"></p>
+            <input class=input type="text" value="" name="nombre">
+            </div>
+            
+            <div id="right">
             <p>Ingrese Descripción:</p>
-            <p><input type="text" value="" name="descripcion"></p>
+            <input class="input" type="text" value="" name="descripcion">
+            </div>
+            <div class="clearfix"></div>
+            
+            <div id ="left">
             <p>Ingrese Categoría</p>
-            <p><input type="text" value="" name="categoria"></p>
+            <input class="input" type="text" value="" name="categoria">
+            </div>
+            
+            <div id="right">
             <p>Ingrese Stock</p>
-            <p><input type="text" value="" name="stock"></p>
+            <input class="input" type="text" value="" name="stock">
+            </div>
+            
+            <div class="clearfix"></div>
+            <div id="left">
             <p>Ingrese Precio</p>
-            <p><input type="text" value="" name="precio"></p>
-
-            <p> <input type="submit" value="Finalizar" name="agregarproducto"></p>
+            <input class="input" type="text" value="" name="precio">
+            </div>
+            
+            <div class="clearfix"></div>
+            
+            <input class="submit" type="submit" value="Finalizar" name="agregarproducto">
 
 
         </form>
-        
+        </div>
     </body>
 </html>

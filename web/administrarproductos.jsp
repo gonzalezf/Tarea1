@@ -42,24 +42,19 @@
     <%@include file="sidebar.jsp" %>
     <div class="pagecontent">
         <h1>Administrar Productos</h1>
-
-        <a href="agregarproducto.jsp">Agregar Producto</a>
-
-        <table>
-
-            <form action="editarproductobusqueda" method="post" >
-             <h2>Busqueda: </h2>
-             <p><input type='text' value='Ingrese nombre producto' name='clavebusqueda'></p>
-            
-            <p> <input type="submit" value="OK" name="editarproductobusqueda"></p>
-
-            
+            <form id="search_form" action="" method="post" >
+             <h2>Buscar: </h2>
+             <input placeholder="Ingrese nombre producto" type='text' value='' name='search'>
+             <input id="search_button" type="submit" value="OK" name="">
             </form>
-
+        <br>
+        <a href="agregarproducto.jsp">Agregar Producto</a>
+            <div class="tablewrapper_adminprod">
+            <table>
             <tr>
-                <td>ID PRODUCTO</td>
-                <td>NOMBRE </td>
-                <td>STOCK</td>
+                <th>Id Producto</th>
+                <th>Nombre </th>
+                <th>Stock</th>
             </tr>
 
       <%
@@ -83,41 +78,57 @@
             {
                 System.out.println(e.toString());
             }
+            
+            String search_name = null;
             try
-            {  
-                //Agregar name
-                String sql= "SELECT ID_PRODUCTO, STOCK FROM PRODUCTO WHERE ROWNUM > 0 AND ROWNUM <= 10";
-                pr = con.prepareStatement(sql);
-
-
-                rs = pr.executeQuery();
+            {
+                search_name = request.getParameter("search");
+            }
+            catch(Exception e)
+            {
+                search_name = null;
+            }
+            try
+            { 
+                String sql;
+                CallableStatement cs;
+                if(search_name != null)
+                {
+                    sql= "SELECT ID_PRODUCTO, NOMBRE, STOCK FROM PRODUCTO WHERE NOMBRE LIKE ?";
+                    cs = con.prepareCall(sql);
+                    cs.setString(1, search_name);
+                }
+                else
+                {
+                    sql= "SELECT ID_PRODUCTO, NOMBRE, STOCK FROM PRODUCTO";
+                    cs = con.prepareCall(sql);
+                }
+                
+                rs = cs.executeQuery();
                 //aqui debe ir el if!
-                out.print("<BR>LE WOW1<BR>");
                 while(rs.next())
                 {
-                    out.print("<BR>LE WOW<BR>");
                     out.println("<TR>");
-                    out.println("<TD>"+rs.getString(0)+"</TD>");
                     out.println("<TD>"+rs.getString(1)+"</TD>");
+                    out.println("<TD>"+rs.getString(2)+"</TD>");
+                    out.println("<TD>"+rs.getString(3)+"</TD>");
 
-                    out.print("<TD><a href='editarproducto.jsp?id_producto="+rs.getString(0)+"'> Editar Producto </a></TD>");
+                    out.print("<TD><a href='editarproducto.jsp?id_producto="+rs.getString(1)+"'> Editar</a></TD>");
                     out.println("</TR>");
                 }
                 rs.close();
-                pr.close();
+                cs.close();
                 con.close();
             } //fin del try
             catch (SQLException e)
             {
-                out.print("<BR>LE ERROR<BR>");
+                out.print(e.toString());
             }
             %>
 
         </table>
-
-        <!-- Diseñar vista -->
-
-
+        </div>
     </div>
     </body>
+    <script type="text/javascript" src="js/script.js"></script>
 </html>

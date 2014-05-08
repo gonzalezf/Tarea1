@@ -37,6 +37,7 @@
     </head>
     <body>
         <%@include file="sidebar.jsp" %>
+        <div class="pagecontent">
               <h2>Selecione Cliente</h2>
                 <form action="verventas" method="post" >
                   <%
@@ -59,7 +60,7 @@
                  System.out.println(e.toString());
               }
              try{
-            String sql= "select nombre from cliente";
+            String sql= "select nombe from cliente";
             pr = con.prepareStatement(sql);
 
 
@@ -93,6 +94,6 @@
 
 
 
-
+        </div>
     </body>
 </html>

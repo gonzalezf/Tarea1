@@ -8,7 +8,10 @@ var dynamic_input_count = 1;
 $(document).ready(function() 
 {
     //Fade en cuanto carga la pagina, usado por el logo de la vaca
-    $("#fademeslowly").fadeOut(3000);
+    $("#fademeslowly").fadeOut(4000);
+    $("#logout_wrapper").animate({
+        'margin-left': "-=250px"
+    }, 800);
     
     //Esconder el loginbox y el error
     $("div.loginbox").hide();
@@ -43,7 +46,10 @@ $(document).ready(function()
         {
             for(var i = 1; i <= $(".input").length; i++)
             {
-                $("#form_"+i.toString()).css('background-color', '#ffffff');
+                if(!$("#form_"+i.toString()).is(":disabled"))
+                {
+                    $("#form_"+i.toString()).css('background-color', '#ffffff');
+                }
             }
         };
         var resetAllFormElementsValue = function()
@@ -55,8 +61,7 @@ $(document).ready(function()
         };
         var checkResponse = function(response)
         {
-            var result = response.toString();  
-            alert(result);
+            var result = response.toString();
             if(result.indexOf(':') !== -1)
             {
                 var arr = result.split(':', 3);
@@ -90,7 +95,7 @@ $(document).ready(function()
             }
                 
         };
-        $("#submit_button").prop('disabled', true);
+        $("#submit_button_compra").prop('disabled', true);
         $("#form_reply_message").hide();
         var frm = "total="+dynamic_input_count+"&"+$('#submit_form_compra').serialize();
         $.ajax
@@ -111,7 +116,7 @@ $(document).ready(function()
             },
             complete: function()
             {
-               $("#submit_button").prop('disabled', false);
+               $("#submit_button_compra").prop('disabled', false);
            }
         });
         e.preventDefault();
@@ -123,7 +128,10 @@ $(document).ready(function()
         {
             for(var i = 1; i <= $(".input").length; i++)
             {
-                $("#form_"+i.toString()).css('background-color', '#ffffff');
+                if(!$("#form_"+i.toString()).is(":disabled"))
+                {
+                    $("#form_"+i.toString()).css('background-color', '#ffffff');
+                }
             }
         };
         var resetAllFormElementsValue = function()
@@ -194,6 +202,90 @@ $(document).ready(function()
         });
         e.preventDefault();
     });
+    $("#edit_volver").click(function(e){
+        window.location.replace("administrarproductos.jsp");
+        e.preventDefault();
+    });
+    $("#submit_button_edit").click(function(e)
+    {
+        var resetAllFormElements = function()
+        {
+            for(var i = 1; i <= $(".input").length; i++)
+            {
+                if(!$("#form_"+i.toString()).is(":disabled"))
+                {
+                    $("#form_"+i.toString()).css('background-color', '#ffffff');
+                }
+            }
+        };
+        var resetAllFormElementsValue = function()
+        {
+            for(var i = 1; i <= $(".input").length; i++)
+            {
+                $("#form_"+i.toString()).val('');
+            }
+        };
+        var checkResponse = function(response)
+        {
+            var result = response.toString();  
+            if(result.indexOf(':') !== -1)
+            {
+                var arr = result.split(':', 3);
+                if(arr[0].toString() === "SUCCESS")
+                {
+                    resetAllFormElements();
+                    $("#form_reply_message").css('color', 'green');
+                    $("#form_reply_message").html(arr[1]);
+                    $("#form_reply_message").hide().fadeIn(500);
+                    setTimeout(function(){
+                        $("#form_reply_message").fadeOut(5000);
+                    }, 3000);
+                }
+                else if(arr[0].toString() === "ERROR")
+                {
+                    resetAllFormElements();
+                    $("#form_reply_message").css('color', 'red');
+                    $("#form_reply_message").html(arr[1]);
+                    $("#form_reply_message").hide().fadeIn(500);
+                    $(arr[2].toString()).css('background-color', 'rgba(255, 13, 0, 0.4)');
+                }
+            }
+            else
+            {
+                resetAllFormElements();
+                $("#form_reply_message").css('color', 'red');
+                $("#form_reply_message").html("Ocurrió un error cŕitico en el servidor");
+                $("#form_reply_message").hide().fadeIn(500);
+            }
+                
+        };
+        $("#submit_button_edit").prop('disabled', true);
+        $("#form_reply_message").hide();
+        var frm = "id_producto="+$("#form_1").val()+"&"+$('#submit_form').serialize();
+        $.ajax
+        ({
+            url: $("#submit_button_edit").attr("name"),
+            type: "post",
+            data: frm,
+            success: function(response)
+            {
+                checkResponse(response);
+            },
+            error: function ()
+            {
+               resetAllFormElements();
+                $("#form_reply_message").css('color', 'red');
+                $("#form_reply_message").html("Ocurrió un error cŕitico en el servidor");
+                $("#form_reply_message").hide().fadeIn(500);
+            },
+            complete: function()
+            {
+               $("#submit_button_edit").prop('disabled', false);
+           }
+        });
+        e.preventDefault();
+    });
+    
     $("#login_button").click(function(e)
     {
         var onCriticalError = function(response)
@@ -238,6 +330,14 @@ $(document).ready(function()
            }
         });
         event.preventDefault();
+    });
+    
+    $("#search_button").click(function(e)
+    {
+        var frm = $('#search_form').serialize();
+        alert(frm);
+        window.location.replace("administrarproductos.jsp?"+frm);
+        e.preventDefault();
     });
 });
 

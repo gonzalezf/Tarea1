@@ -325,9 +325,12 @@ public class registro{
 
             con=DriverManager.getConnection(url, usuario, clave);
             consulta = con.createStatement();
-            int r = consulta.executeUpdate("INSERT INTO cliente (rut, nombre) VALUES ('"+rut+"','"+nombre+"')");
-
-            System.out.println(r);
+            String query = "INSERT INTO CLIENTE (RUT, NOMBE) VALUES (?, ?)";
+            CallableStatement cs = con.prepareCall(query);
+            cs.setString(1, rut);
+            cs.setString(2, nombre);
+            cs.executeQuery();
+            return "";
         }
         catch(ClassNotFoundException e)
         {
@@ -335,18 +338,8 @@ public class registro{
         }
         catch(SQLException ex)
         {
-            String error = " ";
-            for (Throwable e : ex)
-            {
-                if (e instanceof SQLException)
-                {
-                    e.printStackTrace(System.err);
-                    error = error + " " + e.getMessage();
-                }
-            }
-            return error;
+            return ex.toString();
         }
-        return "";
     } // fin de IngresarCliente
 
     public void AgregarProducto(int id_producto,String nombre,String descripcion,String categoria,int stock,int precio){
@@ -372,25 +365,32 @@ public class registro{
     } // fin de AgregarProducto
 
 
-   public void EditarProducto(int id_producto,String nombre,String descripcion,String categoria,int stock,int precio){
+   public String EditarProducto(int id_producto, String descripcion,String categoria, int precio){
 
 
-    try{
+    try
+    {
         Class.forName(classfor);
-
         con=DriverManager.getConnection(url, usuario, clave);
-        consulta = con.createStatement();
-        int r = consulta.executeUpdate("UPDATE producto SET descripcion = '"+descripcion+"',categoria ='"+categoria+"',precio ='"+precio+"' WHERE id_producto ="+id_producto+"");
-
-        System.out.println(r);
+        String query = "UPDATE PRODUCTO SET DESCRIPCION = ?, CATEGORIA = ?, PRECIO = ? WHERE ID_PRODUCTO = ?";
+        CallableStatement cs = con.prepareCall(query);
+        cs.setString(1, descripcion);
+        cs.setString(2, categoria);
+        cs.setInt(3, precio);
+        cs.setInt(4, id_producto);
+        cs.executeQuery();
+        return "";
     }
 
-    catch(Exception e)
+    catch(SQLException e)
     {
-
-
-      System.out.println(e.getMessage());
+        return "Error("+e.toString()+")";
     } //fin de catch
+    catch(ClassNotFoundException e)
+    {
+        return "Error("+e.toString()+")";
+                
+    }
 
     } // fin de EditarProducto
 

@@ -32,7 +32,6 @@ public class editarproductobusqueda extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
           registro regis=new registro();
- 
           String clavebusqueda =request.getParameter("clavebusqueda").toUpperCase();
 
  

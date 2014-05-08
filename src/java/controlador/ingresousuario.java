@@ -15,8 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import modelo.registro;
 
-
-
 /**
  *
  * @author Felipe Gonzalez
