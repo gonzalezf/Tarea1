@@ -31,7 +31,7 @@ public class ingresarvendedor extends HttpServlet {
             String rut = request.getParameter("rut").toUpperCase();
             String contrasenna = request.getParameter("contrasenna");
             String nombre = request.getParameter("nombre").toUpperCase();
-            String repetircontrasenna = request.getParameter("repetircontrasenna"));
+            String repetircontrasenna = request.getParameter("repetircontrasenna");
             if(!regis.validRut(rut))
               out.write("ERROR:El RUT no es válido:#form_1");
             else if(nombre.equals(""))
