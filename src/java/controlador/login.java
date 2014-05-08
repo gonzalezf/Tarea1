@@ -55,7 +55,7 @@ public class login extends HttpServlet {
                 else if(result.get(1).equals("VENDEDOR"))
                     session.setAttribute("UserLevel", "Vendedor");
                 session.setAttribute("UserName", result.get(2));
-                session.setAttribute("RUT",rut);
+                session.setAttribute("UserRUT",rut);
                 out.write("SUCCESS");
           }
         }

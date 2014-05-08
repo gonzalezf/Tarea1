@@ -37,6 +37,61 @@ public class registro{
     private Statement consulta = null;
     private ResultSet rs=null;
     
+    public boolean HasEnoughStock(int id_producto, int cant)
+    {
+        try
+        {
+            Class.forName(classfor);
+            con = DriverManager.getConnection(url, usuario, clave);
+            String query = "SELECT STOCK FROM PRODUCTO WHERE ID_PRODUCTO = ?";
+            CallableStatement cs = con.prepareCall(query);
+            cs.setInt(1, id_producto);
+            rs = cs.executeQuery();
+            if(rs.next())
+            {
+                if(cant <= rs.getInt(1))
+                    return true;
+            }
+            
+            return false;
+        }
+        catch(ClassNotFoundException e)
+        {
+            return false;
+        }
+        catch(SQLException e)
+        {
+            return false;
+        }
+    }
+    
+    public int GetProductPrice(int id_producto)
+    {
+        try
+        {
+            Class.forName(classfor);
+            con = DriverManager.getConnection(url, usuario, clave);
+            String query = "SELECT PRECIO FROM PRODUCTO WHERE ID_PRODUCTO = ?";
+            CallableStatement cs = con.prepareCall(query);
+            cs.setInt(1, id_producto);
+            rs = cs.executeQuery();
+            if(rs.next())
+            {
+                return rs.getInt(1);
+            }
+            
+            return 0;
+        }
+        catch(ClassNotFoundException e)
+        {
+            return 0;
+        }
+        catch(SQLException e)
+        {
+            return 0;
+        }
+    }
+    
     static public boolean IsValidNumber(String check)
     {
         if(check.equals(""))
@@ -281,19 +336,24 @@ public class registro{
         this.tipo = tipo;
     }
 
-    public String IngresarVendedor(String rut, String contrasenna, String nombre, int comision)
+    public String IngresarVendedor(String rut, String contrasenna, String nombre)
     {
  //   String sql = "Insert into usuario values(?,?,?,?,?)";
-        String tipo = "VENDEDOR";
+        String tipo_vend = "VENDEDOR";
         try
         {
             Class.forName(classfor);
 
             con=DriverManager.getConnection(url, usuario, clave);
             consulta = con.createStatement();
-            int r = consulta.executeUpdate("INSERT INTO usuario (rut, contrasenna,nombre,tipo,comision) VALUES ('"+rut+"','"+contrasenna+"','"+nombre+"','"+tipo+"',"+comision+")");
-
-            System.out.print(r);
+            String query = "INSERT INTO USUARIO (RUT, CONTRASENNA, NOMBRE, TIPO) VALUES (?, ?, ?, ?)";
+            CallableStatement cs = con.prepareCall(query);
+            cs.setString(1, rut);
+            cs.setString(2, contrasenna);
+            cs.setString(3, nombre);
+            cs.setString(4, tipo_vend);
+            cs.executeQuery();
+            return "";
         }
         catch(ClassNotFoundException e)
         {
@@ -301,18 +361,8 @@ public class registro{
         }
         catch(SQLException ex)
         {
-            String error = " ";
-            for (Throwable e : ex)
-            {
-                if (e instanceof SQLException)
-                {
-                    e.printStackTrace(System.err);
-                    error = error + " " + e.getMessage();
-                }
-            }
-            return error;
+            return ex.toString();
         }
-        return "";
     } // fin de IngresarVendedor
 
 
@@ -463,32 +513,58 @@ public class registro{
             return e.toString();
         }
     }
+   
     
-    
-    public void IngresarVenta(String cliente, String id, int cantidad, int precio){
- //   String sql = "Insert into usuario values(?,?,?,?,?)";
-    //String tipo = "VENDEDOR";
-    try{
-        Class.forName(classfor);
-
-        con=DriverManager.getConnection(url, usuario, clave);
-
-
-
-        consulta = con.createStatement();
-      //  int r = consulta.executeUpdate("INSERT INTO usuario (rut, contrasenna,nombre,tipo,comision) VALUES ('"+rut+"','"+contrasenna+"','"+nombre+"','"+tipo+"',"+comision+")");
-        int r = consulta.executeUpdate("INSERT INTO venta (id_venta,id_cliente,id_usuario,monto_total,fecha,horan) VALUES ('"+rut+"','"+contrasenna+"','"+nombre+"','"+tipo+"',"+comision+")");
-
-        System.out.println(r);
-    }
-
-    catch(Exception e)
+    public int IngresarVenta(String cliente, String rut, int monto_total, String fecha, String hora)
     {
-
-
-      System.out.println(e.getMessage());
-    } //fin de catch
-    } // fin de IngresarVendedor
+        try
+        {
+            Class.forName(classfor);
+            con = DriverManager.getConnection(url, usuario, clave);
+            String query = "BEGIN INSERT INTO VENTA (ID_CLIENTE, ID_USUARIO, MONTO_TOTAL, FECHA, TIME) VALUES (?, ?, ?, ?, ?) returning ID_VENTA into ?; END;";
+            CallableStatement cs = con.prepareCall(query);
+            cs.setString(1, cliente);
+            cs.setString(2, rut);
+            cs.setInt(3, monto_total);
+            cs.setString(4, fecha);
+            cs.setString(5, hora);
+            cs.registerOutParameter(6, java.sql.Types.NUMERIC);
+            cs.executeQuery();
+            return cs.getInt(6);
+        }
+        catch (ClassNotFoundException e)
+        {
+            return -1;
+        }
+        catch(SQLException e)
+        {
+            return -2;
+        }
+    }
+    
+    public String IngresarVentaDetalle(int id_venta, int id_producto, int total)
+    {
+        try
+        {
+            Class.forName(classfor);
+            con = DriverManager.getConnection(url, usuario, clave);
+            String query = "INSERT INTO DETALLE_VENTA (ID_VENTA, ID_PRODUCTO, CANTIDAD) VALUES(?, ?, ?)";
+            CallableStatement cs = con.prepareCall(query);
+            cs.setInt(1, id_venta);
+            cs.setInt(2, id_producto);
+            cs.setInt(3, total);
+            cs.executeQuery();
+            return "";
+        }
+        catch (ClassNotFoundException e)
+        {
+            return e.toString();
+        }
+        catch(SQLException e)
+        {
+            return e.toString();
+        }
+    }
 
 
     public int MisVentasLogin(String rut, String contrasenna){
@@ -540,7 +616,7 @@ public class registro{
     } //fin de catch
 
 
-    return 8;
+        return 8;
 
     }
 

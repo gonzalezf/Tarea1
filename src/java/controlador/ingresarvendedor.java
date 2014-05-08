@@ -32,15 +32,12 @@ public class ingresarvendedor extends HttpServlet {
             String contrasenna = request.getParameter("contrasenna").toUpperCase();
             String nombre = request.getParameter("nombre").toUpperCase();
             String repetircontrasenna = request.getParameter("repetircontrasenna").toUpperCase();
-            int comision = Integer.parseInt(request.getParameter("comision"));
             if(!regis.validRut(rut))
               out.write("ERROR:El RUT no es válido:#form_1");
             else if(nombre.equals(""))
               out.write("ERROR:Debe ingresar un nombre:#form_2");
             else if(contrasenna.length() < 6)
               out.write("ERROR:La contraseña es muy corta (6 caracteres minimo):#form_3");
-            else if(comision < 0)
-              out.write("ERROR:La comisión debe ser positiva:#form_5");
 
 
             /*validacion de contrasena valida */
@@ -52,7 +49,7 @@ public class ingresarvendedor extends HttpServlet {
                }
                else
                {
-                   String error = regis.IngresarVendedor(rut, contrasenna, nombre, comision);
+                   String error = regis.IngresarVendedor(rut, contrasenna, nombre);
                    if(error.equals(""))
                        out.write("SUCCESS:Vendedor ingresado correctamente");
                    else
@@ -61,10 +58,6 @@ public class ingresarvendedor extends HttpServlet {
                    }
                }
             }
-        }
-        catch(NumberFormatException d)
-        {
-            out.write("ERROR:Se ingresó un número inválido en comisión:#form_5");
         }
         finally
         { 

@@ -65,11 +65,6 @@
             <input id="form_4" class="input" type="password" value="" name="repetircontrasenna">
             </div>
             <div class="clearfix"></div>
-            <div id="left">
-            <p>Ingrese comisión:</p>
-            <input id="form_5" class="input" type="text" value="" name="comision">
-            </div>
-            <div class="clearfix"></div>
             <input id="submit_button" class="submit" type="submit" value="Ingresar Vendedor" name="ingresarvendedor">
             <div id="form_reply_message"></div>
         </form>

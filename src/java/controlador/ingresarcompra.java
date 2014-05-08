@@ -86,12 +86,14 @@ public class ingresarcompra extends HttpServlet {
                 monto_total += price;
                 if(cant < 0)
                 {
-                    out.write("ERROR:Debe ingresar una cantidad positiva:#form_"+(i-1)*3+2);
+                    int number = (i-1)*3+2;
+                    out.write("ERROR:Debe ingresar una cantidad positiva:#form_"+number);
                     return;
                 }
                 else if(price < 0)
                 {
-                    out.write("ERROR:Debe ingresar un precio positivo:#form_"+(i-1)*3+3);
+                    int number = (i-1)*3+3;
+                    out.write("ERROR:Debe ingresar un precio positivo:#form_"+number);
                     return;
                 }
                 //Esto para venta
