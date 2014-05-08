@@ -375,7 +375,7 @@ public class registro{
 
             con=DriverManager.getConnection(url, usuario, clave);
             consulta = con.createStatement();
-            String query = "INSERT INTO CLIENTE (RUT, NOMBE) VALUES (?, ?)";
+            String query = "INSERT INTO CLIENTE (RUT, NOMBRE) VALUES (?, ?)";
             CallableStatement cs = con.prepareCall(query);
             cs.setString(1, rut);
             cs.setString(2, nombre);
@@ -392,27 +392,33 @@ public class registro{
         }
     } // fin de IngresarCliente
 
-    public void AgregarProducto(int id_producto,String nombre,String descripcion,String categoria,int stock,int precio){
-
-
-    try{
-        Class.forName(classfor);
-
-        con=DriverManager.getConnection(url, usuario, clave);
-        consulta = con.createStatement();
-        int r = consulta.executeUpdate("INSERT INTO producto (id_producto,descripcion,categoria,stock,precio) VALUES (DEFAULT,'"+descripcion+"','"+categoria+"',"+stock+","+precio+")");
-
-        System.out.println(r);
-    }
-
-    catch(Exception e)
+    public String AgregarProducto(String nombre,String descripcion,String categoria,int stock,int precio)
     {
+        try
+        {
+            Class.forName(classfor);
 
-
-      System.out.println(e.getMessage());
-    } //fin de catch
-
-    } // fin de AgregarProducto
+            con=DriverManager.getConnection(url, usuario, clave);
+            consulta = con.createStatement();
+            String query = "INSERT INTO PRODUCTO (NOMBRE, DESCRIPCION, CATEGORIA, STOCK, PRECIO) VALUES (?, ?, ?, ?, ?)";
+            CallableStatement cs = con.prepareCall(query);
+            cs.setString(1, nombre);
+            cs.setString(2, descripcion);
+            cs.setString(3, categoria);
+            cs.setInt(4, stock);
+            cs.setInt(5, precio);
+            cs.executeQuery();
+            return "";
+        }
+        catch(ClassNotFoundException e)
+        {
+            return "Class not found (Class.forName(classfor))";
+        }
+        catch(SQLException ex)
+        {
+            return ex.toString();
+        }
+    }
 
 
    public String EditarProducto(int id_producto, String descripcion,String categoria, int precio){

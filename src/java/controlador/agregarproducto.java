@@ -28,27 +28,56 @@ public class agregarproducto extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("text/plain");  
+        response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
-        try {
-
-
-          registro regis=new registro();
-          int id_producto = Integer.parseInt(request.getParameter("id_producto"));
-          String nombre =request.getParameter("nombre").toUpperCase();
-          String descripcion =request.getParameter("descripcion").toUpperCase();
-          String categoria =request.getParameter("categoria").toUpperCase();
-          int precio = Integer.parseInt(request.getParameter("precio"));
-          int stock = Integer.parseInt(request.getParameter("stock"));
-
-          regis.AgregarProducto(id_producto,nombre,descripcion,categoria,stock,precio);
+        try
+        {
+            registro regis=new registro();
+            String nombre = request.getParameter("nombre").toUpperCase();
+            String descripcion = request.getParameter("descripcion").toUpperCase();
+            String categoria = request.getParameter("categoria").toUpperCase();
+            int precio = 0;
+            int stock = 0;
+            
+            if(nombre.equals(""))
+            {
+                out.write("ERROR:Debe ingresar un nombre:#form_1");
+                return;
+            }
+            else if(nombre.equals(""))
+            {
+                out.write("ERROR:Debe ingresar una categoría:#form_3");
+                return;
+            }
+            try{
+                precio = Integer.parseInt(request.getParameter("precio"));
+            }
+            catch(NumberFormatException e)
+            {
+                out.write("ERROR:El precio es inválido:#form_5");
+                return;
+            }
+            try{
+                stock = Integer.parseInt(request.getParameter("stock"));
+            }
+            catch(NumberFormatException e){
+                out.write("ERROR:El stock inicial es inválido:#form_4");
+                return;
+            }
+            
+            if(precio < 0)
+            {
+                out.write("ERROR:El precio debe ser un número positivo:#form_5");
+                return;
+            }
+            else if(stock < 0)
+            {
+                out.write("ERROR:El stock inicial debe ser un número positivo:#form_4");
+            }
+          regis.AgregarProducto(nombre, descripcion, categoria, stock, precio);
           //out.println(nombre);
-          response.sendRedirect("administrarproductos.jsp");
-
-
-
-
-
+          out.write("SUCCESS:Producto añadido con éxito");
 
         } finally { 
             out.close();

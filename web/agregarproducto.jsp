@@ -49,37 +49,38 @@
         <form id="submit_form" action="agregarproducto" method="post" >
             <div id="left">
             <p>Ingrese Nombre</p>
-            <input class=input type="text" value="" name="nombre">
+            <input id="form_1" class=input type="text" value="" name="nombre">
             </div>
             
             <div id="right">
-            <p>Ingrese Descripción:</p>
-            <input class="input" type="text" value="" name="descripcion">
+            <p>Ingrese Descripción</p>
+            <input id="form_2" class="input" type="text" value="" name="descripcion">
             </div>
             <div class="clearfix"></div>
             
             <div id ="left">
             <p>Ingrese Categoría</p>
-            <input class="input" type="text" value="" name="categoria">
+            <input id="form_3" class="input" type="text" value="" name="categoria">
             </div>
             
             <div id="right">
-            <p>Ingrese Stock</p>
-            <input class="input" type="text" value="" name="stock">
+            <p>Ingrese Stock Inicial</p>
+            <input id="form_4" class="input" type="text" value="" name="stock">
             </div>
             
             <div class="clearfix"></div>
             <div id="left">
             <p>Ingrese Precio</p>
-            <input class="input" type="text" value="" name="precio">
+            <input id="form_5" class="input" type="text" value="" name="precio">
             </div>
             
             <div class="clearfix"></div>
             
-            <input class="submit" type="submit" value="Finalizar" name="agregarproducto">
-
-
+            <input id="submit_button" class="submit" type="submit" value="Finalizar" name="agregarproducto">
+            <input id="edit_volver" class="submit" type="submit" value="Volver">
+            <div id = "form_reply_message"></div>
         </form>
         </div>
     </body>
+    <script type="text/javascript" src="js/script.js"></script>
 </html>

@@ -66,7 +66,7 @@ public class verventas extends HttpServlet {
            }
             try{
             
-            String sql0 = "select rut from cliente where nombe ='"+nombrecliente+"'";
+            String sql0 = "select rut from cliente where nombre ='"+nombrecliente+"'";
            // out.println(sql0);
             pr1 = con.prepareStatement(sql0);
             rs1 = pr1.executeQuery();

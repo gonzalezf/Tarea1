@@ -45,7 +45,7 @@
             <form id="search_form" action="" method="post" >
              <h2>Buscar: </h2>
              <input placeholder="Ingrese nombre producto" type='text' value='' name='search'>
-             <input id="search_button" type="submit" value="OK" name="">
+             <input id="search_button" class="submit_small" type="submit" value="OK" name="">
             </form>
         <br>
         <a href="agregarproducto.jsp">Agregar Producto</a>
@@ -94,7 +94,8 @@
                 CallableStatement cs;
                 if(search_name != null)
                 {
-                    sql= "SELECT ID_PRODUCTO, NOMBRE, STOCK FROM PRODUCTO WHERE NOMBRE LIKE ?";
+                    search_name = "%"+search_name+"%";
+                    sql= "SELECT ID_PRODUCTO, NOMBRE, STOCK FROM PRODUCTO WHERE upper(NOMBRE) LIKE upper(?)";
                     cs = con.prepareCall(sql);
                     cs.setString(1, search_name);
                 }

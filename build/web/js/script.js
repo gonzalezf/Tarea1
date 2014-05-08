@@ -417,8 +417,14 @@ $(document).ready(function()
     $("#search_button").click(function(e)
     {
         var frm = $('#search_form').serialize();
-        alert(frm);
         window.location.replace("administrarproductos.jsp?"+frm);
+        e.preventDefault();
+    });
+    
+    $("#verventas_button").click(function(e)
+    {
+        var frm = $('#verventas_form').serialize();
+        window.location.replace("verventas.jsp?"+frm);
         e.preventDefault();
     });
 });

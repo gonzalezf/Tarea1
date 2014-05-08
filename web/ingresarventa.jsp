@@ -59,7 +59,7 @@
             items.add(info);
         }
         
-        sql= "SELECT RUT, NOMBE FROM CLIENTE";
+        sql= "SELECT RUT, NOMBRE FROM CLIENTE";
         pr = con.prepareStatement(sql);
         rs = pr.executeQuery();
         while(rs.next())

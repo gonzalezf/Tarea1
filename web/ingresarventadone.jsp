@@ -67,7 +67,7 @@
     String cliente = "nadie", vendedor = "nadie", fecha = "Unknown", hora = "Unknown", total_compra = "???";
     try
     {
-        String sql= "SELECT c.NOMBE, u.NOMBRE, v.MONTO_TOTAL, v.FECHA, v.TIME FROM VENTA v,(SELECT cl.RUT, cl.NOMBE FROM CLIENTE cl) c,(SELECT us.RUT, us.NOMBRE FROM USUARIO us) u WHERE v.ID_VENTA = ? AND v.ID_CLIENTE = c.RUT AND v.ID_USUARIO = u.RUT";
+        String sql= "SELECT c.NOMBRE, u.NOMBRE, v.MONTO_TOTAL, v.FECHA, v.TIME FROM VENTA v,(SELECT cl.RUT, cl.NOMBRE FROM CLIENTE cl) c,(SELECT us.RUT, us.NOMBRE FROM USUARIO us) u WHERE v.ID_VENTA = ? AND v.ID_CLIENTE = c.RUT AND v.ID_USUARIO = u.RUT";
         CallableStatement cs = con.prepareCall(sql);
         cs.setString(1, id_venta);
         rs = cs.executeQuery();
