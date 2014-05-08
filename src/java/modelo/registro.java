@@ -37,22 +37,31 @@ public class registro{
     private Statement consulta = null;
     private ResultSet rs=null;
     
+    
     public boolean HasEnoughStock(int id_producto, int cant)
     {
+        CallableStatement cs;
         try
         {
             Class.forName(classfor);
             con = DriverManager.getConnection(url, usuario, clave);
             String query = "SELECT STOCK FROM PRODUCTO WHERE ID_PRODUCTO = ?";
-            CallableStatement cs = con.prepareCall(query);
+            cs = con.prepareCall(query);
             cs.setInt(1, id_producto);
             rs = cs.executeQuery();
             if(rs.next())
             {
                 if(cant <= rs.getInt(1))
+                {
+                    con.close();
+                    pr.close();
+                    cs.close();
                     return true;
+                }
             }
-            
+            con.close();
+            pr.close();
+            cs.close();
             return false;
         }
         catch(ClassNotFoundException e)
@@ -62,6 +71,9 @@ public class registro{
         catch(SQLException e)
         {
             return false;
+        }
+        finally
+        {
         }
     }
     
@@ -77,9 +89,14 @@ public class registro{
             rs = cs.executeQuery();
             if(rs.next())
             {
+                con.close();
+                pr.close();
+                cs.close();
                 return rs.getInt(1);
             }
-            
+            con.close();
+            pr.close();
+            cs.close();
             return 0;
         }
         catch(ClassNotFoundException e)
@@ -163,42 +180,6 @@ public class registro{
             return false;
         return validCharacters.indexOf(info[1].charAt(0)) != -1;
     }
-    
-    public void InsertarUsuario(String rut,String contrasenna,String nombre,String tipo,int comision){
-    String sql = "Insert into usuario values(?,?,?,?,?)";
-    try{
-        Class.forName(classfor);
-
-        con=DriverManager.getConnection(url, usuario, clave);
-
-       /* pr=con.prepareStatement(sql);
-        pr.setString(1, rut);
-        pr.setString(2,contrasenna); HOLAAAAAAAAAA!!!!
-        pr.setString(3,nombre);
-        pr.setString(4,tipo);
-        pr.setInt(5,comision);
-
-        pr.executeUpdate();
-        */
-
-
-
-        consulta = con.createStatement();
-        int r = consulta.executeUpdate("INSERT INTO usuario (rut, contrasenna,nombre,tipo,comision) VALUES ('"+rut+"','"+contrasenna+"','"+nombre+"','"+tipo+"',"+comision+")");
-
-        System.out.println(r);
-    }
-
-    catch(Exception e)
-    {
-      
-
-      System.out.println(e.getMessage());
-    } //fin de catch
-
-    } // fin de InsertarUsuario
-    // 0 : funciono; 1 = usuario no encontrado, 2 = contraseña incorrecta
-
 
     public ArrayList<String> SearchProduct(String id_producto){
 
@@ -263,6 +244,9 @@ public class registro{
 
                 str.add(rs.getString(2)); //tipo
                 str.add(rs.getString(3)); //nombre
+                con.close();
+                pr.close();
+                rs.close();
                 return str;
             }
             else
@@ -271,6 +255,7 @@ public class registro{
                 str.add("2"); //contrasenna incorrecta
                 str.add("incorrecto");
                 str.add("incorrecto");
+                con.close();
                 return str;
             }
         }
@@ -279,6 +264,7 @@ public class registro{
             str.add("1");
             str.add("noexiste");
             str.add("noexiste");
+            con.close();
             return str; //usuario no registrado
         }
     }
@@ -353,6 +339,7 @@ public class registro{
             cs.setString(3, nombre);
             cs.setString(4, tipo_vend);
             cs.executeQuery();
+            con.close();
             return "";
         }
         catch(ClassNotFoundException e)
@@ -380,6 +367,7 @@ public class registro{
             cs.setString(1, rut);
             cs.setString(2, nombre);
             cs.executeQuery();
+            con.close();
             return "";
         }
         catch(ClassNotFoundException e)
@@ -408,6 +396,7 @@ public class registro{
             cs.setInt(4, stock);
             cs.setInt(5, precio);
             cs.executeQuery();
+            con.close();
             return "";
         }
         catch(ClassNotFoundException e)
@@ -435,6 +424,7 @@ public class registro{
         cs.setInt(3, precio);
         cs.setInt(4, id_producto);
         cs.executeQuery();
+        con.close();
         return "";
     }
 
@@ -450,26 +440,6 @@ public class registro{
 
     } // fin de EditarProducto
 
-    public void AgregarCompra(int id_producto,int cantidad,int precio){
-
-   //terminar
- //  Date date = new Date();
-    try{
-
-        Class.forName(classfor);
-        con=DriverManager.getConnection(url, usuario, clave);
-        consulta = con.createStatement();
-   //     int r = consulta.executeUpdate("INSERT INTO producto (id_producto,nombre,descripcion,categoria,stock,precio) VALUES ("+id_producto+",'"+nombre+"','"+descripcion+"','"+categoria+"',"+stock+","+precio+")");
- //       System.out.println(r);
-    }
-
-    catch(Exception e)
-    {
-      System.out.println(e.getMessage());
-    } //fin de catch
-
-    } // fin de AgregarCompra
-
     public int IngresarCompra(int monto_total, String fecha, String hora)
     {
         try
@@ -483,6 +453,7 @@ public class registro{
             cs.setString(3, hora);
             cs.registerOutParameter(4, java.sql.Types.NUMERIC);
             cs.executeQuery();
+            con.close();
             return cs.getInt(4);
         }
         catch (ClassNotFoundException e)
@@ -508,6 +479,7 @@ public class registro{
             cs.setInt(3, total);
             cs.setInt(4, precio);
             cs.executeQuery();
+            con.close();
             return "";
         }
         catch (ClassNotFoundException e)
@@ -536,6 +508,7 @@ public class registro{
             cs.setString(5, hora);
             cs.registerOutParameter(6, java.sql.Types.NUMERIC);
             cs.executeQuery();
+            con.close();
             return cs.getInt(6);
         }
         catch (ClassNotFoundException e)
@@ -560,6 +533,7 @@ public class registro{
             cs.setInt(2, id_producto);
             cs.setInt(3, total);
             cs.executeQuery();
+            con.close();
             return "";
         }
         catch (ClassNotFoundException e)
@@ -600,10 +574,12 @@ public class registro{
 
                     if(rs.getString(1).equals(contrasenna)){
                         rs.close();
+                        con.close();
                         return 1;
                     }
                     else{
                         rs.close();
+                        con.close();
                         return 2; //contrasenna invalida!
                     }
 

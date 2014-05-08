@@ -5,33 +5,20 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="modelo.registro" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
 <%
     //Esto verifica que el usuario haya iniciado sesión
     //y que además tenga los permisos necesarios.
-    String logged_in = null;
-    try{
-        logged_in = (String)session.getAttribute("LoggedIn");
-    }
-    catch(Exception e)
+    if(!registro.IsLoggedIn(session))
     {
-        response.setStatus( 403 );
+        response.sendRedirect("index.jsp");
         return;
     }
-    if(logged_in == null)
+    else if(!registro.GetUserLevel(session).equals("Administrador"))
     {
-        response.setStatus( 403 );
-        return;
-    }
-    if(logged_in.equals("no"))
-    {
-        response.setStatus( 403 );
-        return;
-    }
-    if(!session.getAttribute("UserLevel").toString().equals("Administrador"))
-    {
-        response.setStatus( 403 );
+        response.sendRedirect("index.jsp");
         return;
     }
 %>

@@ -33,45 +33,61 @@
     PreparedStatement pr = null;
     Statement consulta = null;
     ResultSet rs=null;
-
+    ArrayList<String[]> items = new ArrayList<String[]>();
+    ArrayList<String[]> clientes = new ArrayList<String[]>();
     try
     {
         Class.forName(classfor);
         con=DriverManager.getConnection(url, usuario, clave);
+        String sql;
+        try
+        {
+            sql= "SELECT id_producto, nombre FROM producto";
+            pr = con.prepareStatement(sql);
+            rs = pr.executeQuery();
+            while(rs.next())
+            {
+                String[] info = {"", ""};
+                info[0] = rs.getString(1);
+                info[1] = rs.getString(2);
+                items.add(info);
+            }
+        }
+        finally
+        {
+            pr.close();
+            rs.close();
+        }
+        try
+        {
+            sql= "SELECT RUT, NOMBRE FROM CLIENTE";
+            pr = con.prepareStatement(sql);
+            rs = pr.executeQuery();
+            while(rs.next())
+            {
+                String[] info = {"", ""};
+                info[0] = rs.getString(1);
+                info[1] = rs.getString(2);
+                clientes.add(info);
+            }
+        }
+        catch(Exception e)
+        {
+        }
+        finally
+        {
+            pr.close();
+            rs.close();
+        }
 
     }
     catch (ClassNotFoundException e)
     {
         System.out.println(e.toString());
     }
-    ArrayList<String[]> items = new ArrayList<String[]>();
-    ArrayList<String[]> clientes = new ArrayList<String[]>();
-    try
+    finally
     {
-        String sql= "SELECT id_producto, nombre FROM producto";
-        pr = con.prepareStatement(sql);
-        rs = pr.executeQuery();
-        while(rs.next())
-        {
-            String[] info = {"", ""};
-            info[0] = rs.getString(1);
-            info[1] = rs.getString(2);
-            items.add(info);
-        }
-        
-        sql= "SELECT RUT, NOMBRE FROM CLIENTE";
-        pr = con.prepareStatement(sql);
-        rs = pr.executeQuery();
-        while(rs.next())
-        {
-            String[] info = {"", ""};
-            info[0] = rs.getString(1);
-            info[1] = rs.getString(2);
-            clientes.add(info);
-        }
-    }
-    catch(Exception e)
-    {
+        con.close();
     }
     String selector = "";
     String selector_clientes = "";

@@ -62,7 +62,7 @@ public class verventas extends HttpServlet {
                 
 
            } catch (ClassNotFoundException e) {
-                     System.out.println(e.toString());
+                System.out.println(e.toString());
            }
             try{
             

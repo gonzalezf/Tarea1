@@ -64,66 +64,69 @@
             String clave="pelife18";
 
             Connection con=null;
-            PreparedStatement pr=null;
-            Statement consulta = null;
             ResultSet rs=null;
-
+            String search_name = null;
             try
             {
                 Class.forName(classfor);
                 con=DriverManager.getConnection(url, usuario, clave);
+                try
+                {
+                    search_name = request.getParameter("search");
+                }
+                catch(Exception e)
+                {
+                    search_name = null;
+                }
+                CallableStatement cs;
+                try
+                { 
+                    String sql;
+                    
+                    if(search_name != null)
+                    {
+                        search_name = "%"+search_name+"%";
+                        sql= "SELECT ID_PRODUCTO, NOMBRE, STOCK FROM PRODUCTO WHERE upper(NOMBRE) LIKE upper(?)";
+                        cs = con.prepareCall(sql);
+                        cs.setString(1, search_name);
+                    }
+                    else
+                    {
+                        sql= "SELECT ID_PRODUCTO, NOMBRE, STOCK FROM PRODUCTO";
+                        cs = con.prepareCall(sql);
+                    }
 
+                    rs = cs.executeQuery();
+                    //aqui debe ir el if!
+                    while(rs.next())
+                    {
+                        out.println("<TR>");
+                        out.println("<TD>"+rs.getString(1)+"</TD>");
+                        out.println("<TD>"+rs.getString(2)+"</TD>");
+                        out.println("<TD>"+rs.getString(3)+"</TD>");
+
+                        out.print("<TD><a href='editarproducto.jsp?id_producto="+rs.getString(1)+"'> Editar</a></TD>");
+                        out.println("</TR>");
+                    }
+                    cs.close();
+                } //fin del try
+                catch (SQLException e)
+                {
+                    out.print(e.toString());
+                }
+                finally
+                {
+                    rs.close();
+                    
+                }
             }
             catch (ClassNotFoundException e)
             {
                 System.out.println(e.toString());
             }
-            
-            String search_name = null;
-            try
+            finally
             {
-                search_name = request.getParameter("search");
-            }
-            catch(Exception e)
-            {
-                search_name = null;
-            }
-            try
-            { 
-                String sql;
-                CallableStatement cs;
-                if(search_name != null)
-                {
-                    search_name = "%"+search_name+"%";
-                    sql= "SELECT ID_PRODUCTO, NOMBRE, STOCK FROM PRODUCTO WHERE upper(NOMBRE) LIKE upper(?)";
-                    cs = con.prepareCall(sql);
-                    cs.setString(1, search_name);
-                }
-                else
-                {
-                    sql= "SELECT ID_PRODUCTO, NOMBRE, STOCK FROM PRODUCTO";
-                    cs = con.prepareCall(sql);
-                }
-                
-                rs = cs.executeQuery();
-                //aqui debe ir el if!
-                while(rs.next())
-                {
-                    out.println("<TR>");
-                    out.println("<TD>"+rs.getString(1)+"</TD>");
-                    out.println("<TD>"+rs.getString(2)+"</TD>");
-                    out.println("<TD>"+rs.getString(3)+"</TD>");
-
-                    out.print("<TD><a href='editarproducto.jsp?id_producto="+rs.getString(1)+"'> Editar</a></TD>");
-                    out.println("</TR>");
-                }
-                rs.close();
-                cs.close();
                 con.close();
-            } //fin del try
-            catch (SQLException e)
-            {
-                out.print(e.toString());
             }
             %>
 

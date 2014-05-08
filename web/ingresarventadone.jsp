@@ -50,56 +50,73 @@
         response.sendRedirect("index.jsp");
         return;
     }
-
-    try
-    {
-        Class.forName(classfor);
-        con=DriverManager.getConnection(url, usuario, clave);
-
-    }
-    catch (ClassNotFoundException e)
-    {
-        System.out.println(e.toString());
-    }
     //Lista de lista
     String[] info;
     ArrayList<String[]> items = new ArrayList<String[]>();
     String cliente = "nadie", vendedor = "nadie", fecha = "Unknown", hora = "Unknown", total_compra = "???";
     try
     {
-        String sql= "SELECT c.NOMBRE, u.NOMBRE, v.MONTO_TOTAL, v.FECHA, v.TIME FROM VENTA v,(SELECT cl.RUT, cl.NOMBRE FROM CLIENTE cl) c,(SELECT us.RUT, us.NOMBRE FROM USUARIO us) u WHERE v.ID_VENTA = ? AND v.ID_CLIENTE = c.RUT AND v.ID_USUARIO = u.RUT";
-        CallableStatement cs = con.prepareCall(sql);
-        cs.setString(1, id_venta);
-        rs = cs.executeQuery();
-        if(rs.next())
+        Class.forName(classfor);
+        con=DriverManager.getConnection(url, usuario, clave);
+        String sql;
+        CallableStatement cs = null;
+        try
         {
-            cliente = rs.getString(1);
-            vendedor = rs.getString(2);
-            total_compra = rs.getString(3);
-            fecha = rs.getString(4);
-            hora = rs.getString(5);
+            sql = "SELECT c.NOMBRE, u.NOMBRE, v.MONTO_TOTAL, v.FECHA, v.TIME FROM VENTA v,(SELECT cl.RUT, cl.NOMBRE FROM CLIENTE cl) c,(SELECT us.RUT, us.NOMBRE FROM USUARIO us) u WHERE v.ID_VENTA = ? AND v.ID_CLIENTE = c.RUT AND v.ID_USUARIO = u.RUT";
+            cs = con.prepareCall(sql);
+            cs.setString(1, id_venta);
+            rs = cs.executeQuery();
+            if(rs.next())
+            {
+                cliente = rs.getString(1);
+                vendedor = rs.getString(2);
+                total_compra = rs.getString(3);
+                fecha = rs.getString(4);
+                hora = rs.getString(5);
+            }
         }
-        sql = "SELECT v.NOMBRE, v.DESCRIPCION, d.CANTIDAD, v.PRECIO FROM DETALLE_VENTA d, (SELECT p.ID_PRODUCTO, p.NOMBRE, p.DESCRIPCION, p.PRECIO FROM PRODUCTO p) v WHERE d.ID_VENTA = ? AND d.ID_PRODUCTO = v.ID_PRODUCTO";
-        cs = con.prepareCall(sql);
-        cs.setString(1, id_venta);
-        rs = cs.executeQuery();
-        while(rs.next())
+        finally
+        {
+            cs.close();
+            rs.close();
+        }
+        try
+        {
+            sql = "SELECT v.NOMBRE, v.DESCRIPCION, d.CANTIDAD, v.PRECIO FROM DETALLE_VENTA d, (SELECT p.ID_PRODUCTO, p.NOMBRE, p.DESCRIPCION, p.PRECIO FROM PRODUCTO p) v WHERE d.ID_VENTA = ? AND d.ID_PRODUCTO = v.ID_PRODUCTO";
+            cs = con.prepareCall(sql);
+            cs.setString(1, id_venta);
+            rs = cs.executeQuery();
+            while(rs.next())
+            {
+                info = new String[4];
+                info[0] = rs.getString(1);
+                info[1] = rs.getString(2);
+                info[2] = rs.getString(3);
+                info[3] = rs.getString(4);
+                items.add(info);
+            }
+        }
+        catch(Exception e)
         {
             info = new String[4];
-            info[0] = rs.getString(1);
-            info[1] = rs.getString(2);
-            info[2] = rs.getString(3);
-            info[3] = rs.getString(4);
+            info[0] = e.toString();
+            info[1] = e.toString();
+            info[2] = e.toString();
             items.add(info);
         }
+        finally
+        {
+            cs.close();
+            rs.close();
+        }
     }
-    catch(Exception e)
+    catch (ClassNotFoundException e)
     {
-        info = new String[4];
-        info[0] = e.toString();
-        info[1] = e.toString();
-        info[2] = e.toString();
-        items.add(info);
+        System.out.println(e.toString());
+    }
+    finally
+    {
+        con.close();
     }
 %>  
 <html>

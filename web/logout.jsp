@@ -5,25 +5,12 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="modelo.registro" %>
 <!DOCTYPE html>
 <%
-    String logged_in = null;
-    try{
-        logged_in = (String)session.getAttribute("LoggedIn");
-    }
-    catch(Exception e)
+    if(!registro.IsLoggedIn(session))
     {
-        response.setStatus( 403 );
-        return;
-    }
-    if(logged_in == null)
-    {
-        response.setStatus( 403 );
-        return;
-    }
-    if(logged_in.equals("no"))
-    {
-        response.setStatus( 403 );
+        response.sendRedirect("index.jsp");
         return;
     }
     session.invalidate();

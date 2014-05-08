@@ -4,28 +4,15 @@
     Author     : Felipe Gonzalez
 --%>
 <%@ page import="java.sql.*" %>
+<%@ page import="modelo.registro" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
     //Esto verifica que el usuario haya iniciado sesión
     //y que además tenga los permisos necesarios.
-    String logged_in = null;
-    try{
-        logged_in = (String)session.getAttribute("LoggedIn");
-    }
-    catch(Exception e)
+    if(!registro.IsLoggedIn(session))
     {
-        response.setStatus( 403 );
-        return;
-    }
-    if(logged_in == null)
-    {
-        response.setStatus( 403 );
-        return;
-    }
-    if(logged_in.equals("no"))
-    {
-        response.setStatus( 403 );
+        response.sendRedirect("index.jsp");
         return;
     }
     
@@ -69,13 +56,6 @@
             Class.forName(classfor);
             con = DriverManager.getConnection(url, usuario, clave);
 
-
-        }
-        catch(ClassNotFoundException e)
-        {
-            System.out.println(e.toString());
-        }
-
 %>
     <h2>Todas las ventas hechas por usted</h2>
     <div class="tablewrapper_verventas">
@@ -88,26 +68,41 @@
         <th>Hora</th>
         </tr>
 <%
-        try
-        {
-            String query = "select v.id_venta, c.nombre, v.monto_total, v.fecha, v.time from venta v, (SELECT RUT, NOMBRE FROM CLIENTE cl) c where v.id_usuario = ? AND c.RUT = v.ID_CLIENTE";
-            CallableStatement cs = con.prepareCall(query);
-            cs.setString(1, search_id);
-            rs = cs.executeQuery();
-            while(rs.next())
+            CallableStatement cs = null;
+            try
             {
-                out.println("<TR>");
-                out.println("<TD>"+rs.getString(1)+"</TD>");
-                out.println("<TD>"+rs.getString(2)+"</TD>");
-                out.println("<TD>"+rs.getString(3)+"</TD>");
-                out.println("<TD>"+rs.getString(4)+"</TD>");
-                out.println("<TD>"+rs.getString(5)+"</TD>");
-                out.println("</TR>");
+                String query = "select v.id_venta, c.nombre, v.monto_total, v.fecha, v.time from venta v, (SELECT RUT, NOMBRE FROM CLIENTE cl) c where v.id_usuario = ? AND c.RUT = v.ID_CLIENTE";
+                cs = con.prepareCall(query);
+                cs.setString(1, search_id);
+                rs = cs.executeQuery();
+                while(rs.next())
+                {
+                    out.println("<TR>");
+                    out.println("<TD>"+rs.getString(1)+"</TD>");
+                    out.println("<TD>"+rs.getString(2)+"</TD>");
+                    out.println("<TD>"+rs.getString(3)+"</TD>");
+                    out.println("<TD>"+rs.getString(4)+"</TD>");
+                    out.println("<TD>"+rs.getString(5)+"</TD>");
+                    out.println("</TR>");
+                }
+            }
+            catch (SQLException e)
+            {
+            }
+            finally
+            {
+                cs.close();
+                rs.close();
             }
         }
-        catch (SQLException e)
+        catch(ClassNotFoundException e)
         {
-        }           
+            System.out.println(e.toString());
+        }
+        finally
+        {
+            con.close();
+        }
     }
 %>
     </table>

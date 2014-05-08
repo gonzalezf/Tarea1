@@ -31,35 +31,41 @@
 
     Connection con=null;
     PreparedStatement pr = null;
-    Statement consulta = null;
     ResultSet rs=null;
-
+    ArrayList<String[]> items = new ArrayList<String[]>();
     try
     {
         Class.forName(classfor);
         con=DriverManager.getConnection(url, usuario, clave);
-
+        try
+        {
+            String sql= "SELECT id_producto, nombre FROM producto";
+            pr = con.prepareStatement(sql);
+            rs = pr.executeQuery();
+            while(rs.next())
+            {
+                String[] info = {"", ""};
+                info[0] = rs.getString(1);
+                info[1] = rs.getString(2);
+                items.add(info);
+            }
+        }
+        catch(Exception e)
+        {
+        }
+        finally
+        {
+            pr.close();
+            rs.close();
+        }
     }
     catch (ClassNotFoundException e)
     {
         System.out.println(e.toString());
     }
-    ArrayList<String[]> items = new ArrayList<String[]>();
-    try
+    finally
     {
-        String sql= "SELECT id_producto, nombre FROM producto";
-        pr = con.prepareStatement(sql);
-        rs = pr.executeQuery();
-        while(rs.next())
-        {
-            String[] info = {"", ""};
-            info[0] = rs.getString(1);
-            info[1] = rs.getString(2);
-            items.add(info);
-        }
-    }
-    catch(Exception e)
-    {
+        con.close();
     }
     String selector = "";
     for(String[] item : items)

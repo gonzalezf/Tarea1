@@ -49,37 +49,51 @@
                     
 
                     ArrayList<String> str=new ArrayList<String>();
-                    try{
-                    Class.forName(classfor);
-                    con=DriverManager.getConnection(url, usuario, clave);
-                    String sql = "select nombre,descripcion, categoria,stock, precio from producto where id_producto = ?";
+                    try
+                    {
+                        
+                        Class.forName(classfor);
+                        con=DriverManager.getConnection(url, usuario, clave);
+                        try
+                        {
+                            String sql = "select nombre,descripcion, categoria,stock, precio from producto where id_producto = ?";
 
-                    pr = con.prepareStatement(sql);
-                    pr.setString(1, id_producto);
+                            pr = con.prepareStatement(sql);
+                            pr.setString(1, id_producto);
 
 
-                    rs = pr.executeQuery();
-                    //aqui debe ir el if!
-                    if(rs.next()){
+                            rs = pr.executeQuery();
+                            //aqui debe ir el if!
+                            if(rs.next())
+                            {
 
-                        str.add(rs.getString(1)); //nombre
-                        str.add(rs.getString(2)); //descripcion
-                        str.add(rs.getString(3)); //categoria
-                        str.add(rs.getString(4)); //stock
-                        str.add(rs.getString(5)); //precio
+                                str.add(rs.getString(1)); //nombre
+                                str.add(rs.getString(2)); //descripcion
+                                str.add(rs.getString(3)); //categoria
+                                str.add(rs.getString(4)); //stock
+                                str.add(rs.getString(5)); //precio
 
+                            }
+                            else
+                            {
+                                str.add("rs.ERROR - Codigo 2");
+                            }
+                        }
+                        finally
+                        {
+                            pr.close();
+                            rs.close();
+                        }
+                    }//fin del try
+                    catch(Exception e)
+                    {
+                        System.out.println(e.getMessage());
+                        str.add("ERROR!");
+                    } //fin de catch
+                    finally
+                    {
+                        con.close();
                     }
-                    else{
-                        str.add("rs.ERROR - Codigo 2");
-
-                    }
-                }//fin del try
-                catch(Exception e){
-                    System.out.println(e.getMessage());
-                    str.add("ERROR!");
-
-
-                } //fin de catch
 
                 %>
 
