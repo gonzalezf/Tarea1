@@ -98,18 +98,20 @@ public class ingresarventa extends HttpServlet {
                     list.add(array);
                 }
             }
+            
             int monto_total = 0;
             for(int[] array: list)
             {
                 if(regis.HasEnoughStock(array[0], array[1]))
+                {
                     monto_total += regis.GetProductPrice(array[0])*array[1];
+                }
                 else
                 {
                     out.write("ERROR:No hay suficiente stock para todos los productos:#form_0");
                     return;
                 }
             }
-            
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
             Date date = new Date();

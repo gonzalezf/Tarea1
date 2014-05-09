@@ -53,15 +53,9 @@ public class registro{
             {
                 if(cant <= rs.getInt(1))
                 {
-                    con.close();
-                    pr.close();
-                    cs.close();
                     return true;
                 }
             }
-            con.close();
-            pr.close();
-            cs.close();
             return false;
         }
         catch(ClassNotFoundException e)
@@ -89,14 +83,8 @@ public class registro{
             rs = cs.executeQuery();
             if(rs.next())
             {
-                con.close();
-                pr.close();
-                cs.close();
                 return rs.getInt(1);
             }
-            con.close();
-            pr.close();
-            cs.close();
             return 0;
         }
         catch(ClassNotFoundException e)
@@ -244,7 +232,6 @@ public class registro{
 
                 str.add(rs.getString(2)); //tipo
                 str.add(rs.getString(3)); //nombre
-                con.close();
                 pr.close();
                 rs.close();
                 return str;
@@ -255,7 +242,6 @@ public class registro{
                 str.add("2"); //contrasenna incorrecta
                 str.add("incorrecto");
                 str.add("incorrecto");
-                con.close();
                 return str;
             }
         }
@@ -264,7 +250,6 @@ public class registro{
             str.add("1");
             str.add("noexiste");
             str.add("noexiste");
-            con.close();
             return str; //usuario no registrado
         }
     }
@@ -339,7 +324,6 @@ public class registro{
             cs.setString(3, nombre);
             cs.setString(4, tipo_vend);
             cs.executeQuery();
-            con.close();
             return "";
         }
         catch(ClassNotFoundException e)
@@ -367,7 +351,6 @@ public class registro{
             cs.setString(1, rut);
             cs.setString(2, nombre);
             cs.executeQuery();
-            con.close();
             return "";
         }
         catch(ClassNotFoundException e)
@@ -396,7 +379,6 @@ public class registro{
             cs.setInt(4, stock);
             cs.setInt(5, precio);
             cs.executeQuery();
-            con.close();
             return "";
         }
         catch(ClassNotFoundException e)
@@ -424,7 +406,6 @@ public class registro{
         cs.setInt(3, precio);
         cs.setInt(4, id_producto);
         cs.executeQuery();
-        con.close();
         return "";
     }
 
@@ -453,7 +434,6 @@ public class registro{
             cs.setString(3, hora);
             cs.registerOutParameter(4, java.sql.Types.NUMERIC);
             cs.executeQuery();
-            con.close();
             return cs.getInt(4);
         }
         catch (ClassNotFoundException e)
@@ -479,7 +459,6 @@ public class registro{
             cs.setInt(3, total);
             cs.setInt(4, precio);
             cs.executeQuery();
-            con.close();
             return "";
         }
         catch (ClassNotFoundException e)
@@ -508,7 +487,6 @@ public class registro{
             cs.setString(5, hora);
             cs.registerOutParameter(6, java.sql.Types.NUMERIC);
             cs.executeQuery();
-            con.close();
             return cs.getInt(6);
         }
         catch (ClassNotFoundException e)
@@ -533,7 +511,6 @@ public class registro{
             cs.setInt(2, id_producto);
             cs.setInt(3, total);
             cs.executeQuery();
-            con.close();
             return "";
         }
         catch (ClassNotFoundException e)
@@ -574,12 +551,10 @@ public class registro{
 
                     if(rs.getString(1).equals(contrasenna)){
                         rs.close();
-                        con.close();
                         return 1;
                     }
                     else{
                         rs.close();
-                        con.close();
                         return 2; //contrasenna invalida!
                     }
 
